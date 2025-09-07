@@ -1,0 +1,554 @@
+[
+  {
+    "area":"문법",
+    "type_mid":"시제",
+    "code":"GR_TENSE",
+    "brief_desc":"현재·과거·미래·완료·진행·완료진행"
+  },
+  {
+    "area":"문법",
+    "type_mid":"조동사",
+    "code":"GR_MODAL",
+    "brief_desc":"can may must should have to 등"
+  },
+  {
+    "area":"문법",
+    "type_mid":"수동태",
+    "code":"GR_PASSIVE",
+    "brief_desc":"be p.p, get p.p"
+  },
+  {
+    "area":"문법",
+    "type_mid":"가정법·조건절",
+    "code":"GR_COND_SUBJ",
+    "brief_desc":"If절, 가정법 과거·과거완료, 혼합"
+  },
+  {
+    "area":"문법",
+    "type_mid":"관계사",
+    "code":"GR_RELATIVE",
+    "brief_desc":"관계대명사·관계부사·관계절 축약"
+  },
+  {
+    "area":"문법",
+    "type_mid":"to부정사",
+    "code":"GR_TO_INF",
+    "brief_desc":"명사·형용사·부사적 용법, 의미상의 주어"
+  },
+  {
+    "area":"문법",
+    "type_mid":"동명사",
+    "code":"GR_GERUND",
+    "brief_desc":"동명사, 동명사구, 동명사 관용"
+  },
+  {
+    "area":"문법",
+    "type_mid":"분사·분사구문",
+    "code":"GR_PARTICIPLE",
+    "brief_desc":"현재분사·과거분사·분사구문"
+  },
+  {
+    "area":"문법",
+    "type_mid":"비교",
+    "code":"GR_COMPARISON",
+    "brief_desc":"원급·비교급·최상급·배수비교·the 비교급"
+  },
+  {
+    "area":"문법",
+    "type_mid":"관사·한정사",
+    "code":"GR_DET_ART",
+    "brief_desc":"a an the, some any many much each every 등"
+  },
+  {
+    "area":"문법",
+    "type_mid":"대명사",
+    "code":"GR_PRONOUN",
+    "brief_desc":"인칭·지시·부정·재귀"
+  },
+  {
+    "area":"문법",
+    "type_mid":"전치사",
+    "code":"GR_PREP",
+    "brief_desc":"시간·장소·이유·수단·관용"
+  },
+  {
+    "area":"문법",
+    "type_mid":"접속사·접속부사",
+    "code":"GR_CONJ",
+    "brief_desc":"등위·종속·접속부사"
+  },
+  {
+    "area":"문법",
+    "type_mid":"명사절",
+    "code":"GR_NOUN_CLAUSE",
+    "brief_desc":"that whether if wh-절"
+  },
+  {
+    "area":"문법",
+    "type_mid":"부사절",
+    "code":"GR_ADV_CLAUSE",
+    "brief_desc":"시간·이유·양보·조건·목적·결과"
+  },
+  {
+    "area":"문법",
+    "type_mid":"문장형식",
+    "code":"GR_SVCO_PATTERNS",
+    "brief_desc":"1형식~5형식, 목적보어"
+  },
+  {
+    "area":"문법",
+    "type_mid":"수일치",
+    "code":"GR_SVA",
+    "brief_desc":"주어·동사 일치, 준수일치"
+  },
+  {
+    "area":"문법",
+    "type_mid":"부정문·의문문",
+    "code":"GR_NEG_Q",
+    "brief_desc":"do-support, 의문사 의문문"
+  },
+  {
+    "area":"문법",
+    "type_mid":"감탄문·명령문",
+    "code":"GR_EXCL_IMP",
+    "brief_desc":"What How 감탄, 명령형"
+  },
+  {
+    "area":"문법",
+    "type_mid":"간접화법",
+    "code":"GR_REPORTED",
+    "brief_desc":"시제 일치, 명령·요구·제안"
+  },
+  {
+    "area":"문법",
+    "type_mid":"강조·도치·생략",
+    "code":"GR_EMPH_INV_ELLP",
+    "brief_desc":"Cleft, Not until, Hardly, so such that"
+  },
+  {
+    "area":"문법",
+    "type_mid":"부가의문",
+    "code":"GR_TAG_Q",
+    "brief_desc":"isn't it? don't you?"
+  },
+  {
+    "area":"문법",
+    "type_mid":"가주어·가목적어",
+    "code":"GR_IT_THERE",
+    "brief_desc":"It ..., There is\/are"
+  },
+  {
+    "area":"문법",
+    "type_mid":"사역·지각",
+    "code":"GR_CAUS_PERCP",
+    "brief_desc":"make have let get see hear"
+  },
+  {
+    "area":"문법",
+    "type_mid":"동사보충어 패턴",
+    "code":"GR_VERB_COMP",
+    "brief_desc":"to부정사 vs 동명사, 5형식 동사"
+  },
+  {
+    "area":"문법",
+    "type_mid":"특수구문",
+    "code":"GR_SPECIAL",
+    "brief_desc":"too to, enough to, so that, such that, 비교 구문"
+  },
+  {
+    "area":"문법",
+    "type_mid":"품사",
+    "code":"GR_POS",
+    "brief_desc":"명사 동사 형용사 부사 등"
+  },
+  {
+    "area":"문법",
+    "type_mid":"어순·수식",
+    "code":"GR_WORD_ORDER",
+    "brief_desc":"수식어 위치, 형용사·부사 위치"
+  },
+  {
+    "area":"문법",
+    "type_mid":"연결동사·보어",
+    "code":"GR_LINKING_V",
+    "brief_desc":"be seem become 등"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"문맥어휘",
+    "code":"VO_CONTEXT",
+    "brief_desc":"문맥상 의미·어휘 선택"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"동의어·반의어",
+    "code":"VO_SYNONYM_ANT",
+    "brief_desc":"유의어 반의어"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"다의어·뉘앙스",
+    "code":"VO_POLYSEMY",
+    "brief_desc":"문맥에 따른 의미 차이"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"파생어·어형변화",
+    "code":"VO_WORD_FORM",
+    "brief_desc":"품사 전환, 접사"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"어근·접두·접미",
+    "code":"VO_AFFIX_ROOT",
+    "brief_desc":"어원 기반 단어 가족"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"구동사",
+    "code":"VO_PHRASAL_VERB",
+    "brief_desc":"look up, get over"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"숙어·관용표현",
+    "code":"VO_IDIOM",
+    "brief_desc":"at odds, by and large"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"연어·콜로케이션",
+    "code":"VO_COLLOCATION",
+    "brief_desc":"make a decision"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"담화표지·연결어",
+    "code":"VO_DISCOURSE",
+    "brief_desc":"however therefore 등"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"주제별 어휘",
+    "code":"VO_TOPIC",
+    "brief_desc":"환경 과학 역사 등 분야"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"혼동어",
+    "code":"VO_CONFUSABLE",
+    "brief_desc":"affect vs effect 등"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"전치사 선택",
+    "code":"VO_PREP_CHOICE",
+    "brief_desc":"depend on vs of 등"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"어휘 빈칸",
+    "code":"VO_CLOZE",
+    "brief_desc":"단어 수준 빈칸"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"형용사·부사 적절성",
+    "code":"VO_ADJ_ADV",
+    "brief_desc":"형용사 vs 부사 선택"
+  },
+  {
+    "area":"어휘",
+    "type_mid":"수량표현·수사",
+    "code":"VO_QUANT_NUMBER",
+    "brief_desc":"few little less least 등"
+  },
+  {
+    "area":"독해",
+    "type_mid":"주제·요지·제목",
+    "code":"RD_MAIN_IDEA",
+    "brief_desc":"Topic, Gist, Title"
+  },
+  {
+    "area":"독해",
+    "type_mid":"세부정보·일치불일치",
+    "code":"RD_DETAIL_TF",
+    "brief_desc":"일치 여부 판단"
+  },
+  {
+    "area":"독해",
+    "type_mid":"추론·함의",
+    "code":"RD_INFERENCE",
+    "brief_desc":"암시·추론"
+  },
+  {
+    "area":"독해",
+    "type_mid":"태도·어조·목적",
+    "code":"RD_TONE_PURPOSE",
+    "brief_desc":"작가 태도 목적"
+  },
+  {
+    "area":"독해",
+    "type_mid":"지칭추론",
+    "code":"RD_REFERENCE",
+    "brief_desc":"대명사·지시어 참조"
+  },
+  {
+    "area":"독해",
+    "type_mid":"요약",
+    "code":"RD_SUMMARY",
+    "brief_desc":"요약문 선택 또는 작성"
+  },
+  {
+    "area":"독해",
+    "type_mid":"빈칸추론",
+    "code":"RD_CLOZE",
+    "brief_desc":"문장·단어 빈칸"
+  },
+  {
+    "area":"독해",
+    "type_mid":"문장삽입",
+    "code":"RD_SENT_INSERT",
+    "brief_desc":"문장 넣기"
+  },
+  {
+    "area":"독해",
+    "type_mid":"문장제외·무관문장",
+    "code":"RD_IRRELEVANT",
+    "brief_desc":"무관한 문장 제거"
+  },
+  {
+    "area":"독해",
+    "type_mid":"문장·문단 순서",
+    "code":"RD_ORDERING",
+    "brief_desc":"배열"
+  },
+  {
+    "area":"독해",
+    "type_mid":"연결사·담화",
+    "code":"RD_CONNECTIVE",
+    "brief_desc":"접속·응집 장치"
+  },
+  {
+    "area":"독해",
+    "type_mid":"도표·그래프 해석",
+    "code":"RD_CHART_GRAPH",
+    "brief_desc":"자료 독해"
+  },
+  {
+    "area":"독해",
+    "type_mid":"실용문",
+    "code":"RD_PRACTICAL",
+    "brief_desc":"광고 안내문 이메일"
+  },
+  {
+    "area":"독해",
+    "type_mid":"장문·복수지문",
+    "code":"RD_EXTENDED",
+    "brief_desc":"장문 또는 2지문 비교"
+  },
+  {
+    "area":"독해",
+    "type_mid":"논리 전개·구조",
+    "code":"RD_RHETORIC",
+    "brief_desc":"원인결과 문제해결 등"
+  },
+  {
+    "area":"독해",
+    "type_mid":"사실·의견",
+    "code":"RD_FACT_OPINION",
+    "brief_desc":"구분"
+  },
+  {
+    "area":"독해",
+    "type_mid":"어휘 in Reading",
+    "code":"RD_VOCAB_IN_CTX",
+    "brief_desc":"독해 중 어휘 의미"
+  },
+  {
+    "area":"독해",
+    "type_mid":"문법 in Reading",
+    "code":"RD_GRAM_IN_CTX",
+    "brief_desc":"문맥 어법 판단"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"주제·요지",
+    "code":"LS_MAIN_IDEA",
+    "brief_desc":"요지 파악"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"목적·의도",
+    "code":"LS_PURPOSE",
+    "brief_desc":"발화 의도"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"세부정보",
+    "code":"LS_DETAIL",
+    "brief_desc":"숫자 시간 장소 등"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"추론·함의",
+    "code":"LS_INFERENCE",
+    "brief_desc":"암시 추론"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"태도·감정",
+    "code":"LS_ATTITUDE",
+    "brief_desc":"화자 태도 감정"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"관계·신분",
+    "code":"LS_RELATION",
+    "brief_desc":"화자 관계 역할"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"요청·제안·약속",
+    "code":"LS_REQUEST_SUGG",
+    "brief_desc":"의사소통 기능"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"지시·길안내",
+    "code":"LS_DIRECTIONS",
+    "brief_desc":"경로 지시"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"일정·가격·수량",
+    "code":"LS_NUMBERS",
+    "brief_desc":"수치 정보"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"순서 배열",
+    "code":"LS_ORDERING",
+    "brief_desc":"과정 순서"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"표·메모 채우기",
+    "code":"LS_FORM_COMPLETION",
+    "brief_desc":"메모 표 작성"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"공지·방송",
+    "code":"LS_ANNOUNCEMENT",
+    "brief_desc":"announcement"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"전화·메시지",
+    "code":"LS_PHONE_MESSAGE",
+    "brief_desc":"voicemail"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"강연·인터뷰",
+    "code":"LS_TALK_INTERVIEW",
+    "brief_desc":"long talk"
+  },
+  {
+    "area":"듣기",
+    "type_mid":"그림·지도 정보",
+    "code":"LS_VISUAL_MATCH",
+    "brief_desc":"시각자료 연계"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"문장 배열",
+    "code":"WR_SENT_ORDER",
+    "brief_desc":"문장 순서 배열"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"오류 찾기",
+    "code":"WR_ERROR_EDIT",
+    "brief_desc":"어법·철자·구두점 수정"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"문장 삽입·삭제",
+    "code":"WR_SENT_INSERT_DELETE",
+    "brief_desc":"문단 완성"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"문장 변환",
+    "code":"WR_SENT_TRANSFORM",
+    "brief_desc":"수동 직설 간접 등 변환"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"문장 결합",
+    "code":"WR_SENT_COMBINE",
+    "brief_desc":"관계사 분사 등 결합"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"요약 쓰기",
+    "code":"WR_SUMMARY",
+    "brief_desc":"요약문 작성"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"서술형 단답",
+    "code":"WR_SHORT_ANSWER",
+    "brief_desc":"단문 서술형"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"의견·설명 에세이",
+    "code":"WR_ESSAY_OP_EXP",
+    "brief_desc":"Opinion Explanatory"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"논증 에세이",
+    "code":"WR_ESSAY_ARG",
+    "brief_desc":"Argument"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"이메일·편지",
+    "code":"WR_EMAIL_LETTER",
+    "brief_desc":"실용문 쓰기"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"그래프·표 기반",
+    "code":"WR_GRAPH_TASK",
+    "brief_desc":"자료 기반 글쓰기"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"번역·영작",
+    "code":"WR_TRANSLATION",
+    "brief_desc":"한영 영한"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"패러프레이즈",
+    "code":"WR_PARAPHRASE",
+    "brief_desc":"의미 유지 변형"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"연결어 사용",
+    "code":"WR_CONNECTIVE_USE",
+    "brief_desc":"담화 표지 활용"
+  },
+  {
+    "area":"쓰기",
+    "type_mid":"빈칸 문법 채우기",
+    "code":"WR_GRAMMAR_CLOZE",
+    "brief_desc":"형태 선택 기반"
+  }
+]
