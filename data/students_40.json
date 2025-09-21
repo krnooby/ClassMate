@@ -1,0 +1,1722 @@
+[
+  {
+    "student_id": "S-01",
+    "name": "김민준",
+    "class_id": "C-01",
+    "grade_code": "E3",
+    "grade_label": "초등학교 3학년",
+    "attendance": {
+      "total_sessions": 12,
+      "absent": 1,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 12,
+      "missed": 1
+    },
+    "notes": {
+      "attitude": "수업시간에 음식물 섭취함",
+      "school_exam_level": "초등 성취도 4수준",
+      "csat_level": "기초학력진단 4수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A1",
+        "percentile_rank": 24
+      },
+      "peer_level_distribution": {
+        "A1": 56,
+        "A2": 35,
+        "B1": 8,
+        "B2": 1,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 26.2,
+        "vocabulary": 23.5,
+        "reading": 8.1,
+        "listening": 18.4,
+        "writing": 29.7
+      }
+    }
+  },
+  {
+    "student_id": "S-02",
+    "name": "이서연",
+    "class_id": "C-02",
+    "grade_code": "H2",
+    "grade_label": "고등학교 2학년",
+    "attendance": {
+      "total_sessions": 16,
+      "absent": 2,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 14,
+      "missed": 0
+    },
+    "notes": {
+      "attitude": "수업 중 껌을 씹음",
+      "school_exam_level": "내신 8등급 수준",
+      "csat_level": "모의수능 9등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B1",
+        "percentile_rank": 52
+      },
+      "peer_level_distribution": {
+        "A1": 7,
+        "A2": 24,
+        "B1": 37,
+        "B2": 24,
+        "C1": 7,
+        "C2": 1
+      },
+      "radar_scores": {
+        "grammar": 48.0,
+        "vocabulary": 59.5,
+        "reading": 54.2,
+        "listening": 49.2,
+        "writing": 52.4
+      }
+    }
+  },
+  {
+    "student_id": "S-03",
+    "name": "박지훈",
+    "class_id": "C-03",
+    "grade_code": "H3",
+    "grade_label": "고등학교 3학년",
+    "attendance": {
+      "total_sessions": 16,
+      "absent": 2,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 13,
+      "missed": 3
+    },
+    "notes": {
+      "attitude": "수업 중 스마트폰 사용함",
+      "school_exam_level": "내신 5등급 수준",
+      "csat_level": "모의수능 5등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B2",
+        "percentile_rank": 64
+      },
+      "peer_level_distribution": {
+        "A1": 0,
+        "A2": 5,
+        "B1": 24,
+        "B2": 42,
+        "C1": 24,
+        "C2": 5
+      },
+      "radar_scores": {
+        "grammar": 71.8,
+        "vocabulary": 64.1,
+        "reading": 66.1,
+        "listening": 65.3,
+        "writing": 61.9
+      }
+    }
+  },
+  {
+    "student_id": "S-04",
+    "name": "최수빈",
+    "class_id": "C-04",
+    "grade_code": "E2",
+    "grade_label": "초등학교 2학년",
+    "attendance": {
+      "total_sessions": 14,
+      "absent": 0,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 14,
+      "missed": 2
+    },
+    "notes": {
+      "attitude": "수업 중 이어폰 착용함",
+      "school_exam_level": "초등 성취도 4수준",
+      "csat_level": "기초학력진단 4수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A1",
+        "percentile_rank": 20
+      },
+      "peer_level_distribution": {
+        "A1": 61,
+        "A2": 33,
+        "B1": 6,
+        "B2": 0,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 19.0,
+        "vocabulary": 14.7,
+        "reading": 11.2,
+        "listening": 20.6,
+        "writing": 19.7
+      }
+    }
+  },
+  {
+    "student_id": "S-05",
+    "name": "정윤아",
+    "class_id": "C-01",
+    "grade_code": "E4",
+    "grade_label": "초등학교 4학년",
+    "attendance": {
+      "total_sessions": 13,
+      "absent": 0,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 10,
+      "missed": 1
+    },
+    "notes": {
+      "attitude": "수업 중 잦은 자리 이탈",
+      "school_exam_level": "초등 성취도 4수준",
+      "csat_level": "기초학력진단 4수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A1",
+        "percentile_rank": 20
+      },
+      "peer_level_distribution": {
+        "A1": 61,
+        "A2": 33,
+        "B1": 6,
+        "B2": 0,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 23.3,
+        "vocabulary": 6.1,
+        "reading": 14.8,
+        "listening": 19.2,
+        "writing": 19.9
+      }
+    }
+  },
+  {
+    "student_id": "S-06",
+    "name": "한지우",
+    "class_id": "C-02",
+    "grade_code": "E1",
+    "grade_label": "초등학교 1학년",
+    "attendance": {
+      "total_sessions": 13,
+      "absent": 2,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 14,
+      "missed": 1
+    },
+    "notes": {
+      "attitude": "수업자료 미지참",
+      "school_exam_level": "초등 성취도 3수준",
+      "csat_level": "기초학력진단 3수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A2",
+        "percentile_rank": 35
+      },
+      "peer_level_distribution": {
+        "A1": 25,
+        "A2": 45,
+        "B1": 25,
+        "B2": 5,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 30.4,
+        "vocabulary": 26.9,
+        "reading": 37.7,
+        "listening": 30.7,
+        "writing": 39.5
+      }
+    }
+  },
+  {
+    "student_id": "S-07",
+    "name": "오세진",
+    "class_id": "C-03",
+    "grade_code": "M2",
+    "grade_label": "중학교 2학년",
+    "attendance": {
+      "total_sessions": 15,
+      "absent": 3,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 10,
+      "missed": 3
+    },
+    "notes": {
+      "attitude": "필기 도구 미지참",
+      "school_exam_level": "내신 7등급 수준",
+      "csat_level": "중학교 학력평가 7등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A2",
+        "percentile_rank": 37
+      },
+      "peer_level_distribution": {
+        "A1": 25,
+        "A2": 46,
+        "B1": 25,
+        "B2": 4,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 42.6,
+        "vocabulary": 34.2,
+        "reading": 38.2,
+        "listening": 38.5,
+        "writing": 23.3
+      }
+    }
+  },
+  {
+    "student_id": "S-08",
+    "name": "장민서",
+    "class_id": "C-04",
+    "grade_code": "M1",
+    "grade_label": "중학교 1학년",
+    "attendance": {
+      "total_sessions": 13,
+      "absent": 1,
+      "perception": 2
+    },
+    "homework": {
+      "assigned": 11,
+      "missed": 0
+    },
+    "notes": {
+      "attitude": "과제 미제출",
+      "school_exam_level": "내신 7등급 수준",
+      "csat_level": "중학교 학력평가 7등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B1",
+        "percentile_rank": 46
+      },
+      "peer_level_distribution": {
+        "A1": 8,
+        "A2": 24,
+        "B1": 35,
+        "B2": 24,
+        "C1": 8,
+        "C2": 1
+      },
+      "radar_scores": {
+        "grammar": 40.6,
+        "vocabulary": 53.2,
+        "reading": 46.6,
+        "listening": 47.2,
+        "writing": 39.9
+      }
+    }
+  },
+  {
+    "student_id": "S-09",
+    "name": "서유진",
+    "class_id": "C-01",
+    "grade_code": "H3",
+    "grade_label": "고등학교 3학년",
+    "attendance": {
+      "total_sessions": 14,
+      "absent": 1,
+      "perception": 2
+    },
+    "homework": {
+      "assigned": 13,
+      "missed": 3
+    },
+    "notes": {
+      "attitude": "과제 지각 제출",
+      "school_exam_level": "내신 5등급 수준",
+      "csat_level": "모의수능 4등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B2",
+        "percentile_rank": 67
+      },
+      "peer_level_distribution": {
+        "A1": 0,
+        "A2": 4,
+        "B1": 24,
+        "B2": 44,
+        "C1": 24,
+        "C2": 4
+      },
+      "radar_scores": {
+        "grammar": 73.2,
+        "vocabulary": 79.1,
+        "reading": 63.3,
+        "listening": 62.9,
+        "writing": 67.3
+      }
+    }
+  },
+  {
+    "student_id": "S-10",
+    "name": "윤도현",
+    "class_id": "C-02",
+    "grade_code": "H2",
+    "grade_label": "고등학교 2학년",
+    "attendance": {
+      "total_sessions": 16,
+      "absent": 2,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 10,
+      "missed": 3
+    },
+    "notes": {
+      "attitude": "팀 활동 참여 소극적",
+      "school_exam_level": "내신 2등급 수준",
+      "csat_level": "모의수능 1등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "C1",
+        "percentile_rank": 76
+      },
+      "peer_level_distribution": {
+        "A1": 0,
+        "A2": 1,
+        "B1": 6,
+        "B2": 26,
+        "C1": 41,
+        "C2": 26
+      },
+      "radar_scores": {
+        "grammar": 74.6,
+        "vocabulary": 79.1,
+        "reading": 79.5,
+        "listening": 75.0,
+        "writing": 84.8
+      }
+    }
+  },
+  {
+    "student_id": "S-11",
+    "name": "신예은",
+    "class_id": "C-03",
+    "grade_code": "H2",
+    "grade_label": "고등학교 2학년",
+    "attendance": {
+      "total_sessions": 10,
+      "absent": 2,
+      "perception": 2
+    },
+    "homework": {
+      "assigned": 9,
+      "missed": 0
+    },
+    "notes": {
+      "attitude": "팀 활동에서 규칙 이탈",
+      "school_exam_level": "내신 6등급 수준",
+      "csat_level": "모의수능 7등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B2",
+        "percentile_rank": 58
+      },
+      "peer_level_distribution": {
+        "A1": 0,
+        "A2": 3,
+        "B1": 24,
+        "B2": 46,
+        "C1": 24,
+        "C2": 3
+      },
+      "radar_scores": {
+        "grammar": 67.4,
+        "vocabulary": 63.1,
+        "reading": 57.1,
+        "listening": 58.1,
+        "writing": 51.0
+      }
+    }
+  },
+  {
+    "student_id": "S-12",
+    "name": "배준호",
+    "class_id": "C-04",
+    "grade_code": "M2",
+    "grade_label": "중학교 2학년",
+    "attendance": {
+      "total_sessions": 12,
+      "absent": 1,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 14,
+      "missed": 2
+    },
+    "notes": {
+      "attitude": "수업 중 잦은 잡담",
+      "school_exam_level": "내신 5등급 수준",
+      "csat_level": "중학교 학력평가 4등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B1",
+        "percentile_rank": 50
+      },
+      "peer_level_distribution": {
+        "A1": 7,
+        "A2": 24,
+        "B1": 37,
+        "B2": 24,
+        "C1": 7,
+        "C2": 1
+      },
+      "radar_scores": {
+        "grammar": 52.8,
+        "vocabulary": 44.1,
+        "reading": 57.0,
+        "listening": 46.9,
+        "writing": 47.3
+      }
+    }
+  },
+  {
+    "student_id": "S-13",
+    "name": "조하윤",
+    "class_id": "C-01",
+    "grade_code": "E5",
+    "grade_label": "초등학교 5학년",
+    "attendance": {
+      "total_sessions": 10,
+      "absent": 1,
+      "perception": 2
+    },
+    "homework": {
+      "assigned": 11,
+      "missed": 2
+    },
+    "notes": {
+      "attitude": "교사 질문에 무응답 잦음",
+      "school_exam_level": "초등 성취도 3수준",
+      "csat_level": "기초학력진단 3수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A2",
+        "percentile_rank": 32
+      },
+      "peer_level_distribution": {
+        "A1": 26,
+        "A2": 43,
+        "B1": 26,
+        "B2": 5,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 37.3,
+        "vocabulary": 39.0,
+        "reading": 11.5,
+        "listening": 32.3,
+        "writing": 30.1
+      }
+    }
+  },
+  {
+    "student_id": "S-14",
+    "name": "안수민",
+    "class_id": "C-02",
+    "grade_code": "E1",
+    "grade_label": "초등학교 1학년",
+    "attendance": {
+      "total_sessions": 15,
+      "absent": 1,
+      "perception": 2
+    },
+    "homework": {
+      "assigned": 13,
+      "missed": 1
+    },
+    "notes": {
+      "attitude": "발표 회피 경향",
+      "school_exam_level": "초등 성취도 4수준",
+      "csat_level": "기초학력진단 4수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A1",
+        "percentile_rank": 26
+      },
+      "peer_level_distribution": {
+        "A1": 52,
+        "A2": 35,
+        "B1": 11,
+        "B2": 2,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 27.1,
+        "vocabulary": 27.7,
+        "reading": 8.3,
+        "listening": 30.1,
+        "writing": 21.7
+      }
+    }
+  },
+  {
+    "student_id": "S-15",
+    "name": "유나현",
+    "class_id": "C-03",
+    "grade_code": "E1",
+    "grade_label": "초등학교 1학년",
+    "attendance": {
+      "total_sessions": 15,
+      "absent": 3,
+      "perception": 2
+    },
+    "homework": {
+      "assigned": 9,
+      "missed": 1
+    },
+    "notes": {
+      "attitude": "발표는 적극적이나 경청 미흡",
+      "school_exam_level": "초등 성취도 4수준",
+      "csat_level": "기초학력진단 4수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A1",
+        "percentile_rank": 21
+      },
+      "peer_level_distribution": {
+        "A1": 53,
+        "A2": 35,
+        "B1": 11,
+        "B2": 1,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 11.7,
+        "vocabulary": 25.2,
+        "reading": 13.4,
+        "listening": 15.1,
+        "writing": 23.9
+      }
+    }
+  },
+  {
+    "student_id": "S-16",
+    "name": "임지민",
+    "class_id": "C-04",
+    "grade_code": "E1",
+    "grade_label": "초등학교 1학년",
+    "attendance": {
+      "total_sessions": 15,
+      "absent": 2,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 10,
+      "missed": 3
+    },
+    "notes": {
+      "attitude": "필기량 부족",
+      "school_exam_level": "초등 성취도 4수준",
+      "csat_level": "기초학력진단 4수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A1",
+        "percentile_rank": 21
+      },
+      "peer_level_distribution": {
+        "A1": 56,
+        "A2": 35,
+        "B1": 8,
+        "B2": 1,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 24.7,
+        "vocabulary": 17.9,
+        "reading": 20.2,
+        "listening": 16.8,
+        "writing": 7.0
+      }
+    }
+  },
+  {
+    "student_id": "S-17",
+    "name": "문서연",
+    "class_id": "C-01",
+    "grade_code": "H2",
+    "grade_label": "고등학교 2학년",
+    "attendance": {
+      "total_sessions": 11,
+      "absent": 0,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 9,
+      "missed": 0
+    },
+    "notes": {
+      "attitude": "필기 정리 미흡",
+      "school_exam_level": "내신 8등급 수준",
+      "csat_level": "모의수능 7등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B1",
+        "percentile_rank": 48
+      },
+      "peer_level_distribution": {
+        "A1": 4,
+        "A2": 24,
+        "B1": 44,
+        "B2": 24,
+        "C1": 4,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 42.5,
+        "vocabulary": 45.8,
+        "reading": 47.3,
+        "listening": 49.2,
+        "writing": 56.1
+      }
+    }
+  },
+  {
+    "student_id": "S-18",
+    "name": "권태윤",
+    "class_id": "C-02",
+    "grade_code": "H3",
+    "grade_label": "고등학교 3학년",
+    "attendance": {
+      "total_sessions": 16,
+      "absent": 1,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 12,
+      "missed": 3
+    },
+    "notes": {
+      "attitude": "복습 미실시",
+      "school_exam_level": "내신 5등급 수준",
+      "csat_level": "모의수능 4등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B2",
+        "percentile_rank": 64
+      },
+      "peer_level_distribution": {
+        "A1": 0,
+        "A2": 4,
+        "B1": 24,
+        "B2": 44,
+        "C1": 24,
+        "C2": 4
+      },
+      "radar_scores": {
+        "grammar": 54.9,
+        "vocabulary": 62.6,
+        "reading": 60.7,
+        "listening": 69.1,
+        "writing": 81.0
+      }
+    }
+  },
+  {
+    "student_id": "S-19",
+    "name": "송지후",
+    "class_id": "C-03",
+    "grade_code": "M3",
+    "grade_label": "중학교 3학년",
+    "attendance": {
+      "total_sessions": 10,
+      "absent": 2,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 13,
+      "missed": 1
+    },
+    "notes": {
+      "attitude": "예습 미실시",
+      "school_exam_level": "내신 7등급 수준",
+      "csat_level": "중학교 학력평가 8등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B1",
+        "percentile_rank": 51
+      },
+      "peer_level_distribution": {
+        "A1": 4,
+        "A2": 24,
+        "B1": 44,
+        "B2": 24,
+        "C1": 4,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 47.5,
+        "vocabulary": 44.8,
+        "reading": 55.2,
+        "listening": 51.3,
+        "writing": 54.7
+      }
+    }
+  },
+  {
+    "student_id": "S-20",
+    "name": "홍지효",
+    "class_id": "C-04",
+    "grade_code": "H2",
+    "grade_label": "고등학교 2학년",
+    "attendance": {
+      "total_sessions": 10,
+      "absent": 2,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 14,
+      "missed": 2
+    },
+    "notes": {
+      "attitude": "수업 중 졸음",
+      "school_exam_level": "내신 1등급 수준",
+      "csat_level": "모의수능 2등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "C2",
+        "percentile_rank": 84
+      },
+      "peer_level_distribution": {
+        "A1": 0,
+        "A2": 0,
+        "B1": 1,
+        "B2": 9,
+        "C1": 35,
+        "C2": 55
+      },
+      "radar_scores": {
+        "grammar": 79.4,
+        "vocabulary": 85.2,
+        "reading": 90.0,
+        "listening": 95.0,
+        "writing": 89.8
+      }
+    }
+  },
+  {
+    "student_id": "S-21",
+    "name": "백승민",
+    "class_id": "C-01",
+    "grade_code": "M2",
+    "grade_label": "중학교 2학년",
+    "attendance": {
+      "total_sessions": 12,
+      "absent": 0,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 14,
+      "missed": 2
+    },
+    "notes": {
+      "attitude": "지각 빈번",
+      "school_exam_level": "내신 7등급 수준",
+      "csat_level": "중학교 학력평가 6등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A2",
+        "percentile_rank": 38
+      },
+      "peer_level_distribution": {
+        "A1": 26,
+        "A2": 41,
+        "B1": 26,
+        "B2": 6,
+        "C1": 1,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 35.2,
+        "vocabulary": 35.4,
+        "reading": 43.1,
+        "listening": 39.1,
+        "writing": 32.5
+      }
+    }
+  },
+  {
+    "student_id": "S-22",
+    "name": "강하늘",
+    "class_id": "C-02",
+    "grade_code": "M1",
+    "grade_label": "중학교 1학년",
+    "attendance": {
+      "total_sessions": 14,
+      "absent": 2,
+      "perception": 2
+    },
+    "homework": {
+      "assigned": 12,
+      "missed": 3
+    },
+    "notes": {
+      "attitude": "결석 사전 연락 없음",
+      "school_exam_level": "내신 6등급 수준",
+      "csat_level": "중학교 학력평가 7등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B1",
+        "percentile_rank": 47
+      },
+      "peer_level_distribution": {
+        "A1": 5,
+        "A2": 24,
+        "B1": 42,
+        "B2": 24,
+        "C1": 5,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 38.1,
+        "vocabulary": 50.9,
+        "reading": 50.3,
+        "listening": 46.1,
+        "writing": 45.5
+      }
+    }
+  },
+  {
+    "student_id": "S-23",
+    "name": "주다연",
+    "class_id": "C-03",
+    "grade_code": "E6",
+    "grade_label": "초등학교 6학년",
+    "attendance": {
+      "total_sessions": 14,
+      "absent": 0,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 9,
+      "missed": 0
+    },
+    "notes": {
+      "attitude": "수업 태도 전반 양호",
+      "school_exam_level": "초등 성취도 2수준",
+      "csat_level": "기초학력진단 2수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B1",
+        "percentile_rank": 47
+      },
+      "peer_level_distribution": {
+        "A1": 6,
+        "A2": 24,
+        "B1": 39,
+        "B2": 24,
+        "C1": 6,
+        "C2": 1
+      },
+      "radar_scores": {
+        "grammar": 50.3,
+        "vocabulary": 53.1,
+        "reading": 48.0,
+        "listening": 47.0,
+        "writing": 35.8
+      }
+    }
+  },
+  {
+    "student_id": "S-24",
+    "name": "노서준",
+    "class_id": "C-04",
+    "grade_code": "E6",
+    "grade_label": "초등학교 6학년",
+    "attendance": {
+      "total_sessions": 15,
+      "absent": 0,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 11,
+      "missed": 1
+    },
+    "notes": {
+      "attitude": "질문 활발",
+      "school_exam_level": "초등 성취도 4수준",
+      "csat_level": "기초학력진단 4수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A1",
+        "percentile_rank": 21
+      },
+      "peer_level_distribution": {
+        "A1": 53,
+        "A2": 35,
+        "B1": 11,
+        "B2": 1,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 24.4,
+        "vocabulary": 23.1,
+        "reading": 18.9,
+        "listening": 16.2,
+        "writing": 6.6
+      }
+    }
+  },
+  {
+    "student_id": "S-25",
+    "name": "하예린",
+    "class_id": "C-01",
+    "grade_code": "H2",
+    "grade_label": "고등학교 2학년",
+    "attendance": {
+      "total_sessions": 11,
+      "absent": 1,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 12,
+      "missed": 2
+    },
+    "notes": {
+      "attitude": "친구 방해 행동 보임",
+      "school_exam_level": "내신 1등급 수준",
+      "csat_level": "모의수능 1등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "C2",
+        "percentile_rank": 88
+      },
+      "peer_level_distribution": {
+        "A1": 0,
+        "A2": 0,
+        "B1": 1,
+        "B2": 7,
+        "C1": 34,
+        "C2": 58
+      },
+      "radar_scores": {
+        "grammar": 95.0,
+        "vocabulary": 85.3,
+        "reading": 95.0,
+        "listening": 95.0,
+        "writing": 93.0
+      }
+    }
+  },
+  {
+    "student_id": "S-26",
+    "name": "공민재",
+    "class_id": "C-02",
+    "grade_code": "H3",
+    "grade_label": "고등학교 3학년",
+    "attendance": {
+      "total_sessions": 16,
+      "absent": 2,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 10,
+      "missed": 2
+    },
+    "notes": {
+      "attitude": "수업 중 PC 게임 시도",
+      "school_exam_level": "내신 6등급 수준",
+      "csat_level": "모의수능 5등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B2",
+        "percentile_rank": 68
+      },
+      "peer_level_distribution": {
+        "A1": 0,
+        "A2": 4,
+        "B1": 24,
+        "B2": 44,
+        "C1": 24,
+        "C2": 4
+      },
+      "radar_scores": {
+        "grammar": 64.0,
+        "vocabulary": 66.4,
+        "reading": 69.8,
+        "listening": 73.7,
+        "writing": 73.5
+      }
+    }
+  },
+  {
+    "student_id": "S-27",
+    "name": "남현우",
+    "class_id": "C-03",
+    "grade_code": "E2",
+    "grade_label": "초등학교 2학년",
+    "attendance": {
+      "total_sessions": 10,
+      "absent": 0,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 11,
+      "missed": 1
+    },
+    "notes": {
+      "attitude": "복장 규정 미준수",
+      "school_exam_level": "초등 성취도 4수준",
+      "csat_level": "기초학력진단 4수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A1",
+        "percentile_rank": 21
+      },
+      "peer_level_distribution": {
+        "A1": 52,
+        "A2": 35,
+        "B1": 11,
+        "B2": 2,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 24.9,
+        "vocabulary": 21.6,
+        "reading": 11.3,
+        "listening": 20.1,
+        "writing": 13.2
+      }
+    }
+  },
+  {
+    "student_id": "S-28",
+    "name": "유서아",
+    "class_id": "C-04",
+    "grade_code": "E6",
+    "grade_label": "초등학교 6학년",
+    "attendance": {
+      "total_sessions": 12,
+      "absent": 2,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 12,
+      "missed": 0
+    },
+    "notes": {
+      "attitude": "불필요한 소지품 반입",
+      "school_exam_level": "초등 성취도 4수준",
+      "csat_level": "기초학력진단 4수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A1",
+        "percentile_rank": 22
+      },
+      "peer_level_distribution": {
+        "A1": 52,
+        "A2": 35,
+        "B1": 11,
+        "B2": 2,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 12.8,
+        "vocabulary": 30.4,
+        "reading": 14.2,
+        "listening": 11.1,
+        "writing": 26.6
+      }
+    }
+  },
+  {
+    "student_id": "S-29",
+    "name": "김하린",
+    "class_id": "C-01",
+    "grade_code": "M1",
+    "grade_label": "중학교 1학년",
+    "attendance": {
+      "total_sessions": 10,
+      "absent": 0,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 13,
+      "missed": 3
+    },
+    "notes": {
+      "attitude": "교과서 미지참",
+      "school_exam_level": "내신 5등급 수준",
+      "csat_level": "중학교 학력평가 6등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B2",
+        "percentile_rank": 63
+      },
+      "peer_level_distribution": {
+        "A1": 0,
+        "A2": 4,
+        "B1": 24,
+        "B2": 44,
+        "C1": 24,
+        "C2": 4
+      },
+      "radar_scores": {
+        "grammar": 73.0,
+        "vocabulary": 62.6,
+        "reading": 62.5,
+        "listening": 68.5,
+        "writing": 54.6
+      }
+    }
+  },
+  {
+    "student_id": "S-30",
+    "name": "이지후",
+    "class_id": "C-02",
+    "grade_code": "H2",
+    "grade_label": "고등학교 2학년",
+    "attendance": {
+      "total_sessions": 14,
+      "absent": 3,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 14,
+      "missed": 3
+    },
+    "notes": {
+      "attitude": "과제 베낌 의심",
+      "school_exam_level": "내신 6등급 수준",
+      "csat_level": "모의수능 6등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B1",
+        "percentile_rank": 50
+      },
+      "peer_level_distribution": {
+        "A1": 4,
+        "A2": 24,
+        "B1": 44,
+        "B2": 24,
+        "C1": 4,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 49.2,
+        "vocabulary": 53.2,
+        "reading": 53.9,
+        "listening": 50.6,
+        "writing": 44.5
+      }
+    }
+  },
+  {
+    "student_id": "S-31",
+    "name": "박시우",
+    "class_id": "C-03",
+    "grade_code": "M1",
+    "grade_label": "중학교 1학년",
+    "attendance": {
+      "total_sessions": 10,
+      "absent": 0,
+      "perception": 2
+    },
+    "homework": {
+      "assigned": 11,
+      "missed": 1
+    },
+    "notes": {
+      "attitude": "학습장 정리 불량",
+      "school_exam_level": "내신 5등급 수준",
+      "csat_level": "중학교 학력평가 4등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B1",
+        "percentile_rank": 52
+      },
+      "peer_level_distribution": {
+        "A1": 7,
+        "A2": 24,
+        "B1": 37,
+        "B2": 24,
+        "C1": 7,
+        "C2": 1
+      },
+      "radar_scores": {
+        "grammar": 50.0,
+        "vocabulary": 46.6,
+        "reading": 54.5,
+        "listening": 63.7,
+        "writing": 45.4
+      }
+    }
+  },
+  {
+    "student_id": "S-32",
+    "name": "최다은",
+    "class_id": "C-04",
+    "grade_code": "M1",
+    "grade_label": "중학교 1학년",
+    "attendance": {
+      "total_sessions": 13,
+      "absent": 1,
+      "perception": 2
+    },
+    "homework": {
+      "assigned": 11,
+      "missed": 2
+    },
+    "notes": {
+      "attitude": "메모 습관 양호",
+      "school_exam_level": "내신 5등급 수준",
+      "csat_level": "중학교 학력평가 5등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B1",
+        "percentile_rank": 49
+      },
+      "peer_level_distribution": {
+        "A1": 6,
+        "A2": 24,
+        "B1": 39,
+        "B2": 24,
+        "C1": 6,
+        "C2": 1
+      },
+      "radar_scores": {
+        "grammar": 51.2,
+        "vocabulary": 57.9,
+        "reading": 49.4,
+        "listening": 36.5,
+        "writing": 52.2
+      }
+    }
+  },
+  {
+    "student_id": "S-33",
+    "name": "정지아",
+    "class_id": "C-01",
+    "grade_code": "M1",
+    "grade_label": "중학교 1학년",
+    "attendance": {
+      "total_sessions": 10,
+      "absent": 0,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 11,
+      "missed": 3
+    },
+    "notes": {
+      "attitude": "자기 점검표 성실 작성",
+      "school_exam_level": "내신 8등급 수준",
+      "csat_level": "중학교 학력평가 8등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A2",
+        "percentile_rank": 37
+      },
+      "peer_level_distribution": {
+        "A1": 26,
+        "A2": 42,
+        "B1": 26,
+        "B2": 6,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 45.0,
+        "vocabulary": 32.2,
+        "reading": 31.3,
+        "listening": 28.4,
+        "writing": 40.1
+      }
+    }
+  },
+  {
+    "student_id": "S-34",
+    "name": "한예준",
+    "class_id": "C-02",
+    "grade_code": "M1",
+    "grade_label": "중학교 1학년",
+    "attendance": {
+      "total_sessions": 13,
+      "absent": 2,
+      "perception": 2
+    },
+    "homework": {
+      "assigned": 13,
+      "missed": 1
+    },
+    "notes": {
+      "attitude": "온라인 과제 누락",
+      "school_exam_level": "내신 9등급 수준",
+      "csat_level": "중학교 학력평가 8등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A2",
+        "percentile_rank": 32
+      },
+      "peer_level_distribution": {
+        "A1": 25,
+        "A2": 46,
+        "B1": 25,
+        "B2": 4,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 19.5,
+        "vocabulary": 28.5,
+        "reading": 33.9,
+        "listening": 30.9,
+        "writing": 39.0
+      }
+    }
+  },
+  {
+    "student_id": "S-35",
+    "name": "오하윤",
+    "class_id": "C-03",
+    "grade_code": "M2",
+    "grade_label": "중학교 2학년",
+    "attendance": {
+      "total_sessions": 16,
+      "absent": 2,
+      "perception": 2
+    },
+    "homework": {
+      "assigned": 10,
+      "missed": 0
+    },
+    "notes": {
+      "attitude": "온라인 출석 누락",
+      "school_exam_level": "내신 6등급 수준",
+      "csat_level": "중학교 학력평가 7등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B1",
+        "percentile_rank": 50
+      },
+      "peer_level_distribution": {
+        "A1": 4,
+        "A2": 24,
+        "B1": 44,
+        "B2": 24,
+        "C1": 4,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 50.5,
+        "vocabulary": 54.6,
+        "reading": 51.5,
+        "listening": 50.7,
+        "writing": 42.3
+      }
+    }
+  },
+  {
+    "student_id": "S-36",
+    "name": "장도윤",
+    "class_id": "C-04",
+    "grade_code": "E6",
+    "grade_label": "초등학교 6학년",
+    "attendance": {
+      "total_sessions": 15,
+      "absent": 0,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 13,
+      "missed": 0
+    },
+    "notes": {
+      "attitude": "과제 파일 형식 오류",
+      "school_exam_level": "초등 성취도 4수준",
+      "csat_level": "기초학력진단 4수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A1",
+        "percentile_rank": 23
+      },
+      "peer_level_distribution": {
+        "A1": 59,
+        "A2": 34,
+        "B1": 7,
+        "B2": 0,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 22.0,
+        "vocabulary": 26.7,
+        "reading": 16.9,
+        "listening": 19.7,
+        "writing": 16.6
+      }
+    }
+  },
+  {
+    "student_id": "S-37",
+    "name": "서지후",
+    "class_id": "C-01",
+    "grade_code": "M2",
+    "grade_label": "중학교 2학년",
+    "attendance": {
+      "total_sessions": 15,
+      "absent": 0,
+      "perception": 1
+    },
+    "homework": {
+      "assigned": 10,
+      "missed": 2
+    },
+    "notes": {
+      "attitude": "프로젝트 마감 미준수",
+      "school_exam_level": "내신 9등급 수준",
+      "csat_level": "중학교 학력평가 9등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A2",
+        "percentile_rank": 42
+      },
+      "peer_level_distribution": {
+        "A1": 26,
+        "A2": 40,
+        "B1": 26,
+        "B2": 7,
+        "C1": 1,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 37.6,
+        "vocabulary": 52.7,
+        "reading": 39.0,
+        "listening": 41.7,
+        "writing": 35.8
+      }
+    }
+  },
+  {
+    "student_id": "S-38",
+    "name": "윤시현",
+    "class_id": "C-02",
+    "grade_code": "E4",
+    "grade_label": "초등학교 4학년",
+    "attendance": {
+      "total_sessions": 12,
+      "absent": 0,
+      "perception": 2
+    },
+    "homework": {
+      "assigned": 9,
+      "missed": 1
+    },
+    "notes": {
+      "attitude": "팀원 간 의사소통 부족",
+      "school_exam_level": "초등 성취도 3수준",
+      "csat_level": "기초학력진단 3수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "A2",
+        "percentile_rank": 33
+      },
+      "peer_level_distribution": {
+        "A1": 26,
+        "A2": 43,
+        "B1": 26,
+        "B2": 5,
+        "C1": 0,
+        "C2": 0
+      },
+      "radar_scores": {
+        "grammar": 24.4,
+        "vocabulary": 31.2,
+        "reading": 39.8,
+        "listening": 35.5,
+        "writing": 25.8
+      }
+    }
+  },
+  {
+    "student_id": "S-39",
+    "name": "신유진",
+    "class_id": "C-03",
+    "grade_code": "H2",
+    "grade_label": "고등학교 2학년",
+    "attendance": {
+      "total_sessions": 15,
+      "absent": 3,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 14,
+      "missed": 0
+    },
+    "notes": {
+      "attitude": "친구와 말다툼 발생",
+      "school_exam_level": "내신 5등급 수준",
+      "csat_level": "모의수능 6등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "B2",
+        "percentile_rank": 68
+      },
+      "peer_level_distribution": {
+        "A1": 0,
+        "A2": 4,
+        "B1": 24,
+        "B2": 44,
+        "C1": 24,
+        "C2": 4
+      },
+      "radar_scores": {
+        "grammar": 72.9,
+        "vocabulary": 71.3,
+        "reading": 62.6,
+        "listening": 75.2,
+        "writing": 70.7
+      }
+    }
+  },
+  {
+    "student_id": "S-40",
+    "name": "배하준",
+    "class_id": "C-04",
+    "grade_code": "H1",
+    "grade_label": "고등학교 1학년",
+    "attendance": {
+      "total_sessions": 14,
+      "absent": 3,
+      "perception": 0
+    },
+    "homework": {
+      "assigned": 11,
+      "missed": 2
+    },
+    "notes": {
+      "attitude": "시험 중 집중 유지 어려움",
+      "school_exam_level": "내신 2등급 수준",
+      "csat_level": "모의수능 3등급 수준"
+    },
+    "updated_at": "2025-09-20",
+    "assessment": {
+      "overall": {
+        "cefr": "C2",
+        "percentile_rank": 88
+      },
+      "peer_level_distribution": {
+        "A1": 0,
+        "A2": 0,
+        "B1": 1,
+        "B2": 10,
+        "C1": 35,
+        "C2": 54
+      },
+      "radar_scores": {
+        "grammar": 91.1,
+        "vocabulary": 94.5,
+        "reading": 94.2,
+        "listening": 84.5,
+        "writing": 94.5
+      }
+    }
+  }
+]
