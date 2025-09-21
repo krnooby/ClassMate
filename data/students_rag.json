@@ -1,0 +1,1842 @@
+[
+  {
+    "자연어요약": "김민준(S-01), C-01, 초등학교 3학년(E3). 업데이트 2025-09-20. 출결 12회 중 결석 1회. 출석률 91.7%. 숙제 12건 중 미제출 1건. 수행률 91.7%. 전체 수준 CEFR A1, 백분위 24. 동료 분포 A1 56%, A2 35%, B1 8%, B2 1%, C1 0%, C2 0%. 영역 점수 grammar 26.2, vocabulary 23.5, reading 8.1, listening 18.4, writing 29.7. 강점 writing, grammar. 보완 reading. 비고 태도 수업시간에 음식물 섭취함, 학교평가 초등 성취도 4수준, 진단평가 기초학력진단 4수준.",
+    "원본데이터": {
+      "student_id": "S-01",
+      "name": "김민준",
+      "class_id": "C-01",
+      "grade_code": "E3",
+      "grade_label": "초등학교 3학년",
+      "attendance": {
+        "total_sessions": 12,
+        "absent": 1,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 12,
+        "missed": 1
+      },
+      "notes": {
+        "attitude": "수업시간에 음식물 섭취함",
+        "school_exam_level": "초등 성취도 4수준",
+        "csat_level": "기초학력진단 4수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A1",
+          "percentile_rank": 24
+        },
+        "peer_level_distribution": {
+          "A1": 56,
+          "A2": 35,
+          "B1": 8,
+          "B2": 1,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 26.2,
+          "vocabulary": 23.5,
+          "reading": 8.1,
+          "listening": 18.4,
+          "writing": 29.7
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "이서연(S-02), C-02, 고등학교 2학년(H2). 업데이트 2025-09-20. 출결 16회 중 결석 2회. 출석률 87.5%. 숙제 14건 중 미제출 0건. 수행률 100.0%. 전체 수준 CEFR B1, 백분위 52. 동료 분포 A1 7%, A2 24%, B1 37%, B2 24%, C1 7%, C2 1%. 영역 점수 grammar 48.0, vocabulary 59.5, reading 54.2, listening 49.2, writing 52.4. 강점 vocabulary, reading. 보완 grammar. 비고 태도 수업 중 껌을 씹음, 학교평가 내신 8등급 수준, 진단평가 모의수능 9등급 수준.",
+    "원본데이터": {
+      "student_id": "S-02",
+      "name": "이서연",
+      "class_id": "C-02",
+      "grade_code": "H2",
+      "grade_label": "고등학교 2학년",
+      "attendance": {
+        "total_sessions": 16,
+        "absent": 2,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 14,
+        "missed": 0
+      },
+      "notes": {
+        "attitude": "수업 중 껌을 씹음",
+        "school_exam_level": "내신 8등급 수준",
+        "csat_level": "모의수능 9등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B1",
+          "percentile_rank": 52
+        },
+        "peer_level_distribution": {
+          "A1": 7,
+          "A2": 24,
+          "B1": 37,
+          "B2": 24,
+          "C1": 7,
+          "C2": 1
+        },
+        "radar_scores": {
+          "grammar": 48.0,
+          "vocabulary": 59.5,
+          "reading": 54.2,
+          "listening": 49.2,
+          "writing": 52.4
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "박지훈(S-03), C-03, 고등학교 3학년(H3). 업데이트 2025-09-20. 출결 16회 중 결석 2회. 출석률 87.5%. 숙제 13건 중 미제출 3건. 수행률 76.9%. 전체 수준 CEFR B2, 백분위 64. 동료 분포 A1 0%, A2 5%, B1 24%, B2 42%, C1 24%, C2 5%. 영역 점수 grammar 71.8, vocabulary 64.1, reading 66.1, listening 65.3, writing 61.9. 강점 grammar, reading. 보완 writing. 비고 태도 수업 중 스마트폰 사용함, 학교평가 내신 5등급 수준, 진단평가 모의수능 5등급 수준.",
+    "원본데이터": {
+      "student_id": "S-03",
+      "name": "박지훈",
+      "class_id": "C-03",
+      "grade_code": "H3",
+      "grade_label": "고등학교 3학년",
+      "attendance": {
+        "total_sessions": 16,
+        "absent": 2,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 13,
+        "missed": 3
+      },
+      "notes": {
+        "attitude": "수업 중 스마트폰 사용함",
+        "school_exam_level": "내신 5등급 수준",
+        "csat_level": "모의수능 5등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B2",
+          "percentile_rank": 64
+        },
+        "peer_level_distribution": {
+          "A1": 0,
+          "A2": 5,
+          "B1": 24,
+          "B2": 42,
+          "C1": 24,
+          "C2": 5
+        },
+        "radar_scores": {
+          "grammar": 71.8,
+          "vocabulary": 64.1,
+          "reading": 66.1,
+          "listening": 65.3,
+          "writing": 61.9
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "최수빈(S-04), C-04, 초등학교 2학년(E2). 업데이트 2025-09-20. 출결 14회 중 결석 0회. 출석률 100.0%. 숙제 14건 중 미제출 2건. 수행률 85.7%. 전체 수준 CEFR A1, 백분위 20. 동료 분포 A1 61%, A2 33%, B1 6%, B2 0%, C1 0%, C2 0%. 영역 점수 grammar 19.0, vocabulary 14.7, reading 11.2, listening 20.6, writing 19.7. 강점 listening, writing. 보완 reading. 비고 태도 수업 중 이어폰 착용함, 학교평가 초등 성취도 4수준, 진단평가 기초학력진단 4수준.",
+    "원본데이터": {
+      "student_id": "S-04",
+      "name": "최수빈",
+      "class_id": "C-04",
+      "grade_code": "E2",
+      "grade_label": "초등학교 2학년",
+      "attendance": {
+        "total_sessions": 14,
+        "absent": 0,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 14,
+        "missed": 2
+      },
+      "notes": {
+        "attitude": "수업 중 이어폰 착용함",
+        "school_exam_level": "초등 성취도 4수준",
+        "csat_level": "기초학력진단 4수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A1",
+          "percentile_rank": 20
+        },
+        "peer_level_distribution": {
+          "A1": 61,
+          "A2": 33,
+          "B1": 6,
+          "B2": 0,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 19.0,
+          "vocabulary": 14.7,
+          "reading": 11.2,
+          "listening": 20.6,
+          "writing": 19.7
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "정윤아(S-05), C-01, 초등학교 4학년(E4). 업데이트 2025-09-20. 출결 13회 중 결석 0회. 출석률 100.0%. 숙제 10건 중 미제출 1건. 수행률 90.0%. 전체 수준 CEFR A1, 백분위 20. 동료 분포 A1 61%, A2 33%, B1 6%, B2 0%, C1 0%, C2 0%. 영역 점수 grammar 23.3, vocabulary 6.1, reading 14.8, listening 19.2, writing 19.9. 강점 grammar, writing. 보완 vocabulary. 비고 태도 수업 중 잦은 자리 이탈, 학교평가 초등 성취도 4수준, 진단평가 기초학력진단 4수준.",
+    "원본데이터": {
+      "student_id": "S-05",
+      "name": "정윤아",
+      "class_id": "C-01",
+      "grade_code": "E4",
+      "grade_label": "초등학교 4학년",
+      "attendance": {
+        "total_sessions": 13,
+        "absent": 0,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 10,
+        "missed": 1
+      },
+      "notes": {
+        "attitude": "수업 중 잦은 자리 이탈",
+        "school_exam_level": "초등 성취도 4수준",
+        "csat_level": "기초학력진단 4수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A1",
+          "percentile_rank": 20
+        },
+        "peer_level_distribution": {
+          "A1": 61,
+          "A2": 33,
+          "B1": 6,
+          "B2": 0,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 23.3,
+          "vocabulary": 6.1,
+          "reading": 14.8,
+          "listening": 19.2,
+          "writing": 19.9
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "한지우(S-06), C-02, 초등학교 1학년(E1). 업데이트 2025-09-20. 출결 13회 중 결석 2회. 출석률 84.6%. 숙제 14건 중 미제출 1건. 수행률 92.9%. 전체 수준 CEFR A2, 백분위 35. 동료 분포 A1 25%, A2 45%, B1 25%, B2 5%, C1 0%, C2 0%. 영역 점수 grammar 30.4, vocabulary 26.9, reading 37.7, listening 30.7, writing 39.5. 강점 writing, reading. 보완 vocabulary. 비고 태도 수업자료 미지참, 학교평가 초등 성취도 3수준, 진단평가 기초학력진단 3수준.",
+    "원본데이터": {
+      "student_id": "S-06",
+      "name": "한지우",
+      "class_id": "C-02",
+      "grade_code": "E1",
+      "grade_label": "초등학교 1학년",
+      "attendance": {
+        "total_sessions": 13,
+        "absent": 2,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 14,
+        "missed": 1
+      },
+      "notes": {
+        "attitude": "수업자료 미지참",
+        "school_exam_level": "초등 성취도 3수준",
+        "csat_level": "기초학력진단 3수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A2",
+          "percentile_rank": 35
+        },
+        "peer_level_distribution": {
+          "A1": 25,
+          "A2": 45,
+          "B1": 25,
+          "B2": 5,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 30.4,
+          "vocabulary": 26.9,
+          "reading": 37.7,
+          "listening": 30.7,
+          "writing": 39.5
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "오세진(S-07), C-03, 중학교 2학년(M2). 업데이트 2025-09-20. 출결 15회 중 결석 3회. 출석률 80.0%. 숙제 10건 중 미제출 3건. 수행률 70.0%. 전체 수준 CEFR A2, 백분위 37. 동료 분포 A1 25%, A2 46%, B1 25%, B2 4%, C1 0%, C2 0%. 영역 점수 grammar 42.6, vocabulary 34.2, reading 38.2, listening 38.5, writing 23.3. 강점 grammar, listening. 보완 writing. 비고 태도 필기 도구 미지참, 학교평가 내신 7등급 수준, 진단평가 중학교 학력평가 7등급 수준.",
+    "원본데이터": {
+      "student_id": "S-07",
+      "name": "오세진",
+      "class_id": "C-03",
+      "grade_code": "M2",
+      "grade_label": "중학교 2학년",
+      "attendance": {
+        "total_sessions": 15,
+        "absent": 3,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 10,
+        "missed": 3
+      },
+      "notes": {
+        "attitude": "필기 도구 미지참",
+        "school_exam_level": "내신 7등급 수준",
+        "csat_level": "중학교 학력평가 7등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A2",
+          "percentile_rank": 37
+        },
+        "peer_level_distribution": {
+          "A1": 25,
+          "A2": 46,
+          "B1": 25,
+          "B2": 4,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 42.6,
+          "vocabulary": 34.2,
+          "reading": 38.2,
+          "listening": 38.5,
+          "writing": 23.3
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "장민서(S-08), C-04, 중학교 1학년(M1). 업데이트 2025-09-20. 출결 13회 중 결석 1회. 출석률 92.3%. 숙제 11건 중 미제출 0건. 수행률 100.0%. 전체 수준 CEFR B1, 백분위 46. 동료 분포 A1 8%, A2 24%, B1 35%, B2 24%, C1 8%, C2 1%. 영역 점수 grammar 40.6, vocabulary 53.2, reading 46.6, listening 47.2, writing 39.9. 강점 vocabulary, listening. 보완 writing. 비고 태도 과제 미제출, 학교평가 내신 7등급 수준, 진단평가 중학교 학력평가 7등급 수준.",
+    "원본데이터": {
+      "student_id": "S-08",
+      "name": "장민서",
+      "class_id": "C-04",
+      "grade_code": "M1",
+      "grade_label": "중학교 1학년",
+      "attendance": {
+        "total_sessions": 13,
+        "absent": 1,
+        "perception": 2
+      },
+      "homework": {
+        "assigned": 11,
+        "missed": 0
+      },
+      "notes": {
+        "attitude": "과제 미제출",
+        "school_exam_level": "내신 7등급 수준",
+        "csat_level": "중학교 학력평가 7등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B1",
+          "percentile_rank": 46
+        },
+        "peer_level_distribution": {
+          "A1": 8,
+          "A2": 24,
+          "B1": 35,
+          "B2": 24,
+          "C1": 8,
+          "C2": 1
+        },
+        "radar_scores": {
+          "grammar": 40.6,
+          "vocabulary": 53.2,
+          "reading": 46.6,
+          "listening": 47.2,
+          "writing": 39.9
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "서유진(S-09), C-01, 고등학교 3학년(H3). 업데이트 2025-09-20. 출결 14회 중 결석 1회. 출석률 92.9%. 숙제 13건 중 미제출 3건. 수행률 76.9%. 전체 수준 CEFR B2, 백분위 67. 동료 분포 A1 0%, A2 4%, B1 24%, B2 44%, C1 24%, C2 4%. 영역 점수 grammar 73.2, vocabulary 79.1, reading 63.3, listening 62.9, writing 67.3. 강점 vocabulary, grammar. 보완 listening. 비고 태도 과제 지각 제출, 학교평가 내신 5등급 수준, 진단평가 모의수능 4등급 수준.",
+    "원본데이터": {
+      "student_id": "S-09",
+      "name": "서유진",
+      "class_id": "C-01",
+      "grade_code": "H3",
+      "grade_label": "고등학교 3학년",
+      "attendance": {
+        "total_sessions": 14,
+        "absent": 1,
+        "perception": 2
+      },
+      "homework": {
+        "assigned": 13,
+        "missed": 3
+      },
+      "notes": {
+        "attitude": "과제 지각 제출",
+        "school_exam_level": "내신 5등급 수준",
+        "csat_level": "모의수능 4등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B2",
+          "percentile_rank": 67
+        },
+        "peer_level_distribution": {
+          "A1": 0,
+          "A2": 4,
+          "B1": 24,
+          "B2": 44,
+          "C1": 24,
+          "C2": 4
+        },
+        "radar_scores": {
+          "grammar": 73.2,
+          "vocabulary": 79.1,
+          "reading": 63.3,
+          "listening": 62.9,
+          "writing": 67.3
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "윤도현(S-10), C-02, 고등학교 2학년(H2). 업데이트 2025-09-20. 출결 16회 중 결석 2회. 출석률 87.5%. 숙제 10건 중 미제출 3건. 수행률 70.0%. 전체 수준 CEFR C1, 백분위 76. 동료 분포 A1 0%, A2 1%, B1 6%, B2 26%, C1 41%, C2 26%. 영역 점수 grammar 74.6, vocabulary 79.1, reading 79.5, listening 75.0, writing 84.8. 강점 writing, reading. 보완 grammar. 비고 태도 팀 활동 참여 소극적, 학교평가 내신 2등급 수준, 진단평가 모의수능 1등급 수준.",
+    "원본데이터": {
+      "student_id": "S-10",
+      "name": "윤도현",
+      "class_id": "C-02",
+      "grade_code": "H2",
+      "grade_label": "고등학교 2학년",
+      "attendance": {
+        "total_sessions": 16,
+        "absent": 2,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 10,
+        "missed": 3
+      },
+      "notes": {
+        "attitude": "팀 활동 참여 소극적",
+        "school_exam_level": "내신 2등급 수준",
+        "csat_level": "모의수능 1등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "C1",
+          "percentile_rank": 76
+        },
+        "peer_level_distribution": {
+          "A1": 0,
+          "A2": 1,
+          "B1": 6,
+          "B2": 26,
+          "C1": 41,
+          "C2": 26
+        },
+        "radar_scores": {
+          "grammar": 74.6,
+          "vocabulary": 79.1,
+          "reading": 79.5,
+          "listening": 75.0,
+          "writing": 84.8
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "신예은(S-11), C-03, 고등학교 2학년(H2). 업데이트 2025-09-20. 출결 10회 중 결석 2회. 출석률 80.0%. 숙제 9건 중 미제출 0건. 수행률 100.0%. 전체 수준 CEFR B2, 백분위 58. 동료 분포 A1 0%, A2 3%, B1 24%, B2 46%, C1 24%, C2 3%. 영역 점수 grammar 67.4, vocabulary 63.1, reading 57.1, listening 58.1, writing 51.0. 강점 grammar, vocabulary. 보완 writing. 비고 태도 팀 활동에서 규칙 이탈, 학교평가 내신 6등급 수준, 진단평가 모의수능 7등급 수준.",
+    "원본데이터": {
+      "student_id": "S-11",
+      "name": "신예은",
+      "class_id": "C-03",
+      "grade_code": "H2",
+      "grade_label": "고등학교 2학년",
+      "attendance": {
+        "total_sessions": 10,
+        "absent": 2,
+        "perception": 2
+      },
+      "homework": {
+        "assigned": 9,
+        "missed": 0
+      },
+      "notes": {
+        "attitude": "팀 활동에서 규칙 이탈",
+        "school_exam_level": "내신 6등급 수준",
+        "csat_level": "모의수능 7등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B2",
+          "percentile_rank": 58
+        },
+        "peer_level_distribution": {
+          "A1": 0,
+          "A2": 3,
+          "B1": 24,
+          "B2": 46,
+          "C1": 24,
+          "C2": 3
+        },
+        "radar_scores": {
+          "grammar": 67.4,
+          "vocabulary": 63.1,
+          "reading": 57.1,
+          "listening": 58.1,
+          "writing": 51.0
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "배준호(S-12), C-04, 중학교 2학년(M2). 업데이트 2025-09-20. 출결 12회 중 결석 1회. 출석률 91.7%. 숙제 14건 중 미제출 2건. 수행률 85.7%. 전체 수준 CEFR B1, 백분위 50. 동료 분포 A1 7%, A2 24%, B1 37%, B2 24%, C1 7%, C2 1%. 영역 점수 grammar 52.8, vocabulary 44.1, reading 57.0, listening 46.9, writing 47.3. 강점 reading, grammar. 보완 vocabulary. 비고 태도 수업 중 잦은 잡담, 학교평가 내신 5등급 수준, 진단평가 중학교 학력평가 4등급 수준.",
+    "원본데이터": {
+      "student_id": "S-12",
+      "name": "배준호",
+      "class_id": "C-04",
+      "grade_code": "M2",
+      "grade_label": "중학교 2학년",
+      "attendance": {
+        "total_sessions": 12,
+        "absent": 1,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 14,
+        "missed": 2
+      },
+      "notes": {
+        "attitude": "수업 중 잦은 잡담",
+        "school_exam_level": "내신 5등급 수준",
+        "csat_level": "중학교 학력평가 4등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B1",
+          "percentile_rank": 50
+        },
+        "peer_level_distribution": {
+          "A1": 7,
+          "A2": 24,
+          "B1": 37,
+          "B2": 24,
+          "C1": 7,
+          "C2": 1
+        },
+        "radar_scores": {
+          "grammar": 52.8,
+          "vocabulary": 44.1,
+          "reading": 57.0,
+          "listening": 46.9,
+          "writing": 47.3
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "조하윤(S-13), C-01, 초등학교 5학년(E5). 업데이트 2025-09-20. 출결 10회 중 결석 1회. 출석률 90.0%. 숙제 11건 중 미제출 2건. 수행률 81.8%. 전체 수준 CEFR A2, 백분위 32. 동료 분포 A1 26%, A2 43%, B1 26%, B2 5%, C1 0%, C2 0%. 영역 점수 grammar 37.3, vocabulary 39.0, reading 11.5, listening 32.3, writing 30.1. 강점 vocabulary, grammar. 보완 reading. 비고 태도 교사 질문에 무응답 잦음, 학교평가 초등 성취도 3수준, 진단평가 기초학력진단 3수준.",
+    "원본데이터": {
+      "student_id": "S-13",
+      "name": "조하윤",
+      "class_id": "C-01",
+      "grade_code": "E5",
+      "grade_label": "초등학교 5학년",
+      "attendance": {
+        "total_sessions": 10,
+        "absent": 1,
+        "perception": 2
+      },
+      "homework": {
+        "assigned": 11,
+        "missed": 2
+      },
+      "notes": {
+        "attitude": "교사 질문에 무응답 잦음",
+        "school_exam_level": "초등 성취도 3수준",
+        "csat_level": "기초학력진단 3수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A2",
+          "percentile_rank": 32
+        },
+        "peer_level_distribution": {
+          "A1": 26,
+          "A2": 43,
+          "B1": 26,
+          "B2": 5,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 37.3,
+          "vocabulary": 39.0,
+          "reading": 11.5,
+          "listening": 32.3,
+          "writing": 30.1
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "안수민(S-14), C-02, 초등학교 1학년(E1). 업데이트 2025-09-20. 출결 15회 중 결석 1회. 출석률 93.3%. 숙제 13건 중 미제출 1건. 수행률 92.3%. 전체 수준 CEFR A1, 백분위 26. 동료 분포 A1 52%, A2 35%, B1 11%, B2 2%, C1 0%, C2 0%. 영역 점수 grammar 27.1, vocabulary 27.7, reading 8.3, listening 30.1, writing 21.7. 강점 listening, vocabulary. 보완 reading. 비고 태도 발표 회피 경향, 학교평가 초등 성취도 4수준, 진단평가 기초학력진단 4수준.",
+    "원본데이터": {
+      "student_id": "S-14",
+      "name": "안수민",
+      "class_id": "C-02",
+      "grade_code": "E1",
+      "grade_label": "초등학교 1학년",
+      "attendance": {
+        "total_sessions": 15,
+        "absent": 1,
+        "perception": 2
+      },
+      "homework": {
+        "assigned": 13,
+        "missed": 1
+      },
+      "notes": {
+        "attitude": "발표 회피 경향",
+        "school_exam_level": "초등 성취도 4수준",
+        "csat_level": "기초학력진단 4수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A1",
+          "percentile_rank": 26
+        },
+        "peer_level_distribution": {
+          "A1": 52,
+          "A2": 35,
+          "B1": 11,
+          "B2": 2,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 27.1,
+          "vocabulary": 27.7,
+          "reading": 8.3,
+          "listening": 30.1,
+          "writing": 21.7
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "유나현(S-15), C-03, 초등학교 1학년(E1). 업데이트 2025-09-20. 출결 15회 중 결석 3회. 출석률 80.0%. 숙제 9건 중 미제출 1건. 수행률 88.9%. 전체 수준 CEFR A1, 백분위 21. 동료 분포 A1 53%, A2 35%, B1 11%, B2 1%, C1 0%, C2 0%. 영역 점수 grammar 11.7, vocabulary 25.2, reading 13.4, listening 15.1, writing 23.9. 강점 vocabulary, writing. 보완 grammar. 비고 태도 발표는 적극적이나 경청 미흡, 학교평가 초등 성취도 4수준, 진단평가 기초학력진단 4수준.",
+    "원본데이터": {
+      "student_id": "S-15",
+      "name": "유나현",
+      "class_id": "C-03",
+      "grade_code": "E1",
+      "grade_label": "초등학교 1학년",
+      "attendance": {
+        "total_sessions": 15,
+        "absent": 3,
+        "perception": 2
+      },
+      "homework": {
+        "assigned": 9,
+        "missed": 1
+      },
+      "notes": {
+        "attitude": "발표는 적극적이나 경청 미흡",
+        "school_exam_level": "초등 성취도 4수준",
+        "csat_level": "기초학력진단 4수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A1",
+          "percentile_rank": 21
+        },
+        "peer_level_distribution": {
+          "A1": 53,
+          "A2": 35,
+          "B1": 11,
+          "B2": 1,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 11.7,
+          "vocabulary": 25.2,
+          "reading": 13.4,
+          "listening": 15.1,
+          "writing": 23.9
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "임지민(S-16), C-04, 초등학교 1학년(E1). 업데이트 2025-09-20. 출결 15회 중 결석 2회. 출석률 86.7%. 숙제 10건 중 미제출 3건. 수행률 70.0%. 전체 수준 CEFR A1, 백분위 21. 동료 분포 A1 56%, A2 35%, B1 8%, B2 1%, C1 0%, C2 0%. 영역 점수 grammar 24.7, vocabulary 17.9, reading 20.2, listening 16.8, writing 7.0. 강점 grammar, reading. 보완 writing. 비고 태도 필기량 부족, 학교평가 초등 성취도 4수준, 진단평가 기초학력진단 4수준.",
+    "원본데이터": {
+      "student_id": "S-16",
+      "name": "임지민",
+      "class_id": "C-04",
+      "grade_code": "E1",
+      "grade_label": "초등학교 1학년",
+      "attendance": {
+        "total_sessions": 15,
+        "absent": 2,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 10,
+        "missed": 3
+      },
+      "notes": {
+        "attitude": "필기량 부족",
+        "school_exam_level": "초등 성취도 4수준",
+        "csat_level": "기초학력진단 4수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A1",
+          "percentile_rank": 21
+        },
+        "peer_level_distribution": {
+          "A1": 56,
+          "A2": 35,
+          "B1": 8,
+          "B2": 1,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 24.7,
+          "vocabulary": 17.9,
+          "reading": 20.2,
+          "listening": 16.8,
+          "writing": 7.0
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "문서연(S-17), C-01, 고등학교 2학년(H2). 업데이트 2025-09-20. 출결 11회 중 결석 0회. 출석률 100.0%. 숙제 9건 중 미제출 0건. 수행률 100.0%. 전체 수준 CEFR B1, 백분위 48. 동료 분포 A1 4%, A2 24%, B1 44%, B2 24%, C1 4%, C2 0%. 영역 점수 grammar 42.5, vocabulary 45.8, reading 47.3, listening 49.2, writing 56.1. 강점 writing, listening. 보완 grammar. 비고 태도 필기 정리 미흡, 학교평가 내신 8등급 수준, 진단평가 모의수능 7등급 수준.",
+    "원본데이터": {
+      "student_id": "S-17",
+      "name": "문서연",
+      "class_id": "C-01",
+      "grade_code": "H2",
+      "grade_label": "고등학교 2학년",
+      "attendance": {
+        "total_sessions": 11,
+        "absent": 0,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 9,
+        "missed": 0
+      },
+      "notes": {
+        "attitude": "필기 정리 미흡",
+        "school_exam_level": "내신 8등급 수준",
+        "csat_level": "모의수능 7등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B1",
+          "percentile_rank": 48
+        },
+        "peer_level_distribution": {
+          "A1": 4,
+          "A2": 24,
+          "B1": 44,
+          "B2": 24,
+          "C1": 4,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 42.5,
+          "vocabulary": 45.8,
+          "reading": 47.3,
+          "listening": 49.2,
+          "writing": 56.1
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "권태윤(S-18), C-02, 고등학교 3학년(H3). 업데이트 2025-09-20. 출결 16회 중 결석 1회. 출석률 93.8%. 숙제 12건 중 미제출 3건. 수행률 75.0%. 전체 수준 CEFR B2, 백분위 64. 동료 분포 A1 0%, A2 4%, B1 24%, B2 44%, C1 24%, C2 4%. 영역 점수 grammar 54.9, vocabulary 62.6, reading 60.7, listening 69.1, writing 81.0. 강점 writing, listening. 보완 grammar. 비고 태도 복습 미실시, 학교평가 내신 5등급 수준, 진단평가 모의수능 4등급 수준.",
+    "원본데이터": {
+      "student_id": "S-18",
+      "name": "권태윤",
+      "class_id": "C-02",
+      "grade_code": "H3",
+      "grade_label": "고등학교 3학년",
+      "attendance": {
+        "total_sessions": 16,
+        "absent": 1,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 12,
+        "missed": 3
+      },
+      "notes": {
+        "attitude": "복습 미실시",
+        "school_exam_level": "내신 5등급 수준",
+        "csat_level": "모의수능 4등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B2",
+          "percentile_rank": 64
+        },
+        "peer_level_distribution": {
+          "A1": 0,
+          "A2": 4,
+          "B1": 24,
+          "B2": 44,
+          "C1": 24,
+          "C2": 4
+        },
+        "radar_scores": {
+          "grammar": 54.9,
+          "vocabulary": 62.6,
+          "reading": 60.7,
+          "listening": 69.1,
+          "writing": 81.0
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "송지후(S-19), C-03, 중학교 3학년(M3). 업데이트 2025-09-20. 출결 10회 중 결석 2회. 출석률 80.0%. 숙제 13건 중 미제출 1건. 수행률 92.3%. 전체 수준 CEFR B1, 백분위 51. 동료 분포 A1 4%, A2 24%, B1 44%, B2 24%, C1 4%, C2 0%. 영역 점수 grammar 47.5, vocabulary 44.8, reading 55.2, listening 51.3, writing 54.7. 강점 reading, writing. 보완 vocabulary. 비고 태도 예습 미실시, 학교평가 내신 7등급 수준, 진단평가 중학교 학력평가 8등급 수준.",
+    "원본데이터": {
+      "student_id": "S-19",
+      "name": "송지후",
+      "class_id": "C-03",
+      "grade_code": "M3",
+      "grade_label": "중학교 3학년",
+      "attendance": {
+        "total_sessions": 10,
+        "absent": 2,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 13,
+        "missed": 1
+      },
+      "notes": {
+        "attitude": "예습 미실시",
+        "school_exam_level": "내신 7등급 수준",
+        "csat_level": "중학교 학력평가 8등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B1",
+          "percentile_rank": 51
+        },
+        "peer_level_distribution": {
+          "A1": 4,
+          "A2": 24,
+          "B1": 44,
+          "B2": 24,
+          "C1": 4,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 47.5,
+          "vocabulary": 44.8,
+          "reading": 55.2,
+          "listening": 51.3,
+          "writing": 54.7
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "홍지효(S-20), C-04, 고등학교 2학년(H2). 업데이트 2025-09-20. 출결 10회 중 결석 2회. 출석률 80.0%. 숙제 14건 중 미제출 2건. 수행률 85.7%. 전체 수준 CEFR C2, 백분위 84. 동료 분포 A1 0%, A2 0%, B1 1%, B2 9%, C1 35%, C2 55%. 영역 점수 grammar 79.4, vocabulary 85.2, reading 90.0, listening 95.0, writing 89.8. 강점 listening, reading. 보완 grammar. 비고 태도 수업 중 졸음, 학교평가 내신 1등급 수준, 진단평가 모의수능 2등급 수준.",
+    "원본데이터": {
+      "student_id": "S-20",
+      "name": "홍지효",
+      "class_id": "C-04",
+      "grade_code": "H2",
+      "grade_label": "고등학교 2학년",
+      "attendance": {
+        "total_sessions": 10,
+        "absent": 2,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 14,
+        "missed": 2
+      },
+      "notes": {
+        "attitude": "수업 중 졸음",
+        "school_exam_level": "내신 1등급 수준",
+        "csat_level": "모의수능 2등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "C2",
+          "percentile_rank": 84
+        },
+        "peer_level_distribution": {
+          "A1": 0,
+          "A2": 0,
+          "B1": 1,
+          "B2": 9,
+          "C1": 35,
+          "C2": 55
+        },
+        "radar_scores": {
+          "grammar": 79.4,
+          "vocabulary": 85.2,
+          "reading": 90.0,
+          "listening": 95.0,
+          "writing": 89.8
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "백승민(S-21), C-01, 중학교 2학년(M2). 업데이트 2025-09-20. 출결 12회 중 결석 0회. 출석률 100.0%. 숙제 14건 중 미제출 2건. 수행률 85.7%. 전체 수준 CEFR A2, 백분위 38. 동료 분포 A1 26%, A2 41%, B1 26%, B2 6%, C1 1%, C2 0%. 영역 점수 grammar 35.2, vocabulary 35.4, reading 43.1, listening 39.1, writing 32.5. 강점 reading, listening. 보완 writing. 비고 태도 지각 빈번, 학교평가 내신 7등급 수준, 진단평가 중학교 학력평가 6등급 수준.",
+    "원본데이터": {
+      "student_id": "S-21",
+      "name": "백승민",
+      "class_id": "C-01",
+      "grade_code": "M2",
+      "grade_label": "중학교 2학년",
+      "attendance": {
+        "total_sessions": 12,
+        "absent": 0,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 14,
+        "missed": 2
+      },
+      "notes": {
+        "attitude": "지각 빈번",
+        "school_exam_level": "내신 7등급 수준",
+        "csat_level": "중학교 학력평가 6등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A2",
+          "percentile_rank": 38
+        },
+        "peer_level_distribution": {
+          "A1": 26,
+          "A2": 41,
+          "B1": 26,
+          "B2": 6,
+          "C1": 1,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 35.2,
+          "vocabulary": 35.4,
+          "reading": 43.1,
+          "listening": 39.1,
+          "writing": 32.5
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "강하늘(S-22), C-02, 중학교 1학년(M1). 업데이트 2025-09-20. 출결 14회 중 결석 2회. 출석률 85.7%. 숙제 12건 중 미제출 3건. 수행률 75.0%. 전체 수준 CEFR B1, 백분위 47. 동료 분포 A1 5%, A2 24%, B1 42%, B2 24%, C1 5%, C2 0%. 영역 점수 grammar 38.1, vocabulary 50.9, reading 50.3, listening 46.1, writing 45.5. 강점 vocabulary, reading. 보완 grammar. 비고 태도 결석 사전 연락 없음, 학교평가 내신 6등급 수준, 진단평가 중학교 학력평가 7등급 수준.",
+    "원본데이터": {
+      "student_id": "S-22",
+      "name": "강하늘",
+      "class_id": "C-02",
+      "grade_code": "M1",
+      "grade_label": "중학교 1학년",
+      "attendance": {
+        "total_sessions": 14,
+        "absent": 2,
+        "perception": 2
+      },
+      "homework": {
+        "assigned": 12,
+        "missed": 3
+      },
+      "notes": {
+        "attitude": "결석 사전 연락 없음",
+        "school_exam_level": "내신 6등급 수준",
+        "csat_level": "중학교 학력평가 7등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B1",
+          "percentile_rank": 47
+        },
+        "peer_level_distribution": {
+          "A1": 5,
+          "A2": 24,
+          "B1": 42,
+          "B2": 24,
+          "C1": 5,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 38.1,
+          "vocabulary": 50.9,
+          "reading": 50.3,
+          "listening": 46.1,
+          "writing": 45.5
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "주다연(S-23), C-03, 초등학교 6학년(E6). 업데이트 2025-09-20. 출결 14회 중 결석 0회. 출석률 100.0%. 숙제 9건 중 미제출 0건. 수행률 100.0%. 전체 수준 CEFR B1, 백분위 47. 동료 분포 A1 6%, A2 24%, B1 39%, B2 24%, C1 6%, C2 1%. 영역 점수 grammar 50.3, vocabulary 53.1, reading 48.0, listening 47.0, writing 35.8. 강점 vocabulary, grammar. 보완 writing. 비고 태도 수업 태도 전반 양호, 학교평가 초등 성취도 2수준, 진단평가 기초학력진단 2수준.",
+    "원본데이터": {
+      "student_id": "S-23",
+      "name": "주다연",
+      "class_id": "C-03",
+      "grade_code": "E6",
+      "grade_label": "초등학교 6학년",
+      "attendance": {
+        "total_sessions": 14,
+        "absent": 0,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 9,
+        "missed": 0
+      },
+      "notes": {
+        "attitude": "수업 태도 전반 양호",
+        "school_exam_level": "초등 성취도 2수준",
+        "csat_level": "기초학력진단 2수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B1",
+          "percentile_rank": 47
+        },
+        "peer_level_distribution": {
+          "A1": 6,
+          "A2": 24,
+          "B1": 39,
+          "B2": 24,
+          "C1": 6,
+          "C2": 1
+        },
+        "radar_scores": {
+          "grammar": 50.3,
+          "vocabulary": 53.1,
+          "reading": 48.0,
+          "listening": 47.0,
+          "writing": 35.8
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "노서준(S-24), C-04, 초등학교 6학년(E6). 업데이트 2025-09-20. 출결 15회 중 결석 0회. 출석률 100.0%. 숙제 11건 중 미제출 1건. 수행률 90.9%. 전체 수준 CEFR A1, 백분위 21. 동료 분포 A1 53%, A2 35%, B1 11%, B2 1%, C1 0%, C2 0%. 영역 점수 grammar 24.4, vocabulary 23.1, reading 18.9, listening 16.2, writing 6.6. 강점 grammar, vocabulary. 보완 writing. 비고 태도 질문 활발, 학교평가 초등 성취도 4수준, 진단평가 기초학력진단 4수준.",
+    "원본데이터": {
+      "student_id": "S-24",
+      "name": "노서준",
+      "class_id": "C-04",
+      "grade_code": "E6",
+      "grade_label": "초등학교 6학년",
+      "attendance": {
+        "total_sessions": 15,
+        "absent": 0,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 11,
+        "missed": 1
+      },
+      "notes": {
+        "attitude": "질문 활발",
+        "school_exam_level": "초등 성취도 4수준",
+        "csat_level": "기초학력진단 4수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A1",
+          "percentile_rank": 21
+        },
+        "peer_level_distribution": {
+          "A1": 53,
+          "A2": 35,
+          "B1": 11,
+          "B2": 1,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 24.4,
+          "vocabulary": 23.1,
+          "reading": 18.9,
+          "listening": 16.2,
+          "writing": 6.6
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "하예린(S-25), C-01, 고등학교 2학년(H2). 업데이트 2025-09-20. 출결 11회 중 결석 1회. 출석률 90.9%. 숙제 12건 중 미제출 2건. 수행률 83.3%. 전체 수준 CEFR C2, 백분위 88. 동료 분포 A1 0%, A2 0%, B1 1%, B2 7%, C1 34%, C2 58%. 영역 점수 grammar 95.0, vocabulary 85.3, reading 95.0, listening 95.0, writing 93.0. 강점 grammar, reading. 보완 vocabulary. 비고 태도 친구 방해 행동 보임, 학교평가 내신 1등급 수준, 진단평가 모의수능 1등급 수준.",
+    "원본데이터": {
+      "student_id": "S-25",
+      "name": "하예린",
+      "class_id": "C-01",
+      "grade_code": "H2",
+      "grade_label": "고등학교 2학년",
+      "attendance": {
+        "total_sessions": 11,
+        "absent": 1,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 12,
+        "missed": 2
+      },
+      "notes": {
+        "attitude": "친구 방해 행동 보임",
+        "school_exam_level": "내신 1등급 수준",
+        "csat_level": "모의수능 1등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "C2",
+          "percentile_rank": 88
+        },
+        "peer_level_distribution": {
+          "A1": 0,
+          "A2": 0,
+          "B1": 1,
+          "B2": 7,
+          "C1": 34,
+          "C2": 58
+        },
+        "radar_scores": {
+          "grammar": 95.0,
+          "vocabulary": 85.3,
+          "reading": 95.0,
+          "listening": 95.0,
+          "writing": 93.0
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "공민재(S-26), C-02, 고등학교 3학년(H3). 업데이트 2025-09-20. 출결 16회 중 결석 2회. 출석률 87.5%. 숙제 10건 중 미제출 2건. 수행률 80.0%. 전체 수준 CEFR B2, 백분위 68. 동료 분포 A1 0%, A2 4%, B1 24%, B2 44%, C1 24%, C2 4%. 영역 점수 grammar 64.0, vocabulary 66.4, reading 69.8, listening 73.7, writing 73.5. 강점 listening, writing. 보완 grammar. 비고 태도 수업 중 PC 게임 시도, 학교평가 내신 6등급 수준, 진단평가 모의수능 5등급 수준.",
+    "원본데이터": {
+      "student_id": "S-26",
+      "name": "공민재",
+      "class_id": "C-02",
+      "grade_code": "H3",
+      "grade_label": "고등학교 3학년",
+      "attendance": {
+        "total_sessions": 16,
+        "absent": 2,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 10,
+        "missed": 2
+      },
+      "notes": {
+        "attitude": "수업 중 PC 게임 시도",
+        "school_exam_level": "내신 6등급 수준",
+        "csat_level": "모의수능 5등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B2",
+          "percentile_rank": 68
+        },
+        "peer_level_distribution": {
+          "A1": 0,
+          "A2": 4,
+          "B1": 24,
+          "B2": 44,
+          "C1": 24,
+          "C2": 4
+        },
+        "radar_scores": {
+          "grammar": 64.0,
+          "vocabulary": 66.4,
+          "reading": 69.8,
+          "listening": 73.7,
+          "writing": 73.5
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "남현우(S-27), C-03, 초등학교 2학년(E2). 업데이트 2025-09-20. 출결 10회 중 결석 0회. 출석률 100.0%. 숙제 11건 중 미제출 1건. 수행률 90.9%. 전체 수준 CEFR A1, 백분위 21. 동료 분포 A1 52%, A2 35%, B1 11%, B2 2%, C1 0%, C2 0%. 영역 점수 grammar 24.9, vocabulary 21.6, reading 11.3, listening 20.1, writing 13.2. 강점 grammar, vocabulary. 보완 reading. 비고 태도 복장 규정 미준수, 학교평가 초등 성취도 4수준, 진단평가 기초학력진단 4수준.",
+    "원본데이터": {
+      "student_id": "S-27",
+      "name": "남현우",
+      "class_id": "C-03",
+      "grade_code": "E2",
+      "grade_label": "초등학교 2학년",
+      "attendance": {
+        "total_sessions": 10,
+        "absent": 0,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 11,
+        "missed": 1
+      },
+      "notes": {
+        "attitude": "복장 규정 미준수",
+        "school_exam_level": "초등 성취도 4수준",
+        "csat_level": "기초학력진단 4수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A1",
+          "percentile_rank": 21
+        },
+        "peer_level_distribution": {
+          "A1": 52,
+          "A2": 35,
+          "B1": 11,
+          "B2": 2,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 24.9,
+          "vocabulary": 21.6,
+          "reading": 11.3,
+          "listening": 20.1,
+          "writing": 13.2
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "유서아(S-28), C-04, 초등학교 6학년(E6). 업데이트 2025-09-20. 출결 12회 중 결석 2회. 출석률 83.3%. 숙제 12건 중 미제출 0건. 수행률 100.0%. 전체 수준 CEFR A1, 백분위 22. 동료 분포 A1 52%, A2 35%, B1 11%, B2 2%, C1 0%, C2 0%. 영역 점수 grammar 12.8, vocabulary 30.4, reading 14.2, listening 11.1, writing 26.6. 강점 vocabulary, writing. 보완 listening. 비고 태도 불필요한 소지품 반입, 학교평가 초등 성취도 4수준, 진단평가 기초학력진단 4수준.",
+    "원본데이터": {
+      "student_id": "S-28",
+      "name": "유서아",
+      "class_id": "C-04",
+      "grade_code": "E6",
+      "grade_label": "초등학교 6학년",
+      "attendance": {
+        "total_sessions": 12,
+        "absent": 2,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 12,
+        "missed": 0
+      },
+      "notes": {
+        "attitude": "불필요한 소지품 반입",
+        "school_exam_level": "초등 성취도 4수준",
+        "csat_level": "기초학력진단 4수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A1",
+          "percentile_rank": 22
+        },
+        "peer_level_distribution": {
+          "A1": 52,
+          "A2": 35,
+          "B1": 11,
+          "B2": 2,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 12.8,
+          "vocabulary": 30.4,
+          "reading": 14.2,
+          "listening": 11.1,
+          "writing": 26.6
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "김하린(S-29), C-01, 중학교 1학년(M1). 업데이트 2025-09-20. 출결 10회 중 결석 0회. 출석률 100.0%. 숙제 13건 중 미제출 3건. 수행률 76.9%. 전체 수준 CEFR B2, 백분위 63. 동료 분포 A1 0%, A2 4%, B1 24%, B2 44%, C1 24%, C2 4%. 영역 점수 grammar 73.0, vocabulary 62.6, reading 62.5, listening 68.5, writing 54.6. 강점 grammar, listening. 보완 writing. 비고 태도 교과서 미지참, 학교평가 내신 5등급 수준, 진단평가 중학교 학력평가 6등급 수준.",
+    "원본데이터": {
+      "student_id": "S-29",
+      "name": "김하린",
+      "class_id": "C-01",
+      "grade_code": "M1",
+      "grade_label": "중학교 1학년",
+      "attendance": {
+        "total_sessions": 10,
+        "absent": 0,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 13,
+        "missed": 3
+      },
+      "notes": {
+        "attitude": "교과서 미지참",
+        "school_exam_level": "내신 5등급 수준",
+        "csat_level": "중학교 학력평가 6등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B2",
+          "percentile_rank": 63
+        },
+        "peer_level_distribution": {
+          "A1": 0,
+          "A2": 4,
+          "B1": 24,
+          "B2": 44,
+          "C1": 24,
+          "C2": 4
+        },
+        "radar_scores": {
+          "grammar": 73.0,
+          "vocabulary": 62.6,
+          "reading": 62.5,
+          "listening": 68.5,
+          "writing": 54.6
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "이지후(S-30), C-02, 고등학교 2학년(H2). 업데이트 2025-09-20. 출결 14회 중 결석 3회. 출석률 78.6%. 숙제 14건 중 미제출 3건. 수행률 78.6%. 전체 수준 CEFR B1, 백분위 50. 동료 분포 A1 4%, A2 24%, B1 44%, B2 24%, C1 4%, C2 0%. 영역 점수 grammar 49.2, vocabulary 53.2, reading 53.9, listening 50.6, writing 44.5. 강점 reading, vocabulary. 보완 writing. 비고 태도 과제 베낌 의심, 학교평가 내신 6등급 수준, 진단평가 모의수능 6등급 수준.",
+    "원본데이터": {
+      "student_id": "S-30",
+      "name": "이지후",
+      "class_id": "C-02",
+      "grade_code": "H2",
+      "grade_label": "고등학교 2학년",
+      "attendance": {
+        "total_sessions": 14,
+        "absent": 3,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 14,
+        "missed": 3
+      },
+      "notes": {
+        "attitude": "과제 베낌 의심",
+        "school_exam_level": "내신 6등급 수준",
+        "csat_level": "모의수능 6등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B1",
+          "percentile_rank": 50
+        },
+        "peer_level_distribution": {
+          "A1": 4,
+          "A2": 24,
+          "B1": 44,
+          "B2": 24,
+          "C1": 4,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 49.2,
+          "vocabulary": 53.2,
+          "reading": 53.9,
+          "listening": 50.6,
+          "writing": 44.5
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "박시우(S-31), C-03, 중학교 1학년(M1). 업데이트 2025-09-20. 출결 10회 중 결석 0회. 출석률 100.0%. 숙제 11건 중 미제출 1건. 수행률 90.9%. 전체 수준 CEFR B1, 백분위 52. 동료 분포 A1 7%, A2 24%, B1 37%, B2 24%, C1 7%, C2 1%. 영역 점수 grammar 50.0, vocabulary 46.6, reading 54.5, listening 63.7, writing 45.4. 강점 listening, reading. 보완 writing. 비고 태도 학습장 정리 불량, 학교평가 내신 5등급 수준, 진단평가 중학교 학력평가 4등급 수준.",
+    "원본데이터": {
+      "student_id": "S-31",
+      "name": "박시우",
+      "class_id": "C-03",
+      "grade_code": "M1",
+      "grade_label": "중학교 1학년",
+      "attendance": {
+        "total_sessions": 10,
+        "absent": 0,
+        "perception": 2
+      },
+      "homework": {
+        "assigned": 11,
+        "missed": 1
+      },
+      "notes": {
+        "attitude": "학습장 정리 불량",
+        "school_exam_level": "내신 5등급 수준",
+        "csat_level": "중학교 학력평가 4등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B1",
+          "percentile_rank": 52
+        },
+        "peer_level_distribution": {
+          "A1": 7,
+          "A2": 24,
+          "B1": 37,
+          "B2": 24,
+          "C1": 7,
+          "C2": 1
+        },
+        "radar_scores": {
+          "grammar": 50.0,
+          "vocabulary": 46.6,
+          "reading": 54.5,
+          "listening": 63.7,
+          "writing": 45.4
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "최다은(S-32), C-04, 중학교 1학년(M1). 업데이트 2025-09-20. 출결 13회 중 결석 1회. 출석률 92.3%. 숙제 11건 중 미제출 2건. 수행률 81.8%. 전체 수준 CEFR B1, 백분위 49. 동료 분포 A1 6%, A2 24%, B1 39%, B2 24%, C1 6%, C2 1%. 영역 점수 grammar 51.2, vocabulary 57.9, reading 49.4, listening 36.5, writing 52.2. 강점 vocabulary, writing. 보완 listening. 비고 태도 메모 습관 양호, 학교평가 내신 5등급 수준, 진단평가 중학교 학력평가 5등급 수준.",
+    "원본데이터": {
+      "student_id": "S-32",
+      "name": "최다은",
+      "class_id": "C-04",
+      "grade_code": "M1",
+      "grade_label": "중학교 1학년",
+      "attendance": {
+        "total_sessions": 13,
+        "absent": 1,
+        "perception": 2
+      },
+      "homework": {
+        "assigned": 11,
+        "missed": 2
+      },
+      "notes": {
+        "attitude": "메모 습관 양호",
+        "school_exam_level": "내신 5등급 수준",
+        "csat_level": "중학교 학력평가 5등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B1",
+          "percentile_rank": 49
+        },
+        "peer_level_distribution": {
+          "A1": 6,
+          "A2": 24,
+          "B1": 39,
+          "B2": 24,
+          "C1": 6,
+          "C2": 1
+        },
+        "radar_scores": {
+          "grammar": 51.2,
+          "vocabulary": 57.9,
+          "reading": 49.4,
+          "listening": 36.5,
+          "writing": 52.2
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "정지아(S-33), C-01, 중학교 1학년(M1). 업데이트 2025-09-20. 출결 10회 중 결석 0회. 출석률 100.0%. 숙제 11건 중 미제출 3건. 수행률 72.7%. 전체 수준 CEFR A2, 백분위 37. 동료 분포 A1 26%, A2 42%, B1 26%, B2 6%, C1 0%, C2 0%. 영역 점수 grammar 45.0, vocabulary 32.2, reading 31.3, listening 28.4, writing 40.1. 강점 grammar, writing. 보완 listening. 비고 태도 자기 점검표 성실 작성, 학교평가 내신 8등급 수준, 진단평가 중학교 학력평가 8등급 수준.",
+    "원본데이터": {
+      "student_id": "S-33",
+      "name": "정지아",
+      "class_id": "C-01",
+      "grade_code": "M1",
+      "grade_label": "중학교 1학년",
+      "attendance": {
+        "total_sessions": 10,
+        "absent": 0,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 11,
+        "missed": 3
+      },
+      "notes": {
+        "attitude": "자기 점검표 성실 작성",
+        "school_exam_level": "내신 8등급 수준",
+        "csat_level": "중학교 학력평가 8등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A2",
+          "percentile_rank": 37
+        },
+        "peer_level_distribution": {
+          "A1": 26,
+          "A2": 42,
+          "B1": 26,
+          "B2": 6,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 45.0,
+          "vocabulary": 32.2,
+          "reading": 31.3,
+          "listening": 28.4,
+          "writing": 40.1
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "한예준(S-34), C-02, 중학교 1학년(M1). 업데이트 2025-09-20. 출결 13회 중 결석 2회. 출석률 84.6%. 숙제 13건 중 미제출 1건. 수행률 92.3%. 전체 수준 CEFR A2, 백분위 32. 동료 분포 A1 25%, A2 46%, B1 25%, B2 4%, C1 0%, C2 0%. 영역 점수 grammar 19.5, vocabulary 28.5, reading 33.9, listening 30.9, writing 39.0. 강점 writing, reading. 보완 grammar. 비고 태도 온라인 과제 누락, 학교평가 내신 9등급 수준, 진단평가 중학교 학력평가 8등급 수준.",
+    "원본데이터": {
+      "student_id": "S-34",
+      "name": "한예준",
+      "class_id": "C-02",
+      "grade_code": "M1",
+      "grade_label": "중학교 1학년",
+      "attendance": {
+        "total_sessions": 13,
+        "absent": 2,
+        "perception": 2
+      },
+      "homework": {
+        "assigned": 13,
+        "missed": 1
+      },
+      "notes": {
+        "attitude": "온라인 과제 누락",
+        "school_exam_level": "내신 9등급 수준",
+        "csat_level": "중학교 학력평가 8등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A2",
+          "percentile_rank": 32
+        },
+        "peer_level_distribution": {
+          "A1": 25,
+          "A2": 46,
+          "B1": 25,
+          "B2": 4,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 19.5,
+          "vocabulary": 28.5,
+          "reading": 33.9,
+          "listening": 30.9,
+          "writing": 39.0
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "오하윤(S-35), C-03, 중학교 2학년(M2). 업데이트 2025-09-20. 출결 16회 중 결석 2회. 출석률 87.5%. 숙제 10건 중 미제출 0건. 수행률 100.0%. 전체 수준 CEFR B1, 백분위 50. 동료 분포 A1 4%, A2 24%, B1 44%, B2 24%, C1 4%, C2 0%. 영역 점수 grammar 50.5, vocabulary 54.6, reading 51.5, listening 50.7, writing 42.3. 강점 vocabulary, reading. 보완 writing. 비고 태도 온라인 출석 누락, 학교평가 내신 6등급 수준, 진단평가 중학교 학력평가 7등급 수준.",
+    "원본데이터": {
+      "student_id": "S-35",
+      "name": "오하윤",
+      "class_id": "C-03",
+      "grade_code": "M2",
+      "grade_label": "중학교 2학년",
+      "attendance": {
+        "total_sessions": 16,
+        "absent": 2,
+        "perception": 2
+      },
+      "homework": {
+        "assigned": 10,
+        "missed": 0
+      },
+      "notes": {
+        "attitude": "온라인 출석 누락",
+        "school_exam_level": "내신 6등급 수준",
+        "csat_level": "중학교 학력평가 7등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B1",
+          "percentile_rank": 50
+        },
+        "peer_level_distribution": {
+          "A1": 4,
+          "A2": 24,
+          "B1": 44,
+          "B2": 24,
+          "C1": 4,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 50.5,
+          "vocabulary": 54.6,
+          "reading": 51.5,
+          "listening": 50.7,
+          "writing": 42.3
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "장도윤(S-36), C-04, 초등학교 6학년(E6). 업데이트 2025-09-20. 출결 15회 중 결석 0회. 출석률 100.0%. 숙제 13건 중 미제출 0건. 수행률 100.0%. 전체 수준 CEFR A1, 백분위 23. 동료 분포 A1 59%, A2 34%, B1 7%, B2 0%, C1 0%, C2 0%. 영역 점수 grammar 22.0, vocabulary 26.7, reading 16.9, listening 19.7, writing 16.6. 강점 vocabulary, grammar. 보완 writing. 비고 태도 과제 파일 형식 오류, 학교평가 초등 성취도 4수준, 진단평가 기초학력진단 4수준.",
+    "원본데이터": {
+      "student_id": "S-36",
+      "name": "장도윤",
+      "class_id": "C-04",
+      "grade_code": "E6",
+      "grade_label": "초등학교 6학년",
+      "attendance": {
+        "total_sessions": 15,
+        "absent": 0,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 13,
+        "missed": 0
+      },
+      "notes": {
+        "attitude": "과제 파일 형식 오류",
+        "school_exam_level": "초등 성취도 4수준",
+        "csat_level": "기초학력진단 4수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A1",
+          "percentile_rank": 23
+        },
+        "peer_level_distribution": {
+          "A1": 59,
+          "A2": 34,
+          "B1": 7,
+          "B2": 0,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 22.0,
+          "vocabulary": 26.7,
+          "reading": 16.9,
+          "listening": 19.7,
+          "writing": 16.6
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "서지후(S-37), C-01, 중학교 2학년(M2). 업데이트 2025-09-20. 출결 15회 중 결석 0회. 출석률 100.0%. 숙제 10건 중 미제출 2건. 수행률 80.0%. 전체 수준 CEFR A2, 백분위 42. 동료 분포 A1 26%, A2 40%, B1 26%, B2 7%, C1 1%, C2 0%. 영역 점수 grammar 37.6, vocabulary 52.7, reading 39.0, listening 41.7, writing 35.8. 강점 vocabulary, listening. 보완 writing. 비고 태도 프로젝트 마감 미준수, 학교평가 내신 9등급 수준, 진단평가 중학교 학력평가 9등급 수준.",
+    "원본데이터": {
+      "student_id": "S-37",
+      "name": "서지후",
+      "class_id": "C-01",
+      "grade_code": "M2",
+      "grade_label": "중학교 2학년",
+      "attendance": {
+        "total_sessions": 15,
+        "absent": 0,
+        "perception": 1
+      },
+      "homework": {
+        "assigned": 10,
+        "missed": 2
+      },
+      "notes": {
+        "attitude": "프로젝트 마감 미준수",
+        "school_exam_level": "내신 9등급 수준",
+        "csat_level": "중학교 학력평가 9등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A2",
+          "percentile_rank": 42
+        },
+        "peer_level_distribution": {
+          "A1": 26,
+          "A2": 40,
+          "B1": 26,
+          "B2": 7,
+          "C1": 1,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 37.6,
+          "vocabulary": 52.7,
+          "reading": 39.0,
+          "listening": 41.7,
+          "writing": 35.8
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "윤시현(S-38), C-02, 초등학교 4학년(E4). 업데이트 2025-09-20. 출결 12회 중 결석 0회. 출석률 100.0%. 숙제 9건 중 미제출 1건. 수행률 88.9%. 전체 수준 CEFR A2, 백분위 33. 동료 분포 A1 26%, A2 43%, B1 26%, B2 5%, C1 0%, C2 0%. 영역 점수 grammar 24.4, vocabulary 31.2, reading 39.8, listening 35.5, writing 25.8. 강점 reading, listening. 보완 grammar. 비고 태도 팀원 간 의사소통 부족, 학교평가 초등 성취도 3수준, 진단평가 기초학력진단 3수준.",
+    "원본데이터": {
+      "student_id": "S-38",
+      "name": "윤시현",
+      "class_id": "C-02",
+      "grade_code": "E4",
+      "grade_label": "초등학교 4학년",
+      "attendance": {
+        "total_sessions": 12,
+        "absent": 0,
+        "perception": 2
+      },
+      "homework": {
+        "assigned": 9,
+        "missed": 1
+      },
+      "notes": {
+        "attitude": "팀원 간 의사소통 부족",
+        "school_exam_level": "초등 성취도 3수준",
+        "csat_level": "기초학력진단 3수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "A2",
+          "percentile_rank": 33
+        },
+        "peer_level_distribution": {
+          "A1": 26,
+          "A2": 43,
+          "B1": 26,
+          "B2": 5,
+          "C1": 0,
+          "C2": 0
+        },
+        "radar_scores": {
+          "grammar": 24.4,
+          "vocabulary": 31.2,
+          "reading": 39.8,
+          "listening": 35.5,
+          "writing": 25.8
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "신유진(S-39), C-03, 고등학교 2학년(H2). 업데이트 2025-09-20. 출결 15회 중 결석 3회. 출석률 80.0%. 숙제 14건 중 미제출 0건. 수행률 100.0%. 전체 수준 CEFR B2, 백분위 68. 동료 분포 A1 0%, A2 4%, B1 24%, B2 44%, C1 24%, C2 4%. 영역 점수 grammar 72.9, vocabulary 71.3, reading 62.6, listening 75.2, writing 70.7. 강점 listening, grammar. 보완 reading. 비고 태도 친구와 말다툼 발생, 학교평가 내신 5등급 수준, 진단평가 모의수능 6등급 수준.",
+    "원본데이터": {
+      "student_id": "S-39",
+      "name": "신유진",
+      "class_id": "C-03",
+      "grade_code": "H2",
+      "grade_label": "고등학교 2학년",
+      "attendance": {
+        "total_sessions": 15,
+        "absent": 3,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 14,
+        "missed": 0
+      },
+      "notes": {
+        "attitude": "친구와 말다툼 발생",
+        "school_exam_level": "내신 5등급 수준",
+        "csat_level": "모의수능 6등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "B2",
+          "percentile_rank": 68
+        },
+        "peer_level_distribution": {
+          "A1": 0,
+          "A2": 4,
+          "B1": 24,
+          "B2": 44,
+          "C1": 24,
+          "C2": 4
+        },
+        "radar_scores": {
+          "grammar": 72.9,
+          "vocabulary": 71.3,
+          "reading": 62.6,
+          "listening": 75.2,
+          "writing": 70.7
+        }
+      }
+    }
+  },
+  {
+    "자연어요약": "배하준(S-40), C-04, 고등학교 1학년(H1). 업데이트 2025-09-20. 출결 14회 중 결석 3회. 출석률 78.6%. 숙제 11건 중 미제출 2건. 수행률 81.8%. 전체 수준 CEFR C2, 백분위 88. 동료 분포 A1 0%, A2 0%, B1 1%, B2 10%, C1 35%, C2 54%. 영역 점수 grammar 91.1, vocabulary 94.5, reading 94.2, listening 84.5, writing 94.5. 강점 vocabulary, writing. 보완 listening. 비고 태도 시험 중 집중 유지 어려움, 학교평가 내신 2등급 수준, 진단평가 모의수능 3등급 수준.",
+    "원본데이터": {
+      "student_id": "S-40",
+      "name": "배하준",
+      "class_id": "C-04",
+      "grade_code": "H1",
+      "grade_label": "고등학교 1학년",
+      "attendance": {
+        "total_sessions": 14,
+        "absent": 3,
+        "perception": 0
+      },
+      "homework": {
+        "assigned": 11,
+        "missed": 2
+      },
+      "notes": {
+        "attitude": "시험 중 집중 유지 어려움",
+        "school_exam_level": "내신 2등급 수준",
+        "csat_level": "모의수능 3등급 수준"
+      },
+      "updated_at": "2025-09-20",
+      "assessment": {
+        "overall": {
+          "cefr": "C2",
+          "percentile_rank": 88
+        },
+        "peer_level_distribution": {
+          "A1": 0,
+          "A2": 0,
+          "B1": 1,
+          "B2": 10,
+          "C1": 35,
+          "C2": 54
+        },
+        "radar_scores": {
+          "grammar": 91.1,
+          "vocabulary": 94.5,
+          "reading": 94.2,
+          "listening": 84.5,
+          "writing": 94.5
+        }
+      }
+    }
+  }
+]
