@@ -1,0 +1,112 @@
+# taxonomy.yaml
+areas: [GR, LS, RD, VO, WR]
+
+mid_codes:
+  # GR
+  - {code: GR_ADV_CLAUSE, area: GR}
+  - {code: GR_CAUS_PERCP, area: GR}
+  - {code: GR_COMPARISON, area: GR}
+  - {code: GR_COND_SUBJ, area: GR}
+  - {code: GR_CONJ, area: GR}
+  - {code: GR_DET_ART, area: GR}
+  - {code: GR_EMPH_INV_ELLP, area: GR}
+  - {code: GR_EXCL_IMP, area: GR}
+  - {code: GR_GERUND, area: GR}
+  - {code: GR_IT_THERE, area: GR}
+  - {code: GR_LINKING_V, area: GR}
+  - {code: GR_MODAL, area: GR}
+  - {code: GR_NEG_Q, area: GR}
+  - {code: GR_NOUN_CLAUSE, area: GR}
+  - {code: GR_PARTICIPLE, area: GR}
+  - {code: GR_PASSIVE, area: GR}
+  - {code: GR_POS, area: GR}
+  - {code: GR_PREP, area: GR}
+  - {code: GR_PRONOUN, area: GR}
+  - {code: GR_RELATIVE, area: GR}
+  - {code: GR_REPORTED, area: GR}
+  - {code: GR_SPECIAL, area: GR}
+  - {code: GR_SVA, area: GR}
+  - {code: GR_SVCO_PATTERNS, area: GR}
+  - {code: GR_TAG_Q, area: GR}
+  - {code: GR_TENSE, area: GR}
+  - {code: GR_TO_INF, area: GR}
+  - {code: GR_VERB_COMP, area: GR}
+  - {code: GR_WORD_ORDER, area: GR}
+
+  # LS
+  - {code: LS_ANNOUNCEMENT, area: LS}
+  - {code: LS_ATTITUDE, area: LS}
+  - {code: LS_DETAIL, area: LS}
+  - {code: LS_DIRECTIONS, area: LS}
+  - {code: LS_FORM_COMPLETION, area: LS}
+  - {code: LS_INFERENCE, area: LS}
+  - {code: LS_MAIN_IDEA, area: LS}
+  - {code: LS_NUMBERS, area: LS}
+  - {code: LS_ORDERING, area: LS}
+  - {code: LS_PHONE_MESSAGE, area: LS}
+  - {code: LS_PURPOSE, area: LS}
+  - {code: LS_RELATION, area: LS}
+  - {code: LS_REQUEST_SUGG, area: LS}
+  - {code: LS_TALK_INTERVIEW, area: LS}
+  - {code: LS_VISUAL_MATCH, area: LS}
+
+  # RD
+  - {code: RD_CHART_GRAPH, area: RD}
+  - {code: RD_CLOZE, area: RD}
+  - {code: RD_CONNECTIVE, area: RD}
+  - {code: RD_DETAIL_TF, area: RD}
+  - {code: RD_EXTENDED, area: RD}
+  - {code: RD_FACT_OPINION, area: RD}
+  - {code: RD_GRAM_IN_CTX, area: RD}
+  - {code: RD_INFERENCE, area: RD}
+  - {code: RD_IRRELEVANT, area: RD}
+  - {code: RD_MAIN_IDEA, area: RD}
+  - {code: RD_ORDERING, area: RD}
+  - {code: RD_PRACTICAL, area: RD}
+  - {code: RD_REFERENCE, area: RD}
+  - {code: RD_RHETORIC, area: RD}
+  - {code: RD_SENT_INSERT, area: RD}
+  - {code: RD_SUMMARY, area: RD}
+  - {code: RD_TONE_PURPOSE, area: RD}
+  - {code: RD_VOCAB_IN_CTX, area: RD}
+
+  # VO
+  - {code: VO_ADJ_ADV, area: VO}
+  - {code: VO_AFFIX_ROOT, area: VO}
+  - {code: VO_CLOZE, area: VO}
+  - {code: VO_COLLOCATION, area: VO}
+  - {code: VO_CONFUSABLE, area: VO}
+  - {code: VO_CONTEXT, area: VO}
+  - {code: VO_DISCOURSE, area: VO}
+  - {code: VO_IDIOM, area: VO}
+  - {code: VO_PHRASAL_VERB, area: VO}
+  - {code: VO_POLYSEMY, area: VO}
+  - {code: VO_PREP_CHOICE, area: VO}
+  - {code: VO_QUANT_NUMBER, area: VO}
+  - {code: VO_SYNONYM_ANT, area: VO}
+  - {code: VO_TOPIC, area: VO}
+  - {code: VO_WORD_FORM, area: VO}
+
+  # WR
+  - {code: WR_CONNECTIVE_USE, area: WR}
+  - {code: WR_EMAIL_LETTER, area: WR}
+  - {code: WR_ERROR_EDIT, area: WR}
+  - {code: WR_ESSAY_ARG, area: WR}
+  - {code: WR_ESSAY_OP_EXP, area: WR}
+  - {code: WR_GRAMMAR_CLOZE, area: WR}
+  - {code: WR_GRAPH_TASK, area: WR}
+  - {code: WR_PARAPHRASE, area: WR}
+  - {code: WR_SENT_COMBINE, area: WR}
+  - {code: WR_SENT_INSERT_DELETE, area: WR}
+  - {code: WR_SENT_ORDER, area: WR}
+  - {code: WR_SENT_TRANSFORM, area: WR}
+  - {code: WR_SHORT_ANSWER, area: WR}
+  - {code: WR_SUMMARY, area: WR}
+  - {code: WR_TRANSLATION, area: WR}
+
+grade_bands: [E1, E2, E3, E4, E5, E6, M1, M2, M3, H1, H2, H3]
+types: [MCQ, SA]
+difficulty: {min: 1, max: 5}
+reserved:
+  unknown_area: AREA_UNKNOWN
+  unknown_mid: MID_UNKNOWN

@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 .venv/
+.venv_backup/
 .env
 
 # Node
@@ -27,4 +28,10 @@ dist/
 *.jpg
 *.csv
 
-mysql_data/
+# Project directories
+input/
+output/
+data/
+archive/
+docs/
+scripts/
