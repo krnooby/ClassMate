@@ -174,5 +174,5 @@ This project is licensed under the MIT License.
 ---
 
 <p align="center">
-  Made with ❤️ by ClassMate Team
+  Made with ❤️ by MateLabs Team
 </p>
