@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.venv_backup/
+.env
+
+# Node
+node_modules/
+dist/
+.npmrc
+
+# OS/IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Data
+*.db
+*.sqlite*
+*.log
+*.bak
+*.dump
+
+# Large
+*.pdf
+*.png
+*.jpg
+*.csv
+
+# Project directories
+input/
+output/
+data/
+archive/
+docs/
+scripts/
+
+# Audio files (too large for git, should be in GCS)
+static/audio/*.mp3
+
+# Claude Code settings (personal configuration)
+.claude/
