@@ -46,3 +46,4 @@ static/audio/*.mp3
 
 # Claude Code settings (personal configuration)
 .claude/
+classmate-key.pem
