@@ -8,9 +8,63 @@ import os
 import json
 from typing import List, Dict, Any, Optional
 from openai import OpenAI
-from shared.services import get_graph_rag_service
+from shared.services import (
+    get_graph_rag_service,
+    get_dictionary_service,
+    get_news_service,
+    get_text_analysis_service,
+    get_grammar_check_service
+)
 from shared.prompts import PromptManager
 from shared.services.tts_service import get_tts_service
+
+
+# ANSI 색상 코드
+class Colors:
+    RESET = '\033[0m'
+    BOLD = '\033[1m'
+
+    # 색상
+    BLACK = '\033[30m'
+    RED = '\033[31m'
+    GREEN = '\033[32m'
+    YELLOW = '\033[33m'
+    BLUE = '\033[34m'
+    MAGENTA = '\033[35m'
+    CYAN = '\033[36m'
+    WHITE = '\033[37m'
+
+    # 배경색
+    BG_BLACK = '\033[40m'
+    BG_RED = '\033[41m'
+    BG_GREEN = '\033[42m'
+    BG_YELLOW = '\033[43m'
+    BG_BLUE = '\033[44m'
+    BG_MAGENTA = '\033[45m'
+    BG_CYAN = '\033[46m'
+    BG_WHITE = '\033[47m'
+
+
+def print_box(title: str, content: str, color: str = Colors.CYAN):
+    """박스 형태로 로그 출력"""
+    width = 80
+    print(f"\n{color}{'='*width}{Colors.RESET}")
+    print(f"{color}{Colors.BOLD}{title.center(width)}{Colors.RESET}")
+    print(f"{color}{'='*width}{Colors.RESET}")
+    for line in content.split('\n'):
+        if line.strip():
+            print(f"{color}  {line}{Colors.RESET}")
+    print(f"{color}{'='*width}{Colors.RESET}\n")
+
+
+def print_section(emoji: str, title: str, content: str, color: str = Colors.BLUE):
+    """섹션 형태로 로그 출력"""
+    print(f"\n{color}{Colors.BOLD}{emoji} {title}{Colors.RESET}")
+    print(f"{color}{'-'*60}{Colors.RESET}")
+    for line in content.split('\n'):
+        if line.strip():
+            print(f"{color}  {line}{Colors.RESET}")
+    print()
 
 
 class StudentAgentService:
@@ -25,8 +79,220 @@ class StudentAgentService:
         # Current user message for vector search context
         self.current_user_message = ""
 
+        # Current session ID for audio tracking
+        self.current_session_id = None
+
         # Function definitions
         self.functions = self._create_functions()
+
+    def _route_query(self, message: str, student_id: str) -> str:
+        """
+        질문 의도를 분석하여 적절한 모델 선택
+        Returns: "intelligence" (gpt-4.1-mini) or "reasoning" (o4-mini/o3)
+        """
+        routing_prompt = f'''Analyze this student's question and choose the appropriate model:
+
+**intelligence** (gpt-4.1-mini) - Fast, cost-effective for:
+- Simple problem requests (문제 내줘, 듣기 문제, 독해 문제)
+- Greetings and casual chat (안녕?, 잘 지내?, 고마워)
+- Basic function calls (점수 보기, 힌트 달라)
+- Quick answers (정답이 뭐야?, 몇 점이야?)
+- Encouragement and simple feedback
+Examples: "문제 내줘", "듣기 문제 풀게", "안녕?", "힌트 줘", "정답 알려줘", "고마워"
+
+**reasoning** (o4-mini) - Deep thinking for:
+- In-depth explanations (문법 개념 설명, 왜 그런지)
+- Complex grammar concepts (가정법, 관계대명사 심화)
+- Multi-step problem solving (여러 단계 풀이)
+- Learning strategy advice (어떻게 공부해야 할까?)
+- Analysis of mistakes (왜 틀렸는지 분석)
+Examples: "왜 이 답이 틀렸어?", "가정법 과거완료를 자세히 설명해줘", "독해 실력을 늘리려면 어떻게 해야 돼?", "이 문제 풀이 과정을 단계별로 보여줘", "be동사와 일반동사의 차이를 깊게 알려줘"
+
+Question: "{message}"
+
+Respond with ONLY "intelligence" or "reasoning".'''
+
+        try:
+            response = self.client.chat.completions.create(
+                model="gpt-4o-mini",  # Cheap, fast router
+                messages=[{"role": "user", "content": routing_prompt}],
+                max_tokens=10,
+                temperature=0
+            )
+            decision = response.choices[0].message.content.strip().lower()
+
+            # 시각적 로깅
+            if decision == "intelligence":
+                print_section(
+                    "🧠",
+                    "ROUTING DECISION",
+                    f"Query: {message[:50]}...\n"
+                    f"Model: INTELLIGENCE (gpt-4.1-mini)\n"
+                    f"Reason: Fast function calling for simple tasks",
+                    Colors.CYAN
+                )
+            else:
+                print_section(
+                    "🧠",
+                    "ROUTING DECISION",
+                    f"Query: {message[:50]}...\n"
+                    f"Model: REASONING (o4-mini)\n"
+                    f"Reason: Deep thinking required for complex explanation",
+                    Colors.MAGENTA
+                )
+
+            return decision if decision in ["intelligence", "reasoning"] else "intelligence"
+        except Exception as e:
+            print(f"{Colors.RED}⚠️  Routing failed: {e}, defaulting to intelligence{Colors.RESET}")
+            return "intelligence"  # Default fallback
+
+    def _check_response_quality(self, response_text: str) -> bool:
+        """
+        Check if o4-mini response quality is acceptable
+        Returns: True if good, False if needs o3 fallback
+        """
+        # Bad indicators: too short, generic, error patterns
+        if len(response_text) < 50:
+            return False
+        if "죄송합니다" in response_text and "오류" in response_text:
+            return False
+        if response_text.count("...") > 3:  # Too many ellipses = incomplete
+            return False
+        return True
+
+    def _needs_react(self, message: str) -> bool:
+        """ReAct 모드가 필요한 복잡한 질문인지 판단"""
+        import re
+
+        reasons = []
+
+        # 패턴 1: 연결어 ("하고", "찾아서")
+        multi_task_keywords = ['하고', '그리고', '찾아서', '확인하고', '조회하고', '알려주고']
+        for keyword in multi_task_keywords:
+            if keyword in message and ('해줘' in message or '주세요' in message or '줘' in message):
+                reasons.append(f"Multi-task keyword detected: '{keyword}'")
+
+        # 패턴 2: "먼저...그다음"
+        if '먼저' in message and ('그다음' in message or '그리고' in message):
+            reasons.append("Sequential task pattern: '먼저...그다음'")
+
+        # 패턴 3: 동사 3개 이상
+        action_verbs = ['찾', '분석', '추천', '확인', '조회', '검색', '비교', '생성', '설명', '알려']
+        verb_count = sum(1 for verb in action_verbs if verb in message)
+        if verb_count >= 3:
+            reasons.append(f"Multiple action verbs: {verb_count} detected")
+
+        needs_react = len(reasons) > 0
+
+        if needs_react:
+            print_section(
+                "🔄",
+                "ReAct MODE ACTIVATED",
+                f"Query: {message}\n" + "\n".join(f"- {r}" for r in reasons),
+                Colors.YELLOW
+            )
+
+        return needs_react
+
+    def _react_chat(
+        self,
+        student_id: str,
+        message: str,
+        chat_history: Optional[List[Dict[str, str]]] = None,
+        max_steps: int = 5
+    ) -> Dict[str, Any]:
+        """ReAct (Reasoning + Acting) 모드로 복잡한 다단계 작업 처리"""
+
+        print(f"\n{'='*60}")
+        print(f"🔄 ReAct Mode Activated")
+        print(f"Query: {message}")
+        print(f"{'='*60}\n")
+
+        # System prompt
+        system_prompt = PromptManager.get_system_prompt(
+            role="student_agent",
+            model="o4-mini",
+            context={"student_id": student_id}
+        )
+
+        # 메시지 구성
+        messages = [{"role": "system", "content": system_prompt}]
+        if chat_history:
+            messages.extend(chat_history)
+
+        # 초기 user 메시지
+        messages.append({"role": "user", "content": message})
+
+        used_models = ["o4-mini (ReAct)"]
+
+        for step in range(1, max_steps + 1):
+            print(f"\n--- ReAct Step {step}/{max_steps} ---")
+
+            # LLM 호출 (o4-mini)
+            response = self.client.chat.completions.create(
+                model="o4-mini",
+                messages=messages,
+                tools=self.functions,
+                tool_choice="auto",
+                max_completion_tokens=10000
+            )
+
+            assistant_message = response.choices[0].message
+
+            # Thought 출력
+            if assistant_message.content:
+                print(f"💭 Thought: {assistant_message.content[:200]}...")
+
+            # Function 호출이 있으면 실행
+            if assistant_message.tool_calls:
+                messages.append(assistant_message)
+
+                for tool_call in assistant_message.tool_calls:
+                    function_name = tool_call.function.name
+                    arguments = json.loads(tool_call.function.arguments)
+
+                    print(f"🔧 Action: {function_name}({arguments})")
+
+                    # Function 실행
+                    result = self._execute_function(function_name, arguments)
+
+                    print(f"📊 Observation: {result[:200]}...")
+
+                    # Tool result 추가
+                    messages.append({
+                        "role": "tool",
+                        "tool_call_id": tool_call.id,
+                        "content": result
+                    })
+            else:
+                # Final answer
+                print(f"✅ Final Answer Reached")
+
+                content = assistant_message.content or "답변을 생성할 수 없습니다."
+
+                # Quick reply 파싱
+                parsed = self._parse_quick_reply(content, used_models)
+
+                return parsed
+
+        # 최대 단계 도달 - 마지막 응답 요청
+        print(f"⚠️  Max steps reached, generating final answer...")
+
+        messages.append({
+            "role": "user",
+            "content": "Based on the information you've gathered, provide your final answer."
+        })
+
+        final_response = self.client.chat.completions.create(
+            model="o4-mini",
+            messages=messages,
+            max_completion_tokens=10000
+        )
+
+        content = final_response.choices[0].message.content or "답변을 생성할 수 없습니다."
+        parsed = self._parse_quick_reply(content, used_models)
+
+        return parsed
 
     def _create_functions(self) -> List[Dict[str, Any]]:
         """OpenAI Function Calling용 function 정의"""
@@ -132,6 +398,83 @@ class StudentAgentService:
                         "required": ["prompt", "student_answer", "difficulty"]
                     }
                 }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "lookup_word",
+                    "description": "영어 단어를 검색하여 발음, 정의, 예문, 동의어를 제공합니다 (Free Dictionary API, 무료)",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "word": {
+                                "type": "string",
+                                "description": "검색할 영어 단어 (예: confident, beautiful, education)"
+                            }
+                        },
+                        "required": ["word"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "fetch_news",
+                    "description": "영어 학습용 최신 뉴스 기사를 가져옵니다 (NewsAPI). 뉴스를 읽고 싶거나, 최신 주제로 학습하고 싶을 때 사용하세요.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "category": {
+                                "type": "string",
+                                "description": "뉴스 카테고리: general(일반), sports(스포츠), technology(기술), health(건강), science(과학), entertainment(엔터)",
+                                "enum": ["general", "sports", "technology", "health", "science", "entertainment"],
+                                "default": "general"
+                            },
+                            "page_size": {
+                                "type": "integer",
+                                "description": "가져올 기사 수 (1-10, 기본값 3)",
+                                "default": 3,
+                                "minimum": 1,
+                                "maximum": 10
+                            }
+                        },
+                        "required": []
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "analyze_text_difficulty",
+                    "description": "영어 텍스트의 난이도(CEFR 레벨)와 가독성을 분석합니다. 학생이 작성한 글이나 읽은 지문의 수준을 파악할 때 사용하세요.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "text": {
+                                "type": "string",
+                                "description": "분석할 영어 텍스트 (최소 1문장 이상)"
+                            }
+                        },
+                        "required": ["text"]
+                    }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "check_grammar",
+                    "description": "영어 문장의 문법 오류를 자동으로 검사하고 수정 제안을 제공합니다 (LanguageTool API, 무료). 학생이 작성한 문장을 검토할 때 사용하세요.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "text": {
+                                "type": "string",
+                                "description": "검사할 영어 문장 또는 단락"
+                            }
+                        },
+                        "required": ["text"]
+                    }
+                }
             }
         ]
 
@@ -177,6 +520,22 @@ class StudentAgentService:
                 # Listening 문제는 audio_transcript 포함
                 if p.get('audio_transcript'):
                     problem_text += f"[AUDIO]: {p['audio_transcript']}\n"
+
+                # Figure (그림) 포함
+                if p.get('figures'):
+                    for fig in p['figures']:
+                        if fig.get('public_url'):
+                            problem_text += f"[IMAGE]: {fig['public_url']}\n"
+                            if fig.get('caption'):
+                                problem_text += f"  Caption: {fig['caption']}\n"
+
+                # Table (표) 포함
+                if p.get('tables'):
+                    for tbl in p['tables']:
+                        if tbl.get('public_url'):
+                            problem_text += f"[TABLE]: {tbl['public_url']}\n"
+                            if tbl.get('title'):
+                                problem_text += f"  Title: {tbl['title']}\n"
 
                 problem_text += f"{p['stem']}\n"
                 if p['options']:
@@ -298,13 +657,42 @@ class StudentAgentService:
         """
         듣기 문제 후처리 (강제 검증 및 수정)
 
-        1. [AUDIO]: 패턴 확인 및 추가
-        2. [SPEAKERS]: JSON 파싱 및 자동 생성
-        3. 대화 형식 검증
-        4. 첫 발화에 화자 이름 추가
+        1. 한글 텍스트 제거 (TTS에서 읽히지 않도록)
+        2. [AUDIO]: 패턴 확인 및 추가
+        3. [SPEAKERS]: JSON 파싱 및 자동 생성
+        4. 대화 형식 검증
+        5. 첫 발화에 화자 이름 추가
         """
         import re
         import json
+
+        # ========================================
+        # STEP 1: 한글 텍스트 제거 (TTS 음성 방지)
+        # ========================================
+        # 1. 괄호 안의 한글 번역 제거 (예: "(안녕, 파티에 올 거야?)" → "")
+        # 2. 완전히 한글로만 된 설명 줄만 제거
+        # 3. 영어 대화는 유지
+
+        korean_char_pattern = re.compile(r'[\u3131-\u3163\uac00-\ud7a3]')  # 한글 유니코드 범위
+
+        cleaned_lines = []
+        for line in content.split('\n'):
+            # 괄호 안의 한글 번역 제거 (예: "Hello! (안녕!) How are you? (어떻게 지내?)" → "Hello! How are you?")
+            cleaned_line = re.sub(r'\([^)]*[\u3131-\u3163\uac00-\ud7a3][^)]*\)', '', line)
+            # 연속된 공백을 단일 공백으로 정리
+            cleaned_line = re.sub(r'\s+', ' ', cleaned_line).strip()
+
+            # 완전히 한글로만 된 줄만 제거 (설명 줄)
+            # 예: "음성 링크를 클릭하여 듣기 연습", "[음성 내용 요약]", "- 공원 청소 봉사 활동이..."
+            if re.match(r'^[\s\u3131-\u3163\uac00-\ud7a3\[\]:\-•※\(\)]+$', cleaned_line):
+                print(f"   🗑️  한글 설명 줄 제거: {line[:50]}...")
+                continue
+
+            # 빈 줄은 유지 (구조 보존)
+            cleaned_lines.append(cleaned_line if cleaned_line else line)
+
+        content = '\n'.join(cleaned_lines)
+        print(f"   ✅ 한글 텍스트 제거 완료 (대화 스크립트 유지)")
 
         lines = content.split('\n')
 
@@ -534,7 +922,7 @@ Respond with ONLY valid JSON:
             try:
                 print(f"   🎙️  OpenAI TTS 음성 생성 중...")
                 tts_service = get_tts_service()
-                audio_url = tts_service.get_or_create_audio(result)
+                audio_url = tts_service.get_or_create_audio(result, session_id=self.current_session_id)
 
                 if audio_url:
                     # Add audio URL to the beginning of the problem (for frontend to use)
@@ -637,6 +1025,161 @@ Provide your evaluation in the following structured format:
             except Exception as fallback_error:
                 return f"평가 실패: {str(e)}, Fallback 실패: {str(fallback_error)}"
 
+    def _lookup_word(self, word: str) -> str:
+        """영어 단어 검색 (Free Dictionary API)"""
+        try:
+            service = get_dictionary_service()
+            result = service.lookup_word(word)
+
+            if not result.get('success'):
+                return f"단어 '{word}'를 찾을 수 없습니다. 철자를 확인해주세요."
+
+            # 결과를 사용자 친화적으로 포맷팅
+            response = f"**{result['word']}** {result.get('phonetic', '')}\n\n"
+            response += f"**품사:** {result.get('part_of_speech', 'N/A')}\n\n"
+            response += f"**정의:** {result.get('definition', 'N/A')}\n\n"
+
+            if result.get('example'):
+                response += f"**예문:** {result['example']}\n\n"
+
+            if result.get('synonyms'):
+                synonyms = ', '.join(result['synonyms'])
+                response += f"**동의어:** {synonyms}\n\n"
+
+            if result.get('antonyms'):
+                antonyms = ', '.join(result['antonyms'])
+                response += f"**반의어:** {antonyms}\n\n"
+
+            # 발음 오디오 URL이 있으면 추가
+            phonetics = result.get('phonetics', [])
+            audio_urls = [p['audio'] for p in phonetics if p.get('audio')]
+            if audio_urls:
+                response += f"**발음 듣기:** {audio_urls[0]}\n"
+
+            return response
+        except Exception as e:
+            return f"단어 검색 실패: {str(e)}"
+
+    def _fetch_news(self, category: str = "general", page_size: int = 3) -> str:
+        """영어 뉴스 기사 검색 (NewsAPI)"""
+        try:
+            service = get_news_service()
+            result = service.fetch_news(
+                category=category,
+                language="en",
+                page_size=min(page_size, 5),  # 최대 5개
+                country="us"
+            )
+
+            if not result.get('success'):
+                error_msg = result.get('error', 'Unknown error')
+                if "NEWS_API_KEY not configured" in error_msg:
+                    return "뉴스 API가 설정되지 않았습니다. 관리자에게 문의하세요."
+                return f"뉴스 검색 실패: {error_msg}"
+
+            articles = result.get('articles', [])
+            if not articles:
+                return f"'{category}' 카테고리의 뉴스를 찾을 수 없습니다."
+
+            # 기사 포맷팅
+            response = f"**{category.title()} 카테고리 최신 뉴스** ({len(articles)}개)\n\n"
+
+            for i, article in enumerate(articles, 1):
+                response += f"**{i}. {article['title']}**\n"
+                response += f"   *출처:* {article['source']}\n"
+                if article.get('description'):
+                    response += f"   *요약:* {article['description']}\n"
+                response += f"   *링크:* {article['url']}\n\n"
+
+            return response
+        except Exception as e:
+            return f"뉴스 검색 실패: {str(e)}"
+
+    def _analyze_text_difficulty(self, text: str) -> str:
+        """텍스트 난이도 분석 (textstat)"""
+        try:
+            service = get_text_analysis_service()
+            result = service.analyze_cefr_level(text)
+
+            if not result.get('success'):
+                error_msg = result.get('error', 'Unknown error')
+                if "textstat library not installed" in error_msg:
+                    return "텍스트 분석 라이브러리가 설치되지 않았습니다. 관리자에게 문의하세요."
+                return f"텍스트 분석 실패: {error_msg}"
+
+            # 결과 포맷팅
+            response = f"**텍스트 난이도 분석 결과**\n\n"
+            response += f"**CEFR 레벨:** {result['cefr_level']}\n"
+            response += f"**난이도:** {result['difficulty']}\n"
+            response += f"**가독성 점수 (Flesch):** {result['flesch_reading_ease']}/100 (높을수록 쉬움)\n"
+            response += f"**학년 수준 (FK Grade):** {result['flesch_kincaid_grade']}학년\n\n"
+            response += f"**통계:**\n"
+            response += f"- 단어 수: {result['word_count']}개\n"
+            response += f"- 문장 수: {result['sentence_count']}개\n"
+            response += f"- 평균 문장 길이: {result['avg_sentence_length']}단어\n\n"
+
+            # 레벨별 설명
+            level_descriptions = {
+                "A1": "초급 - 매우 쉬운 텍스트",
+                "A2": "초급 상 - 쉬운 텍스트",
+                "B1": "중급 - 보통 난이도 텍스트",
+                "B2": "중급 상 - 어려운 텍스트",
+                "C1": "고급 - 매우 어려운 텍스트",
+                "C2": "고급 상 - 전문가 수준 텍스트"
+            }
+            response += f"**레벨 설명:** {level_descriptions.get(result['cefr_level'], 'N/A')}\n"
+
+            return response
+        except Exception as e:
+            return f"텍스트 분석 실패: {str(e)}"
+
+    def _check_grammar(self, text: str) -> str:
+        """문법 검사 (LanguageTool API)"""
+        try:
+            service = get_grammar_check_service()
+            result = service.check_grammar(text, language="en-US")
+
+            if not result.get('success'):
+                return f"문법 검사 실패: {result.get('error', 'Unknown error')}"
+
+            error_count = result.get('error_count', 0)
+            errors = result.get('errors', [])
+
+            if error_count == 0:
+                return "**문법 검사 결과:** 문법 오류가 없습니다! 잘했어요! ✅"
+
+            # 오류 포맷팅
+            response = f"**문법 검사 결과:** {error_count}개의 오류 발견\n\n"
+
+            for i, error in enumerate(errors[:10], 1):  # 최대 10개만 표시
+                response += f"**{i}. {error['message']}**\n"
+
+                # 오류 위치 표시
+                offset = error['offset']
+                length = error['length']
+                error_text = text[offset:offset+length]
+                response += f"   *문제:* \"{error_text}\"\n"
+
+                # 수정 제안
+                replacements = error.get('replacements', [])
+                if replacements:
+                    suggestions = ', '.join([f'"{r}"' for r in replacements])
+                    response += f"   *제안:* {suggestions}\n"
+
+                # 카테고리
+                category = error.get('category', '')
+                if category:
+                    response += f"   *유형:* {category}\n"
+
+                response += "\n"
+
+            if error_count > 10:
+                response += f"*({error_count - 10}개 오류 더 있음)*\n"
+
+            return response
+        except Exception as e:
+            return f"문법 검사 실패: {str(e)}"
+
     def _parse_quick_reply(self, content: str, used_models: List[str]) -> Dict[str, Any]:
         """
         응답에서 [QUICK_REPLY:...] 패턴을 파싱하여 quick_replies 필드로 변환
@@ -693,26 +1236,65 @@ Provide your evaluation in the following structured format:
 
     def _execute_function(self, function_name: str, arguments: Dict[str, Any]) -> str:
         """Function 실행"""
-        print(f"🔧 FUNCTION CALLED: {function_name}")
-        print(f"📋 ARGUMENTS: {json.dumps(arguments, ensure_ascii=False)}")
+
+        # 함수 타입 분류
+        db_functions = ["get_student_context", "recommend_problems"]
+        generation_functions = ["generate_problem", "evaluate_writing"]
+        external_api_functions = ["lookup_word", "fetch_news", "analyze_text_difficulty", "check_grammar"]
+
+        if function_name in db_functions:
+            func_type = "📊 DATABASE QUERY"
+            color = Colors.GREEN
+        elif function_name in generation_functions:
+            func_type = "🤖 AI GENERATION"
+            color = Colors.MAGENTA
+        elif function_name in external_api_functions:
+            func_type = "🌐 EXTERNAL API"
+            color = Colors.BLUE
+        else:
+            func_type = "❓ UNKNOWN"
+            color = Colors.RED
+
+        print_section(
+            "🔧",
+            f"FUNCTION CALL - {func_type}",
+            f"Function: {function_name}\n"
+            f"Arguments: {json.dumps(arguments, ensure_ascii=False, indent=2)}",
+            color
+        )
 
         if function_name == "get_student_context":
             # 벡터 검색을 위해 현재 사용자 메시지 전달
-            return self._get_student_context(query_text=self.current_user_message, **arguments)
+            result = self._get_student_context(query_text=self.current_user_message, **arguments)
         elif function_name == "recommend_problems":
-            return self._recommend_problems(**arguments)
+            result = self._recommend_problems(**arguments)
         elif function_name == "generate_problem":
-            return self._generate_problem(**arguments)
+            result = self._generate_problem(**arguments)
         elif function_name == "evaluate_writing":
-            return self._evaluate_writing(**arguments)
+            result = self._evaluate_writing(**arguments)
+        elif function_name == "lookup_word":
+            result = self._lookup_word(**arguments)
+        elif function_name == "fetch_news":
+            result = self._fetch_news(**arguments)
+        elif function_name == "analyze_text_difficulty":
+            result = self._analyze_text_difficulty(**arguments)
+        elif function_name == "check_grammar":
+            result = self._check_grammar(**arguments)
         else:
-            return f"Unknown function: {function_name}"
+            result = f"Unknown function: {function_name}"
+
+        # 결과 미리보기 출력
+        result_preview = result[:200] + "..." if len(result) > 200 else result
+        print(f"{Colors.GREEN}✅ Function completed: {result_preview}{Colors.RESET}\n")
+
+        return result
 
     def chat(
         self,
         student_id: str,
         message: str,
-        chat_history: Optional[List[Dict[str, str]]] = None
+        chat_history: Optional[List[Dict[str, str]]] = None,
+        session_id: Optional[str] = None
     ) -> Dict[str, Any]:
         """
         학생과 채팅 (Function Calling)
@@ -721,13 +1303,30 @@ Provide your evaluation in the following structured format:
             student_id: 학생 ID
             message: 학생의 메시지
             chat_history: 이전 대화 기록 (선택)
+            session_id: 세션 ID (오디오 추적용, 선택)
 
         Returns:
             Dict with 'message' and 'model_info'
         """
         try:
+            # ========== 요청 시작 로깅 ==========
+            print_box(
+                "🎓 STUDENT CHATBOT REQUEST",
+                f"Student ID: {student_id}\n"
+                f"Message: {message}\n"
+                f"Session ID: {session_id or 'None'}",
+                Colors.CYAN
+            )
+
             # 현재 사용자 메시지 저장 (벡터 검색용)
             self.current_user_message = message
+
+            # 현재 세션 ID 저장 (오디오 추적용)
+            self.current_session_id = session_id
+
+            # ReAct 모드 판단 (복잡한 다단계 질문)
+            if self._needs_react(message):
+                return self._react_chat(student_id, message, chat_history)
 
             # "문제 내줘" 패턴 감지 (유형 미지정)
             import re
@@ -751,10 +1350,23 @@ Provide your evaluation in the following structured format:
                 }
 
             used_models = []  # Track models used
+
+            # Step 1: Route the query to determine complexity
+            routing_decision = self._route_query(message, student_id)
+            used_models.append("gpt-4o-mini")  # Router model
+
+            # Step 2: Select primary model based on routing decision
+            if routing_decision == "reasoning":
+                primary_model = "o4-mini"
+                print(f"🎯 Using reasoning model: {primary_model}")
+            else:
+                primary_model = "gpt-4.1-mini"
+                print(f"🎯 Using intelligence model: {primary_model}")
+
             # PromptManager를 사용해 시스템 프롬프트 생성
             system_prompt = PromptManager.get_system_prompt(
                 role="student_agent",
-                model="gpt-4.1-mini",
+                model=primary_model,
                 context={"student_id": student_id}
             )
 
@@ -768,15 +1380,28 @@ Provide your evaluation in the following structured format:
             # 최신 사용자 메시지 추가
             messages.append({"role": "user", "content": message})
 
-            # gpt-4.1-mini로 function calling (빠른 인텔리전스 모델)
-            used_models.append("gpt-4.1-mini")
-            response = self.client.chat.completions.create(
-                model="gpt-4.1-mini",
-                messages=messages,
-                tools=self.functions,
-                tool_choice="auto",  # 자동으로 도구 선택
-                temperature=0.7
-            )
+            # Step 3: Call primary model with function calling
+            used_models.append(primary_model)
+
+            # Use appropriate parameters based on model type
+            if primary_model == "o4-mini":
+                # o4-mini uses max_completion_tokens
+                response = self.client.chat.completions.create(
+                    model="o4-mini",
+                    messages=messages,
+                    tools=self.functions,
+                    tool_choice="auto",
+                    max_completion_tokens=10000
+                )
+            else:
+                # gpt-4.1-mini uses max_tokens
+                response = self.client.chat.completions.create(
+                    model="gpt-4.1-mini",
+                    messages=messages,
+                    tools=self.functions,
+                    tool_choice="auto",  # 자동으로 도구 선택
+                    temperature=0.7
+                )
 
             assistant_message = response.choices[0].message
 
@@ -820,18 +1445,65 @@ Provide your evaluation in the following structured format:
                         "content": function_response
                     })
 
-                # Function 결과를 바탕으로 최종 응답 생성 (DB 조회 정제)
-                final_response = self.client.chat.completions.create(
-                    model="gpt-4.1-mini",
-                    messages=messages,
-                    temperature=0.7
-                )
+                # Function 결과를 바탕으로 최종 응답 생성
+                # Use the same model as primary for consistency
+                if primary_model == "o4-mini":
+                    final_response = self.client.chat.completions.create(
+                        model="o4-mini",
+                        messages=messages,
+                        max_completion_tokens=10000
+                    )
+                else:
+                    final_response = self.client.chat.completions.create(
+                        model="gpt-4.1-mini",
+                        messages=messages,
+                        temperature=0.7
+                    )
 
                 response_content = final_response.choices[0].message.content
+
+                # Step 4: Quality check for o4-mini responses
+                if primary_model == "o4-mini" and not self._check_response_quality(response_content):
+                    print(f"⚠️  o4-mini response quality low, falling back to o3...")
+                    used_models.append("o3")
+
+                    # Retry with o3 (advanced reasoning)
+                    try:
+                        final_response_o3 = self.client.chat.completions.create(
+                            model="o3",
+                            messages=messages,
+                            max_completion_tokens=10000
+                        )
+                        response_content = final_response_o3.choices[0].message.content
+                        primary_model = "o3"  # Update primary model
+                        print(f"✅ o3 response generated successfully")
+                    except Exception as e:
+                        print(f"⚠️  o3 fallback failed: {e}, using o4-mini response anyway")
+
                 return self._parse_quick_reply(response_content, list(set(used_models)))
             else:
                 # Function 호출 없이 직접 응답
-                return self._parse_quick_reply(assistant_message.content, ["gpt-4.1-mini"])
+                response_content = assistant_message.content
+
+                # Step 4: Quality check for o4-mini responses (no function calls)
+                if primary_model == "o4-mini" and not self._check_response_quality(response_content):
+                    print(f"⚠️  o4-mini response quality low, falling back to o3...")
+                    used_models.append("o3")
+
+                    # Retry with o3 (advanced reasoning)
+                    try:
+                        final_response_o3 = self.client.chat.completions.create(
+                            model="o3",
+                            messages=messages,
+                            max_completion_tokens=10000
+                        )
+                        response_content = final_response_o3.choices[0].message.content
+                        primary_model = "o3"  # Update primary model
+                        print(f"✅ o3 response generated successfully")
+                    except Exception as e:
+                        print(f"⚠️  o3 fallback failed: {e}, using o4-mini response anyway")
+
+                return self._parse_quick_reply(response_content, list(set(used_models)))
 
         except Exception as e:
             return {

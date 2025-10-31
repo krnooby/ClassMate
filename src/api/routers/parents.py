@@ -163,7 +163,7 @@ async def get_parent_dashboard(parent_id: str):
                    student_id: s.student_id,
                    name: s.name,
                    class_id: s.class_id,
-                   cefr_level: a.cefr_level,
+                   cefr_level: a.cefr,
                    attendance_rate: CASE
                        WHEN att.total_sessions > 0
                        THEN toFloat(att.total_sessions - att.absent) / att.total_sessions * 100

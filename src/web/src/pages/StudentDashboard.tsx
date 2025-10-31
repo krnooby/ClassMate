@@ -44,6 +44,19 @@ interface ChatSession {
 function ProblemRenderer({ content, onAnswerSelect, isLoading }: { content: string; onAnswerSelect: (answer: string) => void; isLoading?: boolean }) {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [showTranscript, setShowTranscript] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const [correctAnswer, setCorrectAnswer] = useState<string | null>(null);
+  const [isAnswered, setIsAnswered] = useState(false);
+
+  // Extract correct answer from problem text
+  useEffect(() => {
+    // Look for answer patterns: "Answer: B" or "정답: B" or "**Answer**: b)"
+    const answerMatch = content.match(/(?:Answer|정답|Correct answer):\s*([a-e])\)?/i);
+    if (answerMatch) {
+      setCorrectAnswer(answerMatch[1].toUpperCase());
+      console.log('✅ Extracted correct answer:', answerMatch[1].toUpperCase());
+    }
+  }, [content]);
 
   // Parse speaker information from [SPEAKERS]: line
   const parseSpeakers = (text: string): Array<{ name: string; gender: string; voice?: string }> | null => {
@@ -314,6 +327,50 @@ function ProblemRenderer({ content, onAnswerSelect, isLoading }: { content: stri
         return;
       }
 
+      // Check for [IMAGE]: pattern (figures from problems)
+      const imageMatch = line.match(/^\[IMAGE\]:\s*(.+)$/);
+      if (imageMatch) {
+        const imageUrl = imageMatch[1].trim();
+        elements.push(
+          <div key={`image-${lineIndex}`} className="py-3 my-4">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-sm font-semibold text-blue-900">📸 Problem Figure</span>
+            </div>
+            <img
+              src={imageUrl}
+              alt="Problem figure"
+              className="max-w-full rounded-lg shadow-md border border-gray-200"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><rect width="100%" height="100%" fill="%23f3f4f6"/><text x="50%" y="50%" font-family="Arial" font-size="14" fill="%239ca3af" text-anchor="middle">Image not available</text></svg>';
+              }}
+            />
+          </div>
+        );
+        return;
+      }
+
+      // Check for [TABLE]: pattern (tables from problems)
+      const tableMatch = line.match(/^\[TABLE\]:\s*(.+)$/);
+      if (tableMatch) {
+        const tableUrl = tableMatch[1].trim();
+        elements.push(
+          <div key={`table-${lineIndex}`} className="py-3 my-4">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-sm font-semibold text-green-900">📊 Problem Table</span>
+            </div>
+            <img
+              src={tableUrl}
+              alt="Problem table"
+              className="max-w-full rounded-lg shadow-md border border-gray-200"
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><rect width="100%" height="100%" fill="%23f3f4f6"/><text x="50%" y="50%" font-family="Arial" font-size="14" fill="%239ca3af" text-anchor="middle">Table not available</text></svg>';
+              }}
+            />
+          </div>
+        );
+        return;
+      }
+
       // Check for [AUDIO]: pattern (listening problems)
       if (line.match(/^\[AUDIO\]:/)) {
         isAudioSection = true;
@@ -510,22 +567,52 @@ function ProblemRenderer({ content, onAnswerSelect, isLoading }: { content: stri
       if (optionMatch && !/[가-힣]/.test(optionMatch[3])) {
         // This is an option line - make entire line clickable
         const [, , label, optionText] = optionMatch;
+        const labelUpper = label.toUpperCase();
+        const isSelected = selectedAnswer === labelUpper;
+        const isCorrect = correctAnswer === labelUpper;
+        const isWrong = isAnswered && selectedAnswer === labelUpper && selectedAnswer !== correctAnswer;
+        const shouldShowCorrect = isAnswered && isCorrect;
+        const isDisabled = isLoading || isAnswered;
+
+        const handleOptionClick = () => {
+          if (isDisabled) return;
+
+          setSelectedAnswer(labelUpper);
+          setIsAnswered(true);
+
+          if (labelUpper === correctAnswer) {
+            // Correct answer
+            onAnswerSelect(`✅ 정답입니다! 답은 ${labelUpper}입니다.`);
+          } else {
+            // Wrong answer - show correct answer
+            onAnswerSelect(`❌ 틀렸습니다. 정답은 ${correctAnswer}입니다.`);
+          }
+        };
+
         elements.push(
           <div
             key={lineIndex}
-            onClick={() => !isLoading && onAnswerSelect(`답은 ${label.toUpperCase()}!`)}
+            onClick={handleOptionClick}
             className={`py-2 px-4 -mx-4 rounded-lg transition-all duration-200 group ${
-              isLoading
+              isDisabled
                 ? 'cursor-not-allowed opacity-50'
                 : 'cursor-pointer hover:bg-blue-50 hover:text-blue-700'
+            } ${
+              isWrong ? 'bg-red-100 border-2 border-red-500' : ''
+            } ${
+              shouldShowCorrect ? 'bg-green-100 border-2 border-green-500' : ''
+            } ${
+              isSelected && !isAnswered ? 'bg-blue-100' : ''
             }`}
             style={{ userSelect: 'none' }}
           >
-            <span className={`font-semibold ${!isLoading && 'group-hover:text-blue-900'}`}>
+            <span className={`font-semibold ${!isDisabled && 'group-hover:text-blue-900'}`}>
               {label})
+              {isWrong && ' ❌'}
+              {shouldShowCorrect && ' ✅'}
             </span>
             {' '}
-            <span className={!isLoading ? 'group-hover:text-blue-800' : ''}>{optionText}</span>
+            <span className={!isDisabled ? 'group-hover:text-blue-800' : ''}>{optionText}</span>
           </div>
         );
       } else {
@@ -556,6 +643,7 @@ export default function StudentDashboard() {
   const [loginError, setLoginError] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [activeTab, setActiveTab] = useState<'dashboard' | 'ai' | 'features' | 'services'>('dashboard');
+
 
   // Quick Reply interface
   interface QuickReply {
@@ -617,11 +705,14 @@ export default function StudentDashboard() {
     }
   }, [isChatLoading]);
 
-  // Check localStorage for logged-in student
+  // Check localStorage for logged-in student on mount
   useEffect(() => {
-    const savedStudentId = localStorage.getItem('studentId'); // UnifiedLogin과 일치
+    const savedStudentId = localStorage.getItem('studentId');
     if (savedStudentId) {
       setStudentId(savedStudentId);
+      console.log('✅ 로그인 세션 복원:', savedStudentId);
+    } else {
+      console.log('⚠️ 로그인 세션 없음');
     }
   }, []);
 
@@ -672,7 +763,19 @@ export default function StudentDashboard() {
   };
 
   // Delete chat session
-  const deleteChatSession = (sessionId: string) => {
+  const deleteChatSession = async (sessionId: string) => {
+    // Cleanup audio files for this session
+    try {
+      await fetch('/api/cleanup-session-audio', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: sessionId }),
+      });
+      console.log('✅ Audio cleanup completed for session:', sessionId);
+    } catch (error) {
+      console.error('⚠️  Audio cleanup failed:', error);
+    }
+
     const updatedSessions = chatSessions.filter(s => s.id !== sessionId);
     saveSessions(updatedSessions);
     if (currentSessionId === sessionId) {
@@ -797,7 +900,21 @@ export default function StudentDashboard() {
   };
 
   // Logout handler
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    // Cleanup audio files for current session
+    if (currentSessionId) {
+      try {
+        await fetch('/api/cleanup-session-audio', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ session_id: currentSessionId }),
+        });
+        console.log('✅ Audio cleanup completed for session:', currentSessionId);
+      } catch (error) {
+        console.error('⚠️  Audio cleanup failed:', error);
+      }
+    }
+
     localStorage.removeItem('studentId'); // UnifiedLogin과 일치
     setStudentId(null);
     setLoginInput('');
@@ -824,6 +941,7 @@ export default function StudentDashboard() {
         body: JSON.stringify({
           student_id: studentId,
           messages: newMessages,
+          session_id: currentSessionId,
         }),
       });
 
@@ -876,6 +994,7 @@ export default function StudentDashboard() {
         body: JSON.stringify({
           student_id: studentId,
           messages: newMessages,
+          session_id: currentSessionId,
         }),
       });
 
@@ -1479,6 +1598,7 @@ export default function StudentDashboard() {
                                     body: JSON.stringify({
                                       student_id: studentId,
                                       messages: newMessages,
+                                      session_id: currentSessionId,
                                     }),
                                   })
                                   .then(res => res.json())
@@ -1497,7 +1617,84 @@ export default function StudentDashboard() {
                                   .finally(() => setIsChatLoading(false));
                                 }} />
                               ) : (
-                                <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
+                                <div className="text-sm">
+                                  {(() => {
+                                    // Parse code blocks (```)
+                                    const content = msg.content;
+                                    const codeBlockRegex = /```[\s\S]*?```/g;
+                                    const parts: Array<{ type: 'text' | 'code', content: string }> = [];
+
+                                    let lastIndex = 0;
+                                    let match;
+
+                                    while ((match = codeBlockRegex.exec(content)) !== null) {
+                                      // Add text before code block
+                                      if (match.index > lastIndex) {
+                                        parts.push({ type: 'text', content: content.slice(lastIndex, match.index) });
+                                      }
+                                      // Add code block (remove ``` markers)
+                                      const codeContent = match[0].replace(/```/g, '').trim();
+                                      parts.push({ type: 'code', content: codeContent });
+                                      lastIndex = match.index + match[0].length;
+                                    }
+
+                                    // Add remaining text
+                                    if (lastIndex < content.length) {
+                                      parts.push({ type: 'text', content: content.slice(lastIndex) });
+                                    }
+
+                                    // If no code blocks found, treat entire content as text
+                                    if (parts.length === 0) {
+                                      parts.push({ type: 'text', content });
+                                    }
+
+                                    return parts.map((part, partIdx) => {
+                                      if (part.type === 'code') {
+                                        // Render code block with monospace font
+                                        return (
+                                          <pre key={partIdx} className="font-mono text-xs bg-gray-900 text-gray-100 p-3 rounded my-2 overflow-x-auto whitespace-pre">
+                                            {part.content}
+                                          </pre>
+                                        );
+                                      } else {
+                                        // Render text with URL detection
+                                        return (
+                                          <div key={partIdx} className="whitespace-pre-wrap">
+                                            {part.content.split('\n').map((line, lineIdx) => {
+                                              // URL 패턴 매칭 (http://, https://, www.)
+                                              const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+)/g;
+                                              const urlParts = line.split(urlRegex);
+
+                                              return (
+                                                <p key={lineIdx}>
+                                                  {urlParts.map((urlPart, urlPartIdx) => {
+                                                    if (urlPart.match(urlRegex)) {
+                                                      // URL이면 링크로 변환
+                                                      const url = urlPart.startsWith('www.') ? `https://${urlPart}` : urlPart;
+                                                      return (
+                                                        <a
+                                                          key={urlPartIdx}
+                                                          href={url}
+                                                          target="_blank"
+                                                          rel="noopener noreferrer"
+                                                          className="text-blue-600 hover:text-blue-800 underline cursor-pointer"
+                                                        >
+                                                          {urlPart}
+                                                        </a>
+                                                      );
+                                                    }
+                                                    // 일반 텍스트
+                                                    return <span key={urlPartIdx}>{urlPart}</span>;
+                                                  })}
+                                                </p>
+                                              );
+                                            })}
+                                          </div>
+                                        );
+                                      }
+                                    });
+                                  })()}
+                                </div>
                               )}
                             </div>
                           </div>
@@ -1581,16 +1778,22 @@ export default function StudentDashboard() {
 
                   {/* Chat Input */}
                   <div className="p-6 border-t border-gray-200">
-                    <div className="flex gap-3">
-                      <input
-                        ref={chatInputRef}
-                        type="text"
+                    <div className="flex gap-3 items-end">
+                      <textarea
+                        ref={chatInputRef as any}
                         value={chatInput}
                         onChange={(e) => setChatInput(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && !isChatLoading && handleSendMessage()}
-                        placeholder="메시지를 입력하세요..."
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && !e.shiftKey && !isChatLoading) {
+                            e.preventDefault();
+                            handleSendMessage();
+                          }
+                        }}
+                        placeholder="메시지를 입력하세요... (Shift+Enter: 줄바꿈)"
                         disabled={isChatLoading}
-                        className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100"
+                        rows={1}
+                        className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 resize-none max-h-40 overflow-y-auto"
+                        style={{ minHeight: '48px' }}
                       />
                       {isChatLoading ? (
                         <button

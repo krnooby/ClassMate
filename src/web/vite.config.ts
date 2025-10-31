@@ -10,7 +10,11 @@ export default defineConfig({
     strictPort: false, // 포트가 사용중이면 다른 포트 사용
     proxy: {
       '/api': {
-        target: 'http://localhost:8000',
+        target: process.env.VITE_API_URL || 'http://192.168.22.187:8000',
+        changeOrigin: true,
+      },
+      '/static': {
+        target: process.env.VITE_API_URL || 'http://192.168.22.187:8000',
         changeOrigin: true,
       }
     }

@@ -10,6 +10,14 @@ from typing import List, Dict, Optional, Tuple
 from openai import OpenAI
 from datetime import datetime
 
+# Import audio session tracking
+try:
+    from api.services.audio_session_service import AudioSessionService
+    AUDIO_TRACKING_AVAILABLE = True
+except ImportError:
+    AUDIO_TRACKING_AVAILABLE = False
+    print("⚠️  AudioSessionService not available - audio tracking disabled")
+
 # pydub는 효과음 믹싱에만 사용 (선택적)
 try:
     from pydub import AudioSegment
@@ -139,6 +147,13 @@ class TTSService:
             if match:
                 speaker = match.group(1).strip()
                 text = match.group(2).strip()
+
+                # 괄호 안의 한글 번역 제거 (예: "Hello! (안녕!) How are you? (어떻게 지내?)" -> "Hello! How are you?")
+                # 패턴: (한글이 포함된 괄호 내용) 제거
+                text = re.sub(r'\([^)]*[\u3131-\u3163\uac00-\ud7a3][^)]*\)', '', text)
+                # 연속된 공백을 단일 공백으로 정리
+                text = re.sub(r'\s+', ' ', text).strip()
+
                 lines.append({'speaker': speaker, 'text': text})
 
         return lines
@@ -201,7 +216,8 @@ class TTSService:
     def create_listening_audio(
         self,
         content: str,
-        speed: float = 0.9
+        speed: float = 0.9,
+        session_id: Optional[str] = None
     ) -> Optional[str]:
         """
         듣기 문제 전체 오디오 생성 (화자별 음성 + 효과음 믹싱)
@@ -253,6 +269,15 @@ class TTSService:
             with open(output_path, 'wb') as f:
                 f.write(audio_bytes)
             print(f"✅ Audio saved (single voice): {output_path}")
+
+            # Track audio file for cleanup
+            if session_id and AUDIO_TRACKING_AVAILABLE:
+                try:
+                    audio_service = AudioSessionService.get_instance()
+                    audio_service.track_audio(session_id, str(output_path))
+                except Exception as e:
+                    print(f"⚠️  Failed to track audio: {e}")
+
             return f"/static/audio/{filename}"
 
         # 2. 각 발화를 개별 TTS로 생성 (화자별 다른 음성)
@@ -279,6 +304,9 @@ class TTSService:
                 from io import BytesIO
                 segment = AudioSegment.from_mp3(BytesIO(audio_bytes))
 
+                # 볼륨 부스트 (+6dB로 소리 키우기)
+                segment = segment + 6
+
                 # 결합 (발화 사이 0.3초 간격)
                 combined_audio += segment
                 combined_audio += AudioSegment.silent(duration=300)
@@ -293,8 +321,8 @@ class TTSService:
             if effect_file.exists():
                 try:
                     effect = AudioSegment.from_mp3(str(effect_file))
-                    # 효과음을 배경에 깔기 (볼륨 -20dB)
-                    effect = effect - 20
+                    # 효과음을 배경에 깔기 (볼륨 -15dB로 조정 - 이전보다 5dB 더 크게)
+                    effect = effect - 15
                     # 효과음 길이를 대화 길이에 맞춤
                     if len(effect) < len(combined_audio):
                         effect = effect * (len(combined_audio) // len(effect) + 1)
@@ -311,8 +339,18 @@ class TTSService:
         output_path = self.audio_dir / filename
 
         try:
-            combined_audio.export(str(output_path), format="mp3", bitrate="128k")
-            print(f"✅ Audio saved: {output_path} ({len(combined_audio)}ms, {len(dialogue_lines)} segments)")
+            # 전체 오디오에 추가 볼륨 부스트 적용
+            combined_audio = combined_audio + 3
+            combined_audio.export(str(output_path), format="mp3", bitrate="192k")
+            print(f"✅ Audio saved: {output_path} ({len(combined_audio)}ms, {len(dialogue_lines)} segments, +9dB boost)")
+
+            # Track audio file for cleanup
+            if session_id and AUDIO_TRACKING_AVAILABLE:
+                try:
+                    audio_service = AudioSessionService.get_instance()
+                    audio_service.track_audio(session_id, str(output_path))
+                except Exception as e:
+                    print(f"⚠️  Failed to track audio: {e}")
 
             # 웹에서 접근 가능한 경로 반환
             return f"/static/audio/{filename}"
@@ -321,13 +359,14 @@ class TTSService:
             print(f"❌ Failed to save audio: {e}")
             return None
 
-    def get_or_create_audio(self, content: str, force_regenerate: bool = False) -> Optional[str]:
+    def get_or_create_audio(self, content: str, force_regenerate: bool = False, session_id: Optional[str] = None) -> Optional[str]:
         """
         캐시된 오디오 파일이 있으면 반환, 없으면 생성
 
         Args:
             content: 문제 내용
             force_regenerate: True면 기존 파일 무시하고 재생성
+            session_id: 세션 ID (오디오 추적용)
 
         Returns:
             오디오 파일 URL
@@ -339,10 +378,17 @@ class TTSService:
         # 캐시 확인
         if not force_regenerate and file_path.exists():
             print(f"✅ Using cached audio: {filename}")
+            # Track cached audio file too
+            if session_id and AUDIO_TRACKING_AVAILABLE:
+                try:
+                    audio_service = AudioSessionService.get_instance()
+                    audio_service.track_audio(session_id, str(file_path))
+                except Exception as e:
+                    print(f"⚠️  Failed to track cached audio: {e}")
             return f"/static/audio/{filename}"
 
         # 새로 생성
-        return self.create_listening_audio(content)
+        return self.create_listening_audio(content, session_id=session_id)
 
 
 # 싱글톤 인스턴스

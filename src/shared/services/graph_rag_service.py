@@ -405,6 +405,11 @@ class GraphRAGService:
                     MATCH (p:Problem)
                     WHERE p.area = $area
                       AND p.cefr = $cefr
+                    OPTIONAL MATCH (p)-[:HAS_FIG]->(f:Fig)
+                    OPTIONAL MATCH (p)-[:HAS_TABLE]->(t:Tbl)
+                    WITH p,
+                         collect(DISTINCT f) as figures,
+                         collect(DISTINCT t) as tables
                     RETURN p.problem_id as problem_id,
                            p.stem as stem,
                            p.options as options,
@@ -414,7 +419,9 @@ class GraphRAGService:
                            p.area as area,
                            p.type as type,
                            p.audio_url as audio_url,
-                           p.audio_transcript as audio_transcript
+                           p.audio_transcript as audio_transcript,
+                           figures,
+                           tables
                     ORDER BY rand()
                     LIMIT $fetch_limit
                 '''
@@ -424,6 +431,11 @@ class GraphRAGService:
                 cypher = '''
                     MATCH (p:Problem)
                     WHERE p.cefr = $cefr
+                    OPTIONAL MATCH (p)-[:HAS_FIG]->(f:Fig)
+                    OPTIONAL MATCH (p)-[:HAS_TABLE]->(t:Tbl)
+                    WITH p,
+                         collect(DISTINCT f) as figures,
+                         collect(DISTINCT t) as tables
                     RETURN p.problem_id as problem_id,
                            p.stem as stem,
                            p.options as options,
@@ -433,14 +445,49 @@ class GraphRAGService:
                            p.area as area,
                            p.type as type,
                            p.audio_url as audio_url,
-                           p.audio_transcript as audio_transcript
+                           p.audio_transcript as audio_transcript,
+                           figures,
+                           tables
                     ORDER BY rand()
                     LIMIT $fetch_limit
                 '''
                 result = session.run(cypher, cefr=student_cefr, fetch_limit=fetch_limit)
 
-            # 한글 문제 필터링
-            all_problems = [dict(record) for record in result]
+            # 한글 문제 필터링 및 Figure/Table 정보 추가
+            all_problems = []
+            for record in result:
+                problem = dict(record)
+
+                # Figure 정보 추가
+                figures = [dict(f) for f in record['figures'] if f is not None]
+                if figures:
+                    problem['figures'] = [
+                        {
+                            'asset_id': f.get('asset_id'),
+                            'public_url': f.get('public_url'),
+                            'caption': f.get('caption'),
+                            'storage_key': f.get('storage_key')
+                        }
+                        for f in figures
+                        if f.get('public_url')  # public_url이 있는 것만
+                    ]
+
+                # Table 정보 추가
+                tables = [dict(t) for t in record['tables'] if t is not None]
+                if tables:
+                    problem['tables'] = [
+                        {
+                            'table_id': t.get('table_id'),
+                            'public_url': t.get('public_url'),
+                            'title': t.get('title'),
+                            'storage_key': t.get('storage_key')
+                        }
+                        for t in tables
+                        if t.get('public_url')  # public_url이 있는 것만
+                    ]
+
+                all_problems.append(problem)
+
             english_problems = [
                 p for p in all_problems
                 if not self._has_korean(p.get('stem', ''))

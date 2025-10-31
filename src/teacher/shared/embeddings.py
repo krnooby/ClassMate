@@ -31,11 +31,25 @@ def _load_model():
         print(f"[embedding] Loading model: {model_name}...")
 
         _tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
-        _model = AutoModel.from_pretrained(
-            model_name,
-            trust_remote_code=True,
-            device_map="auto" if torch.cuda.is_available() else "cpu"
-        )
+
+        # Load model without device_map if accelerate is not available
+        try:
+            _model = AutoModel.from_pretrained(
+                model_name,
+                trust_remote_code=True,
+                device_map="auto" if torch.cuda.is_available() else None
+            )
+        except ValueError:
+            # Fallback: Load without device_map (accelerate not installed)
+            print("[embedding] Loading without device_map (accelerate not available)")
+            _model = AutoModel.from_pretrained(
+                model_name,
+                trust_remote_code=True
+            )
+            # Manually move to CPU if no CUDA
+            if not torch.cuda.is_available():
+                _model = _model.to('cpu')
+
         _model.eval()
 
         print(f"[embedding] Model loaded on device: {_model.device if hasattr(_model, 'device') else 'cpu'}")
@@ -63,7 +77,7 @@ def embed_text(text: str, max_length: int = 512) -> List[float]:
     """
     if not text or not text.strip():
         # Return zero vector for empty text
-        return [0.0] * 768  # Typical embedding dimension
+        return [0.0] * 1024  # Qwen3-Embedding-0.6B dimension
 
     model, tokenizer = _load_model()
 
@@ -99,7 +113,7 @@ def embed_text(text: str, max_length: int = 512) -> List[float]:
     except Exception as e:
         print(f"[embedding] Error embedding text: {e}")
         # Return zero vector on error
-        return [0.0] * 768
+        return [0.0] * 1024
 
 
 def embed_batch(texts: List[str], max_length: int = 512, batch_size: int = 8) -> List[List[float]]:
@@ -156,7 +170,7 @@ def embed_batch(texts: List[str], max_length: int = 512, batch_size: int = 8) ->
     except Exception as e:
         print(f"[embedding] Error in batch embedding: {e}")
         # Return zero vectors on error
-        embeddings = [[0.0] * 768 for _ in texts]
+        embeddings = [[0.0] * 1024 for _ in texts]
 
     return embeddings
 

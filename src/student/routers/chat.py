@@ -28,6 +28,7 @@ class ChatRequest(BaseModel):
     """채팅 요청"""
     student_id: str
     messages: List[ChatMessage]
+    session_id: str | None = None  # 오디오 파일 추적용
 
 
 class ModelInfo(BaseModel):
@@ -73,7 +74,8 @@ async def chat_with_student(request: ChatRequest):
         response = agent_service.chat(
             student_id=request.student_id,
             message=user_message,
-            chat_history=[msg.model_dump() for msg in request.messages[:-1]]
+            chat_history=[msg.model_dump() for msg in request.messages[:-1]],
+            session_id=request.session_id
         )
 
         # response is now a dict with 'message', 'model_info', and optionally 'quick_replies'

@@ -7,6 +7,7 @@ from __future__ import annotations
 import os
 from typing import List, Dict, Any, Optional, Tuple
 from neo4j import GraphDatabase, Driver, Session
+from openai import OpenAI
 
 
 class Neo4jService:
@@ -36,6 +37,10 @@ class Neo4jService:
             connection_timeout=3.0,  # 3초 타임아웃
             max_connection_lifetime=3600
         )
+
+        # OpenAI client for summary generation
+        self.openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
         self._initialized = True
 
     @classmethod
@@ -476,30 +481,74 @@ class Neo4jService:
 
     # ==================== Daily Input 메서드 ====================
 
+    def _generate_daily_input_summary(self, content: str, date: str) -> str:
+        """
+        Daily Input 내용을 GPT-4o-mini로 간결하게 요약 (카테고리 자동 추론)
+
+        Args:
+            content: 원본 내용
+            date: 날짜
+
+        Returns:
+            요약된 내용 (RAG 검색용)
+        """
+        try:
+            prompt = f"""다음 학생 일일 기록을 한 줄로 간결하게 요약하세요.
+주제(문법/어휘/독해/듣기/쓰기/숙제/태도 등)를 내용에서 자동으로 파악하여 포함하세요.
+
+형식: "{date}: [주제] - [핵심 내용]"
+
+원본:
+{content}
+
+요약 (한 줄):"""
+
+            response = self.openai_client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.3,
+                max_tokens=100
+            )
+
+            summary = response.choices[0].message.content.strip()
+            return summary
+
+        except Exception as e:
+            print(f"[Neo4j] Error generating summary: {e}")
+            # Fallback: 간단한 자동 요약
+            return f"{date}: {content[:60]}..."
+
     def create_daily_input(
         self,
         input_id: str,
         student_id: str,
         date: str,
         content: str,
-        category: str,
         teacher_id: str
     ) -> bool:
         """
-        Daily Input 생성
+        Daily Input 생성 (자동 요약 + 임베딩 생성, 카테고리 자동 추론)
 
         Args:
             input_id: Input ID
             student_id: 학생 ID
             date: 날짜 (YYYY-MM-DD)
             content: 내용
-            category: 카테고리
             teacher_id: 선생님 ID
 
         Returns:
             성공 여부
         """
         from datetime import datetime
+        from teacher.shared.embeddings import embed_text
+
+        # 1. GPT-4o-mini로 자동 요약 생성 (카테고리도 GPT가 자동 추론)
+        summary = self._generate_daily_input_summary(content, date)
+        print(f"[Neo4j] Generated summary: {summary}")
+
+        # 2. Qwen3로 임베딩 생성
+        embedding = embed_text(summary, max_length=256)
+        print(f"[Neo4j] Generated embedding: {len(embedding)}-dim")
 
         query = """
             MATCH (s:Student {student_id: $student_id})
@@ -507,7 +556,8 @@ class Neo4jService:
                 input_id: $input_id,
                 date: $date,
                 content: $content,
-                category: $category,
+                summary: $summary,
+                embedding: $embedding,
                 teacher_id: $teacher_id,
                 created_at: $created_at
             })
@@ -516,16 +566,16 @@ class Neo4jService:
         """
 
         with self.get_session() as session:
-            result = session.run(
-                query,
-                input_id=input_id,
-                student_id=student_id,
-                date=date,
-                content=content,
-                category=category,
-                teacher_id=teacher_id,
-                created_at=datetime.now().isoformat()
-            )
+            result = session.run(query, {
+                "student_id": student_id,
+                "input_id": input_id,
+                "date": date,
+                "content": content,
+                "summary": summary,
+                "embedding": embedding,
+                "teacher_id": teacher_id,
+                "created_at": datetime.now().isoformat()
+            })
             return result.single() is not None
 
     def get_student_daily_inputs(
@@ -598,3 +648,8 @@ class Neo4jService:
                 students.append(student)
 
             return students
+
+# Singleton getter function
+def get_neo4j_service() -> Neo4jService:
+    """Neo4j 서비스 싱글톤 인스턴스 가져오기"""
+    return Neo4jService.get_instance()

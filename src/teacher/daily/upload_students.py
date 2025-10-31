@@ -82,7 +82,7 @@ CREATE VECTOR INDEX student_search_index IF NOT EXISTS
 FOR (s:Student)
 ON s.student_embedding
 OPTIONS {indexConfig: {
- `vector.dimensions`: 768,
+ `vector.dimensions`: 1024,
  `vector.similarity_function`: 'cosine'
 }}
 """
@@ -113,7 +113,7 @@ def upload_student_with_embedding(
     Args:
         sess: Neo4j session
         student: Student data dict
-        embedding: 768D embedding vector (optional)
+        embedding: 1024D embedding vector (optional, Qwen3-Embedding-0.6B)
     """
     params = student.copy()
     params["student_embedding"] = embedding
@@ -228,7 +228,7 @@ def search_similar_students(driver, query_text: str, limit: int = 5):
 
     # Generate query embedding
     query_embedding = embed_text(query_text)
-    if not query_embedding or len(query_embedding) != 768:
+    if not query_embedding or len(query_embedding) != 1024:
         print("[error] Failed to generate query embedding")
         return
 

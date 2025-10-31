@@ -48,10 +48,10 @@ export default function Landing() {
               {/* 학습 대시보드 버튼 */}
               <button
                 onClick={() => checkLoginAndNavigate('/student-dashboard')}
-                className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors font-medium"
               >
                 <Activity className="w-4 h-4" />
-                <span className="font-medium">학습 대시보드</span>
+                <span>학습 대시보드</span>
               </button>
 
               {/* 로그인 버튼 */}

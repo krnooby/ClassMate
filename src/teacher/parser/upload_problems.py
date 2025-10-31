@@ -159,7 +159,7 @@ CREATE VECTOR INDEX problem_search_index IF NOT EXISTS
 FOR (p:Problem)
 ON p.search_embedding
 OPTIONS {indexConfig: {
- `vector.dimensions`: 768,
+ `vector.dimensions`: 1024,
  `vector.similarity_function`: 'cosine'
 }}
 """
@@ -169,7 +169,7 @@ CREATE VECTOR INDEX problem_stem_index IF NOT EXISTS
 FOR (p:Problem)
 ON p.stem_embedding
 OPTIONS {indexConfig: {
- `vector.dimensions`: 768,
+ `vector.dimensions`: 1024,
  `vector.similarity_function`: 'cosine'
 }}
 """

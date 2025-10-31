@@ -2,9 +2,9 @@
  * Teacher Dashboard Component
  * 선생님 전용 - 시험지 업로드, 파싱, Daily Input
  */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Upload, FileText, CheckCircle, XCircle, Clock, List, Users, PlusCircle, MessageCircle, Send, Eye, EyeOff, AlertCircle, BookOpen } from 'lucide-react';
+import { Upload, FileText, CheckCircle, XCircle, Clock, List, Users, MessageCircle, Send, Eye, EyeOff, AlertCircle, BookOpen } from 'lucide-react';
 import ExamUploadZone from '../components/ExamUploadZone';
 import StudentRecordEditor from '../components/StudentRecordEditor';
 import type { GroupedExamFiles } from '../utils/fileNameParser';
@@ -65,6 +65,7 @@ export default function TeacherDashboard() {
   const [showPassword, setShowPassword] = useState(false);
   const [capsLockOn, setCapsLockOn] = useState(false);
 
+
   // 탭 관리
   const [activeTab, setActiveTab] = useState<'aichat' | 'upload' | 'dailyinput'>('aichat');
 
@@ -72,24 +73,41 @@ export default function TeacherDashboard() {
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
   const [chatInput, setChatInput] = useState('');
   const [chatLoading, setChatLoading] = useState(false);
-  const [uiPanel, setUiPanel] = useState<string | null>(null); // 'exam_upload' | 'daily_input' | null
-  const [uiData, setUiData] = useState<any>(null);
 
-  // Exam upload states removed - now using ExamUploadZone component
-
+  // Exam upload states (minimal for tracking)
+  const [uploading, setUploading] = useState(false);
+  const [currentJobId, setCurrentJobId] = useState<string | null>(null);
   const [parseStatus, setParseStatus] = useState<ParseStatus | null>(null);
   const [parseJobs, setParseJobs] = useState<ParseJob[]>([]);
 
   // Daily Input 상태
   const [students, setStudents] = useState<Student[]>([]);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
+  const [className, setClassName] = useState('Class');
   const [dailyInputDate, setDailyInputDate] = useState(new Date().toISOString().split('T')[0]);
   const [dailyInputContent, setDailyInputContent] = useState('');
   const [dailyInputCategory, setDailyInputCategory] = useState('vocabulary');
   const [submittingInput, setSubmittingInput] = useState(false);
   const [studentInputs, setStudentInputs] = useState<DailyInput[]>([]);
 
-  // 로그인 체크
+  // 오늘의 수업 내용 상태
+  const [lessonDate, setLessonDate] = useState(new Date().toISOString().split('T')[0]);
+  const [lessonContent, setLessonContent] = useState('');
+  const [homeworkContent, setHomeworkContent] = useState('');
+  const [savingLesson, setSavingLesson] = useState(false);
+  const [monthlyTestMonth, setMonthlyTestMonth] = useState(new Date().toISOString().slice(0, 7)); // YYYY-MM
+  const [monthlyTestContent, setMonthlyTestContent] = useState('');
+
+  // 현재 저장된 반 스케줄 (읽기 전용 표시용)
+  const [currentClassSchedule, setCurrentClassSchedule] = useState<any>(null);
+
+  // Auto-scroll to bottom when new messages arrive
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // 로그인 체크 - 컴포넌트 마운트 시 localStorage에서 세션 복원
   useEffect(() => {
     const storedTeacherId = localStorage.getItem('teacherId');
     const name = localStorage.getItem('teacherName');
@@ -97,6 +115,9 @@ export default function TeacherDashboard() {
       setIsLoggedIn(true);
       setTeacherName(name);
       setTeacherId(storedTeacherId);
+      console.log('✅ 선생님 로그인 세션 복원:', storedTeacherId, name);
+    } else {
+      console.log('⚠️ 로그인 세션 없음');
     }
   }, []);
 
@@ -116,6 +137,35 @@ export default function TeacherDashboard() {
     }
   }, [isLoggedIn, activeTab]);
 
+  // Scroll to bottom when chat messages change
+  useEffect(() => {
+    scrollToBottom();
+  }, [chatMessages]);
+
+  // Load class schedule from API (읽기 전용 표시만)
+  useEffect(() => {
+    if (isLoggedIn && students.length > 0) {
+      // 첫 번째 학생의 class_id로 반 정보 조회
+      const classId = students[0]?.class_id;
+      if (classId) {
+        fetchClassSchedule(classId);
+      }
+    }
+  }, [isLoggedIn, students]);
+
+  const fetchClassSchedule = async (classId: string) => {
+    try {
+      const response = await fetch(`/api/teachers/class-schedule/${classId}`);
+      const data = await response.json();
+      if (data.success) {
+        // 읽기 전용으로만 저장 (입력 필드에는 채우지 않음)
+        setCurrentClassSchedule(data.class);
+      }
+    } catch (error) {
+      console.error('Failed to fetch class schedule:', error);
+    }
+  };
+
   // Parse status polling removed - now handled by ExamUploadZone component
 
   const fetchStudents = async () => {
@@ -123,6 +173,16 @@ export default function TeacherDashboard() {
       const response = await fetch(`/api/teachers/my-students/${teacherId}`);
       const data = await response.json();
       setStudents(data.students || []);
+
+      // Extract class name from class_name field
+      if (data.students && data.students.length > 0) {
+        const student = data.students[0];
+        // Try to get class_name from student data
+        const classNameFromData = student.class_name || student.className;
+        if (classNameFromData) {
+          setClassName(classNameFromData);
+        }
+      }
     } catch (error) {
       console.error('Failed to fetch students:', error);
     }
@@ -192,6 +252,51 @@ export default function TeacherDashboard() {
     setIsLoggedIn(false);
     setTeacherName('');
     setTeacherId('');
+  };
+
+  const handleLessonSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!lessonContent && !homeworkContent && !monthlyTestContent) {
+      alert('수업 내용, 숙제, 또는 월간 테스트 중 하나를 입력해주세요.');
+      return;
+    }
+
+    // 첫 번째 학생의 class_id 가져오기
+    const classId = students[0]?.class_id;
+    if (!classId) {
+      alert('담당 반 정보를 찾을 수 없습니다.');
+      return;
+    }
+
+    setSavingLesson(true);
+
+    try {
+      const response = await fetch(`/api/teachers/class-schedule/${classId}?teacher_id=${teacherId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          date: lessonDate,
+          progress: lessonContent || null,
+          homework: homeworkContent || null,
+          monthly_test: monthlyTestContent || null,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert('저장되었습니다!');
+        console.log('✅ Schedule saved:', data);
+      } else {
+        alert(`저장 실패: ${data.detail}`);
+      }
+    } catch (error) {
+      console.error('Failed to save lesson:', error);
+      alert('저장 중 오류가 발생했습니다.');
+    } finally {
+      setSavingLesson(false);
+    }
   };
 
   const handleDailyInputSubmit = async (e: React.FormEvent) => {
@@ -282,10 +387,14 @@ export default function TeacherDashboard() {
 
       setChatMessages(prev => [...prev, assistantMessage]);
 
-      // UI 패널 트리거 확인
+      // UI 패널 트리거 확인 - 탭으로 이동
       if (data.ui_panel) {
-        setUiPanel(data.ui_panel);
-        setUiData(data.ui_data);
+        // Map ui_panel values to tab names
+        if (data.ui_panel === 'exam_upload') {
+          setActiveTab('upload');
+        } else if (data.ui_panel === 'daily_input') {
+          setActiveTab('dailyinput');
+        }
       }
 
     } catch (error) {
@@ -350,10 +459,6 @@ export default function TeacherDashboard() {
         setCurrentJobId(results[0].job_id);
         setParseStatus(null);
       }
-
-      setQuestionFile(null);
-      setAnswerFile(null);
-      setSolutionFile(null);
 
       // 작업 목록 새로고침
       fetchParseJobs();
@@ -531,12 +636,127 @@ export default function TeacherDashboard() {
       <div className="container mx-auto px-4 py-8">
         {/* AI 챗봇 탭 */}
         {activeTab === 'aichat' && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-200px)]">
-            {/* 좌측: AI 챗봇 */}
-            <div className="bg-white rounded-lg shadow p-6 flex flex-col">
+          <div className="flex h-[calc(100vh-200px)] gap-6">
+            {/* 좌측 사이드바 */}
+            <div className="w-96 bg-white rounded-lg shadow p-6 flex flex-col gap-6 overflow-y-auto">
+              {/* 오늘의 수업 내용 작성 */}
+              <div className="border-b pb-6">
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <BookOpen className="w-5 h-5 text-blue-600" />
+                  {className} Schedule
+                </h3>
+
+                {/* 현재 저장된 데이터 (읽기 전용) */}
+                {currentClassSchedule && (
+                  <div className="mb-4 p-3 bg-gray-50 rounded-lg border border-gray-200">
+                    <p className="text-xs font-semibold text-gray-600 mb-2">현재 저장된 내용</p>
+                    <div className="space-y-1 text-sm text-gray-700">
+                      <p><span className="font-medium">진도:</span> {currentClassSchedule.progress || '-'}</p>
+                      <p><span className="font-medium">숙제:</span> {currentClassSchedule.homework || '-'}</p>
+                      <p><span className="font-medium">월간테스트:</span> {currentClassSchedule.monthly_test || '-'}</p>
+                      <p className="text-xs text-gray-500 mt-1">
+                        업데이트: {currentClassSchedule.updated_at ? new Date(currentClassSchedule.updated_at).toLocaleString('ko-KR') : '-'}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                <form onSubmit={handleLessonSubmit} className="space-y-3">
+                  <div>
+                    <label className="block text-sm font-medium mb-1">날짜</label>
+                    <input
+                      type="date"
+                      value={lessonDate}
+                      onChange={(e) => setLessonDate(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">수업 진도 (Progress)</label>
+                    <textarea
+                      value={lessonContent}
+                      onChange={(e) => setLessonContent(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm h-24 resize-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="예: Unit 5 - Present Perfect 학습"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">숙제 (Homework)</label>
+                    <textarea
+                      value={homeworkContent}
+                      onChange={(e) => setHomeworkContent(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm h-20 resize-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="예: 워크북 p.42-45"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1">월간 테스트 (Monthly Test)</label>
+                    <div className="space-y-2">
+                      <input
+                        type="month"
+                        value={monthlyTestMonth}
+                        onChange={(e) => setMonthlyTestMonth(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500"
+                      />
+                      <textarea
+                        value={monthlyTestContent}
+                        onChange={(e) => setMonthlyTestContent(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm h-16 resize-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="예: 문법 종합 테스트"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={savingLesson}
+                    className="w-full py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer text-sm"
+                  >
+                    {savingLesson ? '저장 중...' : '저장'}
+                  </button>
+                </form>
+              </div>
+
+              {/* 학생 리스트 */}
+              <div>
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <Users className="w-5 h-5 text-green-600" />
+                  {className} Students
+                  <span className="text-sm font-normal text-gray-500">({students.length})</span>
+                </h3>
+                {students.length === 0 ? (
+                  <div className="text-center text-gray-500 py-8 text-sm">
+                    No students found
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    {students.map((student) => (
+                      <div
+                        key={student.student_id}
+                        onClick={() => {
+                          setSelectedStudent(student);
+                          setActiveTab('dailyinput');
+                        }}
+                        className="p-3 bg-gradient-to-r from-gray-50 to-blue-50 hover:from-blue-50 hover:to-blue-100 rounded-lg cursor-pointer transition-all border border-transparent hover:border-blue-200"
+                      >
+                        <div className="flex justify-between items-center">
+                          <span className="font-medium text-gray-900">{student.name}</span>
+                          <span className="text-sm font-semibold text-blue-600 bg-white px-2 py-0.5 rounded">
+                            {student.cefr}
+                          </span>
+                        </div>
+                        <div className="text-xs text-gray-600 mt-1">{student.grade_label}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* 우측: AI 챗봇 (확장됨) */}
+            <div className="flex-1 bg-white rounded-lg shadow p-6 flex flex-col">
               <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
                 <MessageCircle className="w-6 h-6" />
-                AI 업무 도우미
+                AI Assistant
               </h2>
 
               {/* 채팅 메시지 */}
@@ -553,22 +773,101 @@ export default function TeacherDashboard() {
                   </div>
                 )}
 
-                {chatMessages.map((msg, idx) => (
-                  <div
-                    key={idx}
-                    className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                  >
+                {chatMessages.map((msg, idx) => {
+                  // Parse code blocks (```)
+                  const renderContent = () => {
+                    const content = msg.content;
+                    const codeBlockRegex = /```[\s\S]*?```/g;
+                    const parts: Array<{ type: 'text' | 'code', content: string }> = [];
+
+                    let lastIndex = 0;
+                    let match;
+
+                    while ((match = codeBlockRegex.exec(content)) !== null) {
+                      // Add text before code block
+                      if (match.index > lastIndex) {
+                        parts.push({ type: 'text', content: content.slice(lastIndex, match.index) });
+                      }
+                      // Add code block (remove ``` markers)
+                      const codeContent = match[0].replace(/```/g, '').trim();
+                      parts.push({ type: 'code', content: codeContent });
+                      lastIndex = match.index + match[0].length;
+                    }
+
+                    // Add remaining text
+                    if (lastIndex < content.length) {
+                      parts.push({ type: 'text', content: content.slice(lastIndex) });
+                    }
+
+                    // If no code blocks found, treat entire content as text
+                    if (parts.length === 0) {
+                      parts.push({ type: 'text', content });
+                    }
+
+                    return parts.map((part, partIdx) => {
+                      if (part.type === 'code') {
+                        // Render code block with monospace font
+                        return (
+                          <pre key={partIdx} className="font-mono text-sm bg-gray-900 text-gray-100 p-3 rounded my-2 overflow-x-auto whitespace-pre">
+                            {part.content}
+                          </pre>
+                        );
+                      } else {
+                        // Render text with URL detection
+                        return (
+                          <div key={partIdx} className="whitespace-pre-wrap">
+                            {part.content.split('\n').map((line, lineIdx) => {
+                              // URL 패턴 매칭 (http://, https://, www.)
+                              const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+)/g;
+                              const urlParts = line.split(urlRegex);
+
+                              return (
+                                <p key={lineIdx}>
+                                  {urlParts.map((urlPart, urlPartIdx) => {
+                                    if (urlPart.match(urlRegex)) {
+                                      // URL이면 링크로 변환
+                                      const url = urlPart.startsWith('www.') ? `https://${urlPart}` : urlPart;
+                                      return (
+                                        <a
+                                          key={urlPartIdx}
+                                          href={url}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          className={msg.role === 'user' ? 'text-white hover:text-gray-200 underline cursor-pointer' : 'text-blue-600 hover:text-blue-800 underline cursor-pointer'}
+                                        >
+                                          {urlPart}
+                                        </a>
+                                      );
+                                    }
+                                    // 일반 텍스트
+                                    return <span key={urlPartIdx}>{urlPart}</span>;
+                                  })}
+                                </p>
+                              );
+                            })}
+                          </div>
+                        );
+                      }
+                    });
+                  };
+
+                  return (
                     <div
-                      className={`max-w-[80%] p-3 rounded-lg ${
-                        msg.role === 'user'
-                          ? 'bg-blue-500 text-white'
-                          : 'bg-gray-100 text-gray-800'
-                      }`}
+                      key={idx}
+                      className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
-                      <p className="whitespace-pre-wrap">{msg.content}</p>
+                      <div
+                        className={`max-w-[80%] p-3 rounded-lg ${
+                          msg.role === 'user'
+                            ? 'bg-blue-500 text-white'
+                            : 'bg-gray-100 text-gray-800'
+                        }`}
+                      >
+                        {renderContent()}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
 
                 {chatLoading && (
                   <div className="flex justify-start">
@@ -577,18 +876,26 @@ export default function TeacherDashboard() {
                     </div>
                   </div>
                 )}
+                {/* Auto-scroll anchor */}
+                <div ref={messagesEndRef} />
               </div>
 
               {/* 입력창 */}
               <div className="flex gap-2">
-                <input
-                  type="text"
+                <textarea
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
-                  onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && sendChatMessage()}
-                  placeholder="메시지를 입력하세요..."
-                  className="flex-1 px-4 py-2 border rounded-lg"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey && !chatLoading) {
+                      e.preventDefault();
+                      sendChatMessage();
+                    }
+                  }}
+                  placeholder="메시지를 입력하세요... (Shift+Enter: 줄바꿈)"
                   disabled={chatLoading}
+                  rows={1}
+                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 resize-none max-h-40 overflow-y-auto"
+                  style={{ minHeight: '48px' }}
                 />
                 <button
                   onClick={sendChatMessage}
@@ -598,138 +905,6 @@ export default function TeacherDashboard() {
                   <Send className="w-5 h-5" />
                 </button>
               </div>
-            </div>
-
-            {/* 우측: 동적 패널 */}
-            <div className="bg-white rounded-lg shadow p-6">
-              {!uiPanel && (
-                <div className="text-center text-gray-500 py-12">
-                  <p>AI 챗봇과 대화하면 여기에 관련 정보가 표시됩니다.</p>
-                </div>
-              )}
-
-              {uiPanel === 'exam_upload' && (
-                <div>
-                  <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                    <Upload className="w-6 h-6" />
-                    시험지 업로드
-                  </h2>
-
-                  <ExamUploadZone onUploadComplete={() => {
-                    setUiPanel(null);
-                    fetchParseJobs();
-                  }} />
-                </div>
-              )}
-
-              {uiPanel === 'daily_input' && (
-                <div>
-                  <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                    <Users className="w-6 h-6" />
-                    학생 기록부 작성
-                  </h2>
-
-                  <form onSubmit={handleDailyInputSubmit} className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">
-                        학생 선택 <span className="text-red-500">*</span>
-                      </label>
-                      <select
-                        value={selectedStudent?.student_id || ''}
-                        onChange={(e) => {
-                          const student = students.find(s => s.student_id === e.target.value);
-                          setSelectedStudent(student || null);
-                          if (student) {
-                            fetchStudentInputs(student.student_id);
-                          }
-                        }}
-                        className="w-full px-4 py-2 border rounded-lg"
-                        required
-                      >
-                        <option value="">학생을 선택하세요...</option>
-                        {students.map((student) => (
-                          <option key={student.student_id} value={student.student_id}>
-                            {student.name} ({student.student_id})
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium mb-2">
-                        날짜
-                      </label>
-                      <input
-                        type="date"
-                        value={dailyInputDate}
-                        onChange={(e) => setDailyInputDate(e.target.value)}
-                        className="w-full px-4 py-2 border rounded-lg"
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium mb-2">
-                        카테고리
-                      </label>
-                      <select
-                        value={dailyInputCategory}
-                        onChange={(e) => setDailyInputCategory(e.target.value)}
-                        className="w-full px-4 py-2 border rounded-lg"
-                      >
-                        <option value="vocabulary">어휘</option>
-                        <option value="grammar">문법</option>
-                        <option value="reading">독해</option>
-                        <option value="listening">듣기</option>
-                        <option value="writing">쓰기</option>
-                        <option value="homework">숙제</option>
-                        <option value="behavior">수업 태도</option>
-                        <option value="other">기타</option>
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium mb-2">
-                        내용 <span className="text-red-500">*</span>
-                      </label>
-                      <textarea
-                        value={dailyInputContent}
-                        onChange={(e) => setDailyInputContent(e.target.value)}
-                        className="w-full px-4 py-2 border rounded-lg h-32"
-                        placeholder="오늘의 학습 내용, 특이사항 등을 입력하세요..."
-                        required
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={submittingInput || !selectedStudent}
-                      className="w-full py-3 bg-green-500 text-white font-medium rounded-lg hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer"
-                    >
-                      {submittingInput ? '저장 중...' : '저장'}
-                    </button>
-                  </form>
-
-                  {selectedStudent && studentInputs.length > 0 && (
-                    <div className="mt-6">
-                      <h3 className="font-medium mb-3">최근 입력 기록</h3>
-                      <div className="space-y-2 max-h-48 overflow-y-auto">
-                        {studentInputs.slice(0, 3).map((input) => (
-                          <div key={input.input_id} className="p-3 bg-gray-50 border rounded-lg text-sm">
-                            <div className="flex justify-between mb-1">
-                              <span className="font-medium">{input.date}</span>
-                              <span className="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 rounded">
-                                {input.category}
-                              </span>
-                            </div>
-                            <p className="text-gray-700 line-clamp-2">{input.content}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              )}
             </div>
           </div>
         )}

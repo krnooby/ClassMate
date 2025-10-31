@@ -96,7 +96,7 @@ function App() {
                       </button>
                       <Link
                         to="/login"
-                        className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors font-medium cursor-pointer"
+                        className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors font-medium cursor-pointer"
                       >
                         로그인
                       </Link>

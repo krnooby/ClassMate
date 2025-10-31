@@ -60,6 +60,8 @@ app.add_middleware(
         "http://127.0.0.1:3000",
         "http://127.0.0.1:5173",
         "http://127.0.0.1:5174",
+        "http://192.168.22.187:5173",  # 원격 접속
+        "http://192.168.22.187:5174",  # 원격 접속 (포트 충돌 시)
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -102,7 +104,7 @@ async def health_check():
 
 
 # 라우터 등록
-from api.routers import students, problems, teachers, parents, dashboard, classes, auth, chat
+from api.routers import students, problems, teachers, parents, dashboard, classes, auth, chat, audio
 
 app.include_router(auth.router, prefix="/api/auth", tags=["인증"])
 app.include_router(chat.router, prefix="/api/chat", tags=["AI챗봇"])
@@ -112,6 +114,7 @@ app.include_router(problems.router, prefix="/api/problems", tags=["문제"])
 app.include_router(teachers.router, prefix="/api/teachers", tags=["선생님"])
 app.include_router(parents.router, prefix="/api/parents", tags=["학부모"])
 app.include_router(classes.router, prefix="/api/classes", tags=["반"])
+app.include_router(audio.router, prefix="/api", tags=["오디오"])
 
 
 if __name__ == "__main__":

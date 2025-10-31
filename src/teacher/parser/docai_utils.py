@@ -73,7 +73,7 @@ def load_annotation_rois(
                     [float(rect.x1 / width), float(rect.y1 / height)],
                     [float(rect.x0 / width), float(rect.y1 / height)],
                 ]
-                area = rect.get_area() / (width * height) if width and height else 0.0
+                area = (rect.width * rect.height) / (width * height) if width and height else 0.0
                 if "image" in content:
                     if area < 0.02:
                         annot = annot.next

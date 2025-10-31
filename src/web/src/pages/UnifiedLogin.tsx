@@ -134,11 +134,11 @@ const UnifiedLogin: React.FC = () => {
   const config = roleConfig[selectedRole];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
         {/* 로고 & 제목 */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-600 rounded-full mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-black rounded-full mb-4">
             <GraduationCap className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">ClassMate</h1>
@@ -151,7 +151,7 @@ const UnifiedLogin: React.FC = () => {
             onClick={() => setSelectedRole('student')}
             className={`flex-1 py-2.5 px-3 rounded-md font-medium transition-all flex items-center justify-center gap-2 ${
               selectedRole === 'student'
-                ? 'bg-white text-indigo-600 shadow-sm'
+                ? 'bg-white text-black shadow-sm'
                 : 'text-gray-600 hover:text-gray-800'
             }`}
           >
@@ -162,7 +162,7 @@ const UnifiedLogin: React.FC = () => {
             onClick={() => setSelectedRole('teacher')}
             className={`flex-1 py-2.5 px-3 rounded-md font-medium transition-all flex items-center justify-center gap-2 ${
               selectedRole === 'teacher'
-                ? 'bg-white text-indigo-600 shadow-sm'
+                ? 'bg-white text-black shadow-sm'
                 : 'text-gray-600 hover:text-gray-800'
             }`}
           >
@@ -173,7 +173,7 @@ const UnifiedLogin: React.FC = () => {
             onClick={() => setSelectedRole('parent')}
             className={`flex-1 py-2.5 px-3 rounded-md font-medium transition-all flex items-center justify-center gap-2 ${
               selectedRole === 'parent'
-                ? 'bg-white text-indigo-600 shadow-sm'
+                ? 'bg-white text-black shadow-sm'
                 : 'text-gray-600 hover:text-gray-800'
             }`}
           >
@@ -184,8 +184,8 @@ const UnifiedLogin: React.FC = () => {
 
         {/* Redirect 안내 메시지 */}
         {redirectPath && (
-          <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-            <div className="flex items-center gap-2 text-sm text-blue-800">
+          <div className="mb-4 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+            <div className="flex items-center gap-2 text-sm text-gray-800">
               <AlertCircle className="w-4 h-4" />
               <span>로그인 후 <strong>{getPageName(redirectPath)}</strong>(으)로 이동합니다</span>
             </div>
@@ -205,7 +205,7 @@ const UnifiedLogin: React.FC = () => {
               value={userId}
               onChange={(e) => setUserId(e.target.value)}
               onKeyPress={handleKeyPress}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition"
             />
           </div>
 
@@ -225,7 +225,7 @@ const UnifiedLogin: React.FC = () => {
                   const isCapsLock = e.getModifierState && e.getModifierState('CapsLock');
                   setCapsLockOn(isCapsLock);
                 }}
-                className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+                className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-900 focus:border-transparent transition"
               />
               <button
                 type="button"
@@ -253,7 +253,7 @@ const UnifiedLogin: React.FC = () => {
           <button
             onClick={handleLogin}
             disabled={isLoading}
-            className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {isLoading ? (
               <>
@@ -289,7 +289,7 @@ const UnifiedLogin: React.FC = () => {
         <div className="mt-6 text-center">
           <button
             onClick={() => navigate('/')}
-            className="text-sm text-indigo-600 hover:text-indigo-700 hover:underline"
+            className="text-sm text-gray-700 hover:text-black hover:underline"
           >
             메인 페이지로 돌아가기
           </button>
