@@ -1159,9 +1159,9 @@ Step 2:
 
 ## 📞 문의 및 기여
 
-**개발자**: ClassMate Team
-**이메일**: contact@classmate.ai
-**GitHub**: https://github.com/yourusername/ClassMate
+**개발자**: Mate Team
+**이메일**: tjdghks1884@gmail.com
+**GitHub**: https://github.com/krnooby/ClassMate
 
 **기여 환영!** Pull Request를 보내주세요.
 
@@ -1175,7 +1175,7 @@ MIT License
 
 <div align="center">
 
-**Made with ❤️ by ClassMate Team**
+**Made with ❤️ by Mate Team**
 
 *Empowering education with AI*
 
